@@ -1,11 +1,12 @@
 <template>
-  <header class="border-b border-gray-200 bg-white text-gray-900 dark:border-white/10 dark:bg-neutral-950 dark:text-gray-100">
-    <div class="border-b border-gray-100 bg-gray-50 text-sm text-gray-600 dark:border-white/10 dark:bg-neutral-900 dark:text-gray-300">
+  <header class="border-b" style="background-color: var(--ui-bg-elevated); border-color: var(--ui-border); color: var(--ui-text-primary);">
+    <div class="border-b text-sm" style="background-color: var(--ui-bg-soft); border-color: var(--ui-border); color: var(--ui-text-secondary);">
       <div class="mx-auto flex h-9 max-w-[1536px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <div class="flex min-w-0 items-center gap-4">
           <button
             type="button"
-            class="max-w-[120px] shrink-0 truncate font-semibold text-gray-700 hover:text-orange-600 dark:text-gray-200 sm:max-w-[180px]"
+            class="max-w-[120px] shrink-0 truncate font-semibold transition-colors sm:max-w-[180px]"
+            style="color: var(--ui-text-primary);"
             :title="t('nav.home')"
             @click="goHome"
           >
@@ -14,14 +15,15 @@
           <router-link
             v-if="userAuthStore.isAuthenticated"
             to="/me"
-            class="max-w-[180px] truncate hover:text-orange-600"
+            class="max-w-[180px] truncate transition-colors hover:opacity-80"
+            style="color: var(--ui-accent);"
           >
             {{ currentUserLabel }}
           </router-link>
-          <button v-else type="button" class="shrink-0 hover:text-orange-600" @click="openMallAuthModal('login')">
+          <button v-else type="button" class="shrink-0 transition-colors hover:opacity-80" style="color: var(--ui-accent);" @click="openMallAuthModal('login')">
             {{ t('navbar.login') }}
           </button>
-          <button type="button" class="hidden shrink-0 hover:text-orange-600 sm:inline" @click="toggleTheme">
+          <button type="button" class="hidden shrink-0 transition-colors hover:opacity-80 sm:inline" @click="toggleTheme">
             {{ themeToggleLabel }}
           </button>
           <div
@@ -31,8 +33,8 @@
           >
             <button
               type="button"
-              class="flex h-9 shrink-0 items-center gap-1 px-1 text-gray-600 hover:text-orange-600 dark:text-gray-300"
-              :class="languageOpen ? 'text-orange-600' : ''"
+              class="flex h-9 shrink-0 items-center gap-1 px-1 transition-colors"
+              :style="languageOpen ? 'color: var(--ui-accent);' : ''"
               @click="languageOpen = !languageOpen; contactOpen = false"
             >
               <span class="inline-block">{{ currentLocaleLabel }}</span>
@@ -41,14 +43,15 @@
             </button>
             <div
               v-if="languageOpen"
-              class="absolute left-0 top-full z-50 w-32 overflow-hidden rounded-lg bg-white py-1 text-sm text-gray-700 shadow-lg ring-1 ring-black/5 dark:bg-neutral-900 dark:text-gray-200 dark:ring-white/10"
+              class="absolute left-0 top-full z-50 w-32 overflow-hidden rounded-lg border py-1 text-sm shadow-lg"
+              style="background-color: var(--ui-bg-elevated); border-color: var(--ui-border); color: var(--ui-text-secondary);"
             >
               <button
                 v-for="lang in mallLocales"
                 :key="lang.code"
                 type="button"
-                class="block w-full px-4 py-2 text-left hover:bg-orange-50 hover:text-orange-600 dark:hover:bg-orange-500/10"
-                :class="appStore.locale === lang.code ? 'font-semibold text-orange-600' : ''"
+                class="block w-full px-4 py-2 text-left transition-colors"
+                :style="appStore.locale === lang.code ? 'color: var(--ui-accent); font-weight: 600; background-color: var(--ui-accent-soft);' : ''"
                 @click="selectLocale(lang.code)"
               >
                 {{ lang.label }}
@@ -61,19 +64,22 @@
         <div class="flex items-center gap-1.5 lg:hidden">
           <router-link
             to="/cart"
-            class="relative flex h-8 w-8 items-center justify-center rounded-full text-gray-600 hover:bg-orange-50 hover:text-orange-600 dark:text-gray-300 dark:hover:bg-orange-500/10"
+            class="relative flex h-8 w-8 items-center justify-center rounded-full transition-colors"
+            style="color: var(--ui-text-secondary);"
           >
             <ShoppingBagIcon class="h-5 w-5" aria-hidden="true" />
             <span
               v-if="cartStore.totalItems > 0"
-              class="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#ff5000] text-[10px] font-black leading-none text-white"
+              class="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full text-[10px] font-bold leading-none"
+              style="background-color: var(--ui-accent); color: var(--ui-text-on-accent);"
             >
               {{ cartStore.totalItems > 9 ? '9+' : cartStore.totalItems }}
             </span>
           </router-link>
           <button
             type="button"
-            class="flex h-8 w-8 items-center justify-center rounded-full text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/10"
+            class="flex h-8 w-8 items-center justify-center rounded-full transition-colors"
+            style="color: var(--ui-text-secondary);"
             @click="mobileMenuOpen = true"
           >
             <Bars3Icon class="h-5 w-5" aria-hidden="true" />
@@ -85,7 +91,7 @@
             v-for="item in topContentItems"
             :key="item.key"
             type="button"
-            class="whitespace-nowrap hover:text-orange-600"
+            class="whitespace-nowrap transition-colors hover:opacity-80"
             @click="openTopNavItem(item)"
           >
             {{ item.label }}
@@ -98,8 +104,8 @@
           >
             <button
               type="button"
-              class="flex h-9 shrink-0 items-center gap-1 hover:text-orange-600"
-              :class="contactOpen ? 'text-orange-600' : ''"
+              class="flex h-9 shrink-0 items-center gap-1 transition-colors"
+              :style="contactOpen ? 'color: var(--ui-accent);' : ''"
               @click="contactOpen = !contactOpen; languageOpen = false"
             >
               <span>{{ contactDropdownLabel }}</span>
@@ -108,7 +114,8 @@
             </button>
             <div
               v-if="contactOpen"
-              class="absolute right-0 top-full z-50 w-36 overflow-hidden rounded-lg bg-white py-1 text-sm text-gray-700 shadow-lg ring-1 ring-black/5 dark:bg-neutral-900 dark:text-gray-200 dark:ring-white/10"
+              class="absolute right-0 top-full z-50 w-36 overflow-hidden rounded-lg border py-1 text-sm shadow-lg"
+              style="background-color: var(--ui-bg-elevated); border-color: var(--ui-border); color: var(--ui-text-secondary);"
             >
               <a
                 v-for="item in contactNavItems"
@@ -116,7 +123,7 @@
                 :href="item.url"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="block px-4 py-2 hover:bg-orange-50 hover:text-orange-600 dark:hover:bg-orange-500/10"
+                class="block px-4 py-2 transition-colors"
                 @click="openContactNavItem"
               >
                 {{ item.label }}
@@ -127,7 +134,7 @@
             v-for="item in customItems"
             :key="item.key"
             type="button"
-            class="whitespace-nowrap hover:text-orange-600"
+            class="whitespace-nowrap transition-colors hover:opacity-80"
             @click="openTopNavItem(item)"
           >
             {{ item.label }}
@@ -135,31 +142,32 @@
           <router-link
             v-if="!userAuthStore.isAuthenticated"
             to="/guest/orders"
-            class="whitespace-nowrap hover:text-orange-600"
+            class="whitespace-nowrap transition-colors hover:opacity-80"
           >
             {{ t('navbar.guestOrders') }}
           </router-link>
           <router-link
             v-if="userAuthStore.isAuthenticated"
             to="/me/orders"
-            class="whitespace-nowrap hover:text-orange-600"
+            class="whitespace-nowrap transition-colors hover:opacity-80"
           >
             {{ t('orders.title') }}
           </router-link>
-          <router-link to="/cart" class="whitespace-nowrap hover:text-orange-600">
+          <router-link to="/cart" class="whitespace-nowrap transition-colors hover:opacity-80">
             {{ t('navbar.cart') }} {{ cartStore.totalItems }}
           </router-link>
           <router-link
             v-if="userAuthStore.isAuthenticated"
             to="/me"
-            class="whitespace-nowrap hover:text-orange-600"
+            class="whitespace-nowrap transition-colors hover:opacity-80"
           >
             {{ t('navbar.personalCenter') }}
           </router-link>
           <button
             v-if="userAuthStore.isAuthenticated"
             type="button"
-            class="whitespace-nowrap text-red-600 hover:text-red-700"
+            class="whitespace-nowrap transition-colors"
+            style="color: var(--ui-danger);"
             @click="handleLogout"
           >
             {{ t('navbar.logout') }}
@@ -181,23 +189,26 @@
         />
         <span
           v-else
-          class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-orange-600 text-base font-black text-white sm:h-11 sm:w-11 sm:text-lg"
+          class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-base font-bold sm:h-11 sm:w-11 sm:text-lg"
+          style="background-color: var(--ui-accent); color: var(--ui-text-on-accent);"
         >
           {{ siteInitial }}
         </span>
-        <span class="truncate text-lg font-black text-orange-600 sm:text-2xl">{{ siteName }}</span>
+        <span class="truncate text-lg font-bold sm:text-2xl" style="color: var(--ui-accent);">{{ siteName }}</span>
       </button>
 
       <form
-        class="flex h-10 min-w-0 overflow-hidden rounded-full border-2 border-orange-600 bg-white dark:bg-neutral-900 sm:h-11"
+        class="flex h-10 min-w-0 overflow-hidden rounded-xl border-2 sm:h-11"
+        style="border-color: var(--ui-accent); background-color: var(--ui-bg-elevated);"
         @submit.prevent="submitSearch"
       >
         <input
           v-model="keyword"
           class="min-w-0 flex-1 bg-transparent px-3 text-sm outline-none sm:px-4"
+          style="color: var(--ui-text-primary);"
           :placeholder="searchPlaceholder"
         />
-        <button class="w-20 bg-orange-600 text-sm font-bold text-white hover:bg-orange-700 sm:w-24" type="submit">
+        <button class="w-20 text-sm font-semibold transition-colors sm:w-24" style="background-color: var(--ui-accent); color: var(--ui-text-on-accent);" type="submit">
           {{ t('products.searchLabel') }}
         </button>
       </form>
@@ -207,26 +218,28 @@
 
   <div
     v-if="showBrandSearch"
-    class="fixed left-0 right-0 top-0 z-50 border-b border-gray-200 bg-white text-gray-900 shadow-sm transition-all duration-200 ease-out dark:border-white/10 dark:bg-neutral-950 dark:text-gray-100"
+    class="fixed left-0 right-0 top-0 z-50 border-b shadow-sm transition-all duration-200 ease-out"
+    style="background-color: var(--ui-bg-elevated); border-color: var(--ui-border); color: var(--ui-text-primary);"
     :class="isScrolled ? 'translate-y-0 opacity-100' : 'pointer-events-none -translate-y-full opacity-0'"
     :aria-hidden="!isScrolled"
   >
     <div class="mx-auto grid max-w-[1536px] gap-2 px-4 py-2 sm:gap-3 sm:px-6 lg:grid-cols-[230px_minmax(0,1fr)] lg:items-center lg:px-8">
       <button type="button" class="inline-flex min-w-0 items-center gap-3 text-left" @click="goHome">
         <img v-if="siteIcon" :src="siteIcon" alt="" class="h-7 w-7 shrink-0 rounded-lg object-cover sm:h-8 sm:w-8" />
-        <span v-else class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-orange-600 text-xs font-black text-white sm:h-8 sm:w-8 sm:text-sm">
+        <span v-else class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-xs font-bold sm:h-8 sm:w-8 sm:text-sm" style="background-color: var(--ui-accent); color: var(--ui-text-on-accent);">
           {{ siteInitial }}
         </span>
-        <span class="truncate text-base font-black text-orange-600 sm:text-xl">{{ siteName }}</span>
+        <span class="truncate text-base font-bold sm:text-xl" style="color: var(--ui-accent);">{{ siteName }}</span>
       </button>
 
-      <form class="flex h-9 min-w-0 overflow-hidden rounded-full border-2 border-orange-600 bg-white dark:bg-neutral-900 sm:h-10" @submit.prevent="submitSearch">
+      <form class="flex h-9 min-w-0 overflow-hidden rounded-xl border-2 sm:h-10" style="border-color: var(--ui-accent); background-color: var(--ui-bg-elevated);" @submit.prevent="submitSearch">
         <input
           v-model="keyword"
           class="min-w-0 flex-1 bg-transparent px-3 text-sm outline-none sm:px-4"
+          style="color: var(--ui-text-primary);"
           :placeholder="searchPlaceholder"
         />
-        <button class="w-20 bg-orange-600 text-sm font-bold text-white hover:bg-orange-700 sm:w-24" type="submit">
+        <button class="w-20 text-sm font-semibold sm:w-24" style="background-color: var(--ui-accent); color: var(--ui-text-on-accent);" type="submit">
           {{ t('products.searchLabel') }}
         </button>
       </form>
@@ -240,34 +253,34 @@
   aria-modal="true"
 >
   <!-- 遮罩 -->
-  <div class="fixed inset-0 bg-black/50" @click="mobileMenuOpen = false" />
+  <div class="fixed inset-0 bg-black/40" @click="mobileMenuOpen = false" />
   <!-- 抽屉面板 -->
-  <div class="relative ml-auto flex h-full w-[80vw] max-w-[300px] flex-col overflow-y-auto bg-white shadow-2xl dark:bg-neutral-950">
+  <div class="relative ml-auto flex h-full w-[80vw] max-w-[300px] flex-col overflow-y-auto shadow-2xl" style="background-color: var(--ui-bg-elevated);">
     <!-- 顶部 -->
-    <div class="flex items-center justify-between border-b border-gray-100 px-4 py-3 dark:border-white/10">
-      <span class="text-base font-black text-gray-950 dark:text-white">{{ siteName }}</span>
-      <button type="button" class="flex h-8 w-8 items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-white/10" @click="mobileMenuOpen = false">
+    <div class="flex items-center justify-between border-b px-4 py-3" style="border-color: var(--ui-border);">
+      <span class="text-base font-bold" style="color: var(--ui-text-primary);">{{ siteName }}</span>
+      <button type="button" class="flex h-8 w-8 items-center justify-center rounded-full transition-colors" style="color: var(--ui-text-muted);" @click="mobileMenuOpen = false">
         <XMarkIcon class="h-5 w-5" aria-hidden="true" />
       </button>
     </div>
 
     <!-- 用户信息 -->
-    <div class="border-b border-gray-100 px-4 py-3 dark:border-white/10">
+    <div class="border-b px-4 py-3" style="border-color: var(--ui-border);">
       <template v-if="userAuthStore.isAuthenticated">
         <router-link to="/me" class="flex items-center gap-3" @click="mobileMenuOpen = false">
-          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-orange-50 text-sm font-black text-[#ff5000] dark:bg-orange-500/10">
+          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold" style="background-color: var(--ui-accent-soft); color: var(--ui-accent);">
             {{ currentUserLabel.slice(0, 1).toUpperCase() }}
           </div>
           <div class="min-w-0">
-            <div class="truncate text-sm font-black text-gray-950 dark:text-white">{{ currentUserLabel }}</div>
-            <div class="text-xs text-gray-500 dark:text-gray-400">{{ t('navbar.personalCenter') }}</div>
+            <div class="truncate text-sm font-semibold" style="color: var(--ui-text-primary);">{{ currentUserLabel }}</div>
+            <div class="text-xs" style="color: var(--ui-text-muted);">{{ t('navbar.personalCenter') }}</div>
           </div>
         </router-link>
       </template>
       <button
         v-else
         type="button"
-        class="flex h-10 w-full items-center justify-center rounded-xl bg-[#ff5000] text-sm font-black text-white"
+        class="theme-btn-primary flex h-10 w-full items-center justify-center rounded-xl border text-sm font-semibold"
         @click="openMallAuthModal('login'); mobileMenuOpen = false"
       >
         {{ t('navbar.login') }}
@@ -280,35 +293,37 @@
         v-for="item in topContentItems"
         :key="item.key"
         type="button"
-        class="flex h-11 w-full items-center rounded-xl px-3 text-sm font-semibold text-gray-700 hover:bg-orange-50 hover:text-orange-600 dark:text-gray-200 dark:hover:bg-orange-500/10"
+        class="flex h-11 w-full items-center rounded-xl px-3 text-sm font-medium transition-colors"
+        style="color: var(--ui-text-secondary);"
         @click="openTopNavItem(item); mobileMenuOpen = false"
       >
         {{ item.label }}
       </button>
 
-      <div class="py-1"><div class="border-t border-gray-100 dark:border-white/10" /></div>
+      <div class="py-1"><div class="border-t" style="border-color: var(--ui-border);" /></div>
 
       <template v-if="userAuthStore.isAuthenticated">
-        <router-link to="/me/orders" class="flex h-11 items-center rounded-xl px-3 text-sm font-semibold text-gray-700 hover:bg-orange-50 hover:text-orange-600 dark:text-gray-200 dark:hover:bg-orange-500/10" @click="mobileMenuOpen = false">
+        <router-link to="/me/orders" class="flex h-11 items-center rounded-xl px-3 text-sm font-medium transition-colors" style="color: var(--ui-text-secondary);" @click="mobileMenuOpen = false">
           {{ t('orders.title') }}
         </router-link>
-        <router-link to="/me" class="flex h-11 items-center rounded-xl px-3 text-sm font-semibold text-gray-700 hover:bg-orange-50 hover:text-orange-600 dark:text-gray-200 dark:hover:bg-orange-500/10" @click="mobileMenuOpen = false">
+        <router-link to="/me" class="flex h-11 items-center rounded-xl px-3 text-sm font-medium transition-colors" style="color: var(--ui-text-secondary);" @click="mobileMenuOpen = false">
           {{ t('navbar.personalCenter') }}
         </router-link>
       </template>
-      <router-link v-else to="/guest/orders" class="flex h-11 items-center rounded-xl px-3 text-sm font-semibold text-gray-700 hover:bg-orange-50 hover:text-orange-600 dark:text-gray-200 dark:hover:bg-orange-500/10" @click="mobileMenuOpen = false">
+      <router-link v-else to="/guest/orders" class="flex h-11 items-center rounded-xl px-3 text-sm font-medium transition-colors" style="color: var(--ui-text-secondary);" @click="mobileMenuOpen = false">
         {{ t('navbar.guestOrders') }}
       </router-link>
 
       <template v-if="contactNavItems.length">
-        <div class="py-1"><div class="border-t border-gray-100 dark:border-white/10" /></div>
+        <div class="py-1"><div class="border-t" style="border-color: var(--ui-border);" /></div>
         <a
           v-for="item in contactNavItems"
           :key="item.key"
           :href="item.url"
           target="_blank"
           rel="noopener noreferrer"
-          class="flex h-11 items-center rounded-xl px-3 text-sm font-semibold text-gray-700 hover:bg-orange-50 hover:text-orange-600 dark:text-gray-200 dark:hover:bg-orange-500/10"
+          class="flex h-11 items-center rounded-xl px-3 text-sm font-medium transition-colors"
+          style="color: var(--ui-text-secondary);"
           @click="openContactNavItem"
         >
           {{ item.label }}
@@ -316,30 +331,31 @@
       </template>
 
       <template v-if="customItems.length">
-        <div class="py-1"><div class="border-t border-gray-100 dark:border-white/10" /></div>
+        <div class="py-1"><div class="border-t" style="border-color: var(--ui-border);" /></div>
         <button
           v-for="item in customItems"
           :key="item.key"
           type="button"
-          class="flex h-11 w-full items-center rounded-xl px-3 text-sm font-semibold text-gray-700 hover:bg-orange-50 hover:text-orange-600 dark:text-gray-200 dark:hover:bg-orange-500/10"
+          class="flex h-11 w-full items-center rounded-xl px-3 text-sm font-medium transition-colors"
+          style="color: var(--ui-text-secondary);"
           @click="openTopNavItem(item); mobileMenuOpen = false"
         >
           {{ item.label }}
         </button>
       </template>
 
-      <div class="py-1"><div class="border-t border-gray-100 dark:border-white/10" /></div>
+      <div class="py-1"><div class="border-t" style="border-color: var(--ui-border);" /></div>
 
       <!-- 语言切换 -->
       <div class="px-3 py-2">
-        <div class="mb-2 text-xs font-bold text-gray-400 dark:text-gray-500">{{ currentLocaleLabel }}</div>
+        <div class="mb-2 text-xs font-medium" style="color: var(--ui-text-muted);">{{ currentLocaleLabel }}</div>
         <div class="flex flex-wrap gap-1.5">
           <button
             v-for="lang in mallLocales"
             :key="lang.code"
             type="button"
-            class="rounded-full px-3 py-1 text-xs font-semibold transition"
-            :class="appStore.locale === lang.code ? 'bg-[#ff5000] text-white' : 'bg-gray-100 text-gray-600 hover:bg-orange-50 hover:text-orange-600 dark:bg-white/10 dark:text-gray-300'"
+            class="rounded-lg px-3 py-1.5 text-xs font-medium transition-colors"
+            :style="appStore.locale === lang.code ? 'background-color: var(--ui-accent); color: var(--ui-text-on-accent);' : 'background-color: var(--ui-bg-soft); color: var(--ui-text-secondary);'"
             @click="selectLocale(lang.code)"
           >
             {{ lang.label }}
@@ -350,7 +366,8 @@
       <!-- 主题切换 -->
       <button
         type="button"
-        class="flex h-11 w-full items-center rounded-xl px-3 text-sm font-semibold text-gray-700 hover:bg-orange-50 hover:text-orange-600 dark:text-gray-200 dark:hover:bg-orange-500/10"
+        class="flex h-11 w-full items-center rounded-xl px-3 text-sm font-medium transition-colors"
+        style="color: var(--ui-text-secondary);"
         @click="toggleTheme"
       >
         {{ themeToggleLabel }}
@@ -358,10 +375,11 @@
     </nav>
 
     <!-- 退出 -->
-    <div v-if="userAuthStore.isAuthenticated" class="border-t border-gray-100 px-3 py-3 dark:border-white/10">
+    <div v-if="userAuthStore.isAuthenticated" class="border-t px-3 py-3" style="border-color: var(--ui-border);">
       <button
         type="button"
-        class="flex h-11 w-full items-center rounded-xl px-3 text-sm font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-500/10"
+        class="flex h-11 w-full items-center rounded-xl px-3 text-sm font-medium"
+        style="color: var(--ui-danger);"
         @click="handleLogout(); mobileMenuOpen = false"
       >
         {{ t('navbar.logout') }}

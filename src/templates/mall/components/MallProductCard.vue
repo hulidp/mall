@@ -1,45 +1,46 @@
 <template>
   <div class="min-w-0">
     <div
-      class="group flex aspect-square min-w-0 cursor-pointer flex-col overflow-hidden rounded-xl bg-white text-left shadow-sm ring-1 ring-gray-200/70 transition duration-200 ease-out hover:-translate-y-1 hover:shadow-md dark:bg-neutral-900 dark:ring-white/10 [contain-intrinsic-size:240px] [content-visibility:auto]"
+      class="theme-card-interactive group flex aspect-square min-w-0 cursor-pointer flex-col overflow-hidden rounded-xl border text-left [contain-intrinsic-size:240px] [content-visibility:auto]"
+      style="background-color: var(--ui-bg-elevated); border-color: var(--ui-border);"
       role="link"
       tabindex="0"
       @click="goToProduct"
       @keydown.enter.prevent="goToProduct"
       @keydown.space.prevent="goToProduct"
     >
-    <div class="relative h-[50%] w-full shrink-0 overflow-hidden bg-gray-100 ring-1 ring-black/5 transition duration-200 ease-out group-hover:ring-orange-400/60 dark:bg-neutral-900 dark:ring-white/10 dark:group-hover:ring-orange-500/40 sm:h-[52%]">
+    <div class="relative h-[50%] w-full shrink-0 overflow-hidden sm:h-[52%]" style="background-color: var(--ui-bg-soft);">
       <SmartImage
         :src="image"
         :alt="title"
         :loading="props.imageLoading || 'lazy'"
-        img-class="h-full w-full object-cover transition duration-300 ease-out group-hover:scale-105"
+        img-class="h-full w-full object-cover transition duration-300 ease-out group-hover:scale-[1.03]"
       />
-      <div class="pointer-events-none absolute inset-0 bg-black/0 transition duration-200 group-hover:bg-black/[0.03] dark:group-hover:bg-white/[0.04]"></div>
-      <span class="absolute left-1.5 top-1.5 z-10 rounded-full bg-[#ff5000] px-1.5 py-1 text-[11px] font-bold leading-none text-white shadow-[0_3px_10px_rgba(255,80,0,0.4)] ring-1 ring-white/80 sm:left-2 sm:top-2 sm:px-2 sm:text-xs">
+      <div class="pointer-events-none absolute inset-0 bg-black/0 transition duration-200 group-hover:bg-black/[0.02]"></div>
+      <span class="theme-badge theme-badge-xs absolute left-1.5 top-1.5 z-10 sm:left-2 sm:top-2" style="background-color: var(--ui-accent); color: var(--ui-text-on-accent); border-color: transparent;">
         {{ fulfillmentLabel }}
       </span>
       <span
         v-if="categoryName"
-        class="absolute right-1.5 top-1.5 z-10 max-w-[calc(100%-5.75rem)] truncate rounded-full bg-white/90 px-1.5 py-1 text-[11px] font-bold leading-none text-gray-800 shadow-sm ring-1 ring-black/5 backdrop-blur dark:bg-neutral-950/80 dark:text-gray-100 dark:ring-white/10 sm:right-2 sm:top-2 sm:px-2 sm:text-xs"
+        class="theme-badge theme-badge-xs theme-badge-inverse absolute right-1.5 top-1.5 z-10 max-w-[calc(100%-5.75rem)] truncate sm:right-2 sm:top-2"
       >
         {{ categoryName }}
       </span>
-      <div v-if="soldOut" class="absolute inset-0 flex items-center justify-center bg-black/55 text-sm font-bold text-white">
+      <div v-if="soldOut" class="absolute inset-0 flex items-center justify-center bg-black/60 text-sm font-semibold text-white">
         {{ t('products.stockStatus.outOfStock') }}
       </div>
     </div>
-    <div class="flex min-h-0 flex-1 flex-col justify-between bg-white px-2 pb-2 pt-2 dark:bg-neutral-900 sm:px-2.5 sm:pb-2.5">
-      <h3 class="shrink-0 truncate text-[13px] font-medium leading-[1.35] text-gray-900 group-hover:text-orange-600 dark:text-gray-100 sm:text-[14px]">
+    <div class="flex min-h-0 flex-1 flex-col justify-between px-2.5 pb-2.5 pt-2.5 sm:px-3 sm:pb-3">
+      <h3 class="shrink-0 truncate text-[13px] font-medium leading-snug sm:text-sm" style="color: var(--ui-text-primary);">
         {{ title }}
       </h3>
-      <div class="flex min-w-0 shrink-0 items-center justify-between gap-1.5 sm:gap-2">
-        <div class="flex min-w-0 items-baseline gap-1 text-[#ff5000]">
-          <span class="min-w-0 truncate text-[16px] font-black leading-none sm:text-[18px]">{{ priceText }}</span>
+      <div class="flex min-w-0 shrink-0 items-center justify-between gap-2">
+        <div class="flex min-w-0 items-baseline gap-1" style="color: var(--ui-accent);">
+          <span class="min-w-0 truncate text-base font-bold tabular-nums leading-none sm:text-lg">{{ priceText }}</span>
         </div>
         <button
           type="button"
-          class="inline-flex h-6 shrink-0 items-center justify-center rounded-full bg-[#ff5000] px-2 text-[10px] font-bold text-white shadow-sm transition duration-200 ease-out hover:bg-orange-600 group-hover:shadow-[0_6px_14px_rgba(255,80,0,0.22)] disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-500 disabled:shadow-none dark:disabled:bg-white/10 dark:disabled:text-gray-400 sm:h-7 sm:px-2.5 sm:text-[11px]"
+          class="theme-btn-primary inline-flex h-7 shrink-0 items-center justify-center rounded-lg border px-2.5 text-[11px] font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50 sm:h-8 sm:px-3 sm:text-xs"
           :disabled="soldOut"
           :aria-label="t('quickBuy.buyNow')"
           @click.stop="openQuickBuy"
@@ -49,12 +50,12 @@
       </div>
       <div class="flex min-w-0 shrink-0 items-center justify-between gap-1.5 text-[11px] sm:gap-2 sm:text-xs">
         <div class="flex min-w-0 flex-wrap items-center gap-1">
-          <span class="rounded-full border px-2 py-0.5 font-semibold shadow-sm" :class="stockClass">
+          <span class="theme-badge theme-badge-xs" :class="stockClass">
             <span class="sm:hidden">{{ stockCompactLabel }}</span>
             <span class="hidden sm:inline">{{ stockLabel }}</span>
           </span>
         </div>
-        <span v-if="soldCountText" class="shrink-0 rounded-full bg-orange-50 px-2 py-0.5 font-semibold text-orange-600 shadow-sm dark:bg-orange-500/10 dark:text-orange-300">
+        <span v-if="soldCountText" class="theme-badge theme-badge-xs theme-badge-neutral">
           {{ soldCountText }}
         </span>
       </div>
@@ -128,9 +129,9 @@ const stockLabel = computed(() => {
 })
 const stockClass = computed(() => {
   const status = String(props.product?.stock_status || 'in_stock')
-  if (status === 'out_of_stock') return 'border-gray-200 bg-gray-100 text-gray-500 dark:border-white/10 dark:bg-white/10 dark:text-gray-300'
-  if (status === 'low_stock') return 'border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-500/20 dark:bg-amber-500/10 dark:text-amber-300'
-  return 'border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-300'
+  if (status === 'out_of_stock') return 'theme-badge-neutral'
+  if (status === 'low_stock') return 'theme-badge-warning'
+  return 'theme-badge-success'
 })
 const soldOut = computed(() => isSoldOut(props.product))
 const fulfillmentLabel = computed(() => fulfillmentTypeLabel(t, props.product?.fulfillment_type, 'orderDetail'))

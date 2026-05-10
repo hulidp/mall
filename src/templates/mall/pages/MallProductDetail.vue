@@ -3,13 +3,13 @@
 
     <div
       v-if="!loading && loadError"
-      class="flex min-h-[260px] flex-col items-center justify-center rounded-lg border border-dashed border-orange-200 bg-orange-50/60 px-6 py-10 text-center text-orange-700 dark:border-orange-500/20 dark:bg-orange-500/10 dark:text-orange-200"
+      class="theme-alert-danger flex min-h-[260px] flex-col items-center justify-center rounded-xl border px-6 py-10 text-center"
     >
-      <h2 class="text-base font-bold">{{ t('emptyState.error') }}</h2>
-      <p class="mt-2 max-w-md text-sm leading-6">{{ loadError }}</p>
+      <h2 class="text-base font-semibold">{{ t('emptyState.error') }}</h2>
+      <p class="mt-2 max-w-md text-sm leading-relaxed opacity-80">{{ loadError }}</p>
       <button
         type="button"
-        class="mt-5 inline-flex h-10 items-center justify-center rounded-md bg-orange-600 px-4 text-sm font-semibold text-white hover:bg-orange-700"
+        class="theme-btn-primary theme-btn-inline-md mt-5 rounded-lg border text-sm font-medium"
         @click="loadProduct"
       >
         {{ t('emptyState.retry') }}
@@ -26,31 +26,32 @@
     <div v-else-if="loading" class="grid items-start gap-3 lg:grid-cols-[minmax(0,720px)_minmax(420px,640px)] lg:gap-5 xl:gap-6">
       <div class="grid gap-4 lg:grid-cols-[74px_minmax(0,620px)]">
         <div class="hidden space-y-3 lg:block">
-          <div v-for="index in 5" :key="index" class="h-[70px] w-[70px] rounded-lg bg-gray-100 dark:bg-white/10"></div>
+          <div v-for="index in 5" :key="index" class="h-[70px] w-[70px] rounded-lg" style="background-color: var(--ui-bg-muted);"></div>
         </div>
-        <div class="aspect-square max-w-[620px] rounded-xl bg-gray-100 dark:bg-white/10"></div>
+        <div class="aspect-square max-w-[620px] rounded-xl" style="background-color: var(--ui-bg-muted);"></div>
       </div>
       <div class="space-y-5">
-        <div class="h-8 w-5/6 rounded bg-gray-100 dark:bg-white/10"></div>
-        <div class="h-20 rounded-lg bg-gray-100 dark:bg-white/10"></div>
+        <div class="h-8 w-5/6 rounded" style="background-color: var(--ui-bg-muted);"></div>
+        <div class="h-20 rounded-lg" style="background-color: var(--ui-bg-muted);"></div>
         <div class="space-y-3">
-          <div class="h-10 rounded bg-gray-100 dark:bg-white/10"></div>
-          <div class="h-10 rounded bg-gray-100 dark:bg-white/10"></div>
-          <div class="h-12 rounded bg-gray-100 dark:bg-white/10"></div>
+          <div class="h-10 rounded" style="background-color: var(--ui-bg-muted);"></div>
+          <div class="h-10 rounded" style="background-color: var(--ui-bg-muted);"></div>
+          <div class="h-12 rounded" style="background-color: var(--ui-bg-muted);"></div>
         </div>
       </div>
     </div>
 
     <div v-else-if="product" class="grid gap-3 lg:grid-cols-[minmax(0,720px)_minmax(420px,640px)] lg:gap-5 xl:gap-6">
       <main class="order-1 min-w-0">
-        <section class="bg-white/95 pb-2 shadow-[0_8px_28px_rgba(15,23,42,0.04)] dark:bg-neutral-950 lg:grid lg:gap-4 lg:bg-transparent lg:pb-0 lg:shadow-none lg:dark:bg-transparent lg:grid-cols-[74px_minmax(0,620px)]">
+        <section class="pb-2 lg:grid lg:gap-4 lg:pb-0 lg:grid-cols-[74px_minmax(0,620px)]" style="background-color: var(--ui-bg-elevated);">
           <div class="order-2 mt-2 flex gap-2 overflow-x-auto px-3 lg:order-1 lg:mt-0 lg:block lg:space-y-3 lg:overflow-visible lg:px-0">
             <button
               v-for="image in images"
               :key="image"
               type="button"
-              class="h-12 w-12 shrink-0 overflow-hidden rounded-lg border bg-gray-100 transition dark:bg-neutral-900 sm:h-[70px] sm:w-[70px]"
-              :class="image === currentImage ? 'border-orange-600 ring-1 ring-orange-600' : 'border-gray-200 hover:border-orange-400 dark:border-white/10'"
+              class="h-12 w-12 shrink-0 overflow-hidden rounded-lg border transition sm:h-[70px] sm:w-[70px]"
+              :style="image === currentImage ? 'border-color: var(--ui-accent); box-shadow: 0 0 0 1px var(--ui-accent);' : 'border-color: var(--ui-border);'"
+              style="background-color: var(--ui-bg-soft);"
               @click="currentImage = image"
             >
               <img :src="image" :alt="title" class="h-full w-full object-contain p-1" />
@@ -58,46 +59,47 @@
           </div>
 
           <div class="order-1 lg:order-2">
-            <div class="mx-auto h-[48vw] max-h-48 min-h-[150px] w-full overflow-hidden bg-[#f4f1ec] ring-1 ring-black/[0.03] dark:bg-neutral-900 dark:ring-white/10 sm:aspect-square sm:h-auto sm:max-h-none sm:max-w-[520px] sm:rounded-xl lg:mx-0 lg:aspect-square lg:max-w-[620px]">
+            <div class="mx-auto h-[48vw] max-h-48 min-h-[150px] w-full overflow-hidden border sm:aspect-square sm:h-auto sm:max-h-none sm:max-w-[520px] sm:rounded-xl lg:mx-0 lg:aspect-square lg:max-w-[620px]" style="background-color: var(--ui-bg-soft); border-color: var(--ui-border);">
               <img v-if="currentImage" :src="currentImage" :alt="title" class="h-full w-full object-contain p-2 lg:p-0" />
             </div>
           </div>
         </section>
 
-        <section class="mt-1.5 border-y border-gray-200 bg-white/95 px-3 py-2 shadow-[0_8px_28px_rgba(15,23,42,0.04)] dark:border-white/10 dark:bg-neutral-950 lg:hidden">
+        <section class="mt-1.5 border-y px-3 py-2 lg:hidden" style="background-color: var(--ui-bg-elevated); border-color: var(--ui-border);">
           <button
             type="button"
-            class="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-500 transition hover:text-orange-600 dark:text-gray-400 dark:hover:text-orange-400"
+            class="inline-flex items-center gap-1.5 text-xs font-medium transition-colors"
+            style="color: var(--ui-text-muted);"
             @click="goBack"
           >
             <ArrowLeftIcon class="h-3.5 w-3.5" aria-hidden="true" />
             <span>{{ t('productDetail.backToProducts') }}</span>
           </button>
-          <h1 class="mt-1 line-clamp-2 text-[15px] font-black leading-snug text-gray-950 [overflow-wrap:anywhere] dark:text-white sm:text-base">{{ title }}</h1>
-          <div class="mt-1 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs text-gray-500 dark:text-gray-400">
+          <h1 class="mt-1 line-clamp-2 text-[15px] font-semibold leading-snug [overflow-wrap:anywhere] sm:text-base" style="color: var(--ui-text-primary);">{{ title }}</h1>
+          <div class="mt-1 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs" style="color: var(--ui-text-muted);">
             <span v-if="categoryName" class="max-w-full [overflow-wrap:anywhere]">{{ categoryName }}</span>
             <span v-for="row in serviceRows" :key="row.text" class="inline-flex min-w-0 items-center gap-1.5">
               <component :is="row.icon" class="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
               <span class="min-w-0 [overflow-wrap:anywhere]">{{ row.text }}</span>
             </span>
           </div>
-          <div class="mt-1.5 flex items-end justify-between gap-3 rounded-xl bg-[#fbfaf8] px-2.5 py-2 ring-1 ring-black/[0.03] dark:bg-white/[0.04] dark:ring-white/10">
+          <div class="mt-1.5 flex items-end justify-between gap-3 rounded-xl border px-2.5 py-2" style="background-color: var(--ui-bg-soft); border-color: var(--ui-border);">
             <div class="flex min-w-0 flex-wrap items-end gap-2">
-            <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">{{ t('products.price') }}</span>
-            <span class="text-[23px] font-black leading-none text-[#ff5000] [overflow-wrap:anywhere]">{{ priceText }}</span>
-            <span v-if="showOriginalPrice" class="text-sm text-gray-400 line-through dark:text-gray-500">
+            <span class="text-sm font-medium" style="color: var(--ui-text-muted);">{{ t('products.price') }}</span>
+            <span class="text-[23px] font-bold leading-none [overflow-wrap:anywhere]" style="color: var(--ui-accent);">{{ priceText }}</span>
+            <span v-if="showOriginalPrice" class="text-sm line-through" style="color: var(--ui-text-muted);">
               {{ originalPriceText }}
             </span>
             </div>
-            <span v-if="selectedSkuSummary" class="min-w-0 truncate text-right text-xs font-semibold text-gray-500 dark:text-gray-400">{{ selectedSkuSummary }}</span>
+            <span v-if="selectedSkuSummary" class="min-w-0 truncate text-right text-xs font-medium" style="color: var(--ui-text-muted);">{{ selectedSkuSummary }}</span>
           </div>
-          <div v-if="selectedWholesaleRules.length" class="mt-2 rounded-lg border border-emerald-200 bg-emerald-50/70 px-3 py-1.5 dark:border-emerald-500/20 dark:bg-emerald-500/10">
-            <div class="text-xs font-black text-emerald-700 dark:text-emerald-300">{{ t('products.wholesaleRulesTitle') }}</div>
+          <div v-if="selectedWholesaleRules.length" class="theme-alert-success mt-2 rounded-lg border px-3 py-1.5">
+            <div class="text-xs font-semibold">{{ t('products.wholesaleRulesTitle') }}</div>
             <div class="mt-1 flex flex-wrap gap-1.5">
               <span
                 v-for="rule in selectedWholesaleRules"
                 :key="rule.id || rule.min_quantity"
-                class="rounded-md bg-white px-2 py-1 text-xs font-semibold text-emerald-700 ring-1 ring-emerald-100 dark:bg-neutral-950 dark:text-emerald-300 dark:ring-emerald-500/20"
+                class="theme-badge theme-badge-xs theme-badge-success"
               >
                 {{ formatWholesaleRule(rule) }}
               </span>
@@ -105,18 +107,18 @@
           </div>
         </section>
 
-        <section v-if="descriptionText" class="mt-5 hidden overflow-hidden rounded-xl bg-gray-50 dark:bg-white/5 lg:block lg:max-w-[720px]">
-          <div class="border-b border-gray-200 px-5 py-3 dark:border-white/10">
-            <h2 class="text-base font-bold text-orange-600">{{ t('productDetail.description') }}</h2>
+        <section v-if="descriptionText" class="mt-5 hidden overflow-hidden rounded-xl lg:block lg:max-w-[720px]" style="background-color: var(--ui-bg-soft);">
+          <div class="border-b px-5 py-3" style="border-color: var(--ui-border);">
+            <h2 class="text-base font-semibold" style="color: var(--ui-accent);">{{ t('productDetail.description') }}</h2>
           </div>
           <div class="p-4 sm:p-5">
-            <p class="text-sm leading-7 text-gray-700 [overflow-wrap:anywhere] dark:text-gray-200">{{ descriptionText }}</p>
+            <p class="text-sm leading-7 [overflow-wrap:anywhere]" style="color: var(--ui-text-secondary);">{{ descriptionText }}</p>
           </div>
         </section>
 
-        <section v-if="safeContent" class="mt-5 hidden overflow-hidden rounded-xl bg-gray-50 dark:bg-white/5 lg:block lg:max-w-[720px]">
-          <div class="border-b border-gray-200 px-5 py-3 dark:border-white/10">
-            <h2 class="text-base font-bold text-orange-600">{{ detailDescriptionLabel }}</h2>
+        <section v-if="safeContent" class="mt-5 hidden overflow-hidden rounded-xl lg:block lg:max-w-[720px]" style="background-color: var(--ui-bg-soft);">
+          <div class="border-b px-5 py-3" style="border-color: var(--ui-border);">
+            <h2 class="text-base font-semibold" style="color: var(--ui-accent);">{{ detailDescriptionLabel }}</h2>
           </div>
 
           <div class="p-4 sm:p-5">
@@ -127,7 +129,8 @@
 
       <aside ref="purchasePanelRef" class="order-2 hidden min-w-0 lg:sticky lg:top-2 lg:block lg:self-start">
         <div
-          class="flex flex-col overflow-visible rounded-2xl bg-white shadow-[0_16px_50px_rgba(15,23,42,0.12)] ring-1 ring-gray-100 dark:bg-neutral-950 dark:ring-white/10 lg:overflow-hidden"
+          class="flex flex-col overflow-visible rounded-2xl border lg:overflow-hidden"
+          style="background-color: var(--ui-bg-elevated); border-color: var(--ui-border); box-shadow: var(--ui-shadow-card);"
           :class="purchasePanelClass"
         >
           <div class="flex min-h-0 flex-1 flex-col overflow-visible p-4">
@@ -135,14 +138,15 @@
               <div>
                 <button
                   type="button"
-                  class="mb-2 inline-flex items-center gap-1.5 text-xs font-semibold text-gray-500 transition hover:text-orange-600 dark:text-gray-400 dark:hover:text-orange-400"
+                  class="mb-2 inline-flex items-center gap-1.5 text-xs font-medium transition-colors"
+                  style="color: var(--ui-text-muted);"
                   @click="goBack"
                 >
                   <ArrowLeftIcon class="h-3.5 w-3.5" aria-hidden="true" />
                   <span>{{ t('productDetail.backToProducts') }}</span>
                 </button>
-                <h1 class="break-words text-[21px] font-black leading-snug text-gray-950 [overflow-wrap:anywhere] dark:text-white lg:text-[22px]">{{ title }}</h1>
-                <div class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 dark:text-gray-400">
+                <h1 class="break-words text-[21px] font-semibold leading-snug [overflow-wrap:anywhere] lg:text-[22px]" style="color: var(--ui-text-primary);">{{ title }}</h1>
+                <div class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs" style="color: var(--ui-text-muted);">
                   <span v-if="categoryName">{{ categoryName }}</span>
                   <span v-for="row in serviceRows" :key="row.text" class="inline-flex items-center gap-1.5">
                     <component :is="row.icon" class="h-3.5 w-3.5" aria-hidden="true" />
@@ -153,58 +157,58 @@
 
               <div class="py-1">
                 <div class="flex flex-wrap items-end gap-3">
-                  <span class="pb-1 text-sm font-semibold text-gray-500 dark:text-gray-400">{{ t('products.price') }}</span>
-                  <div class="flex min-w-0 items-baseline gap-1 text-[#ff5000]">
-                    <span class="min-w-0 truncate text-[28px] font-black leading-none">{{ priceText }}</span>
+                  <span class="pb-1 text-sm font-medium" style="color: var(--ui-text-muted);">{{ t('products.price') }}</span>
+                  <div class="flex min-w-0 items-baseline gap-1" style="color: var(--ui-accent);">
+                    <span class="min-w-0 truncate text-[28px] font-bold leading-none">{{ priceText }}</span>
                   </div>
-                  <span v-if="showOriginalPrice" class="pb-1 text-sm text-gray-400 line-through dark:text-gray-500">
+                  <span v-if="showOriginalPrice" class="pb-1 text-sm line-through" style="color: var(--ui-text-muted);">
                     {{ originalPriceText }}
                   </span>
                 </div>
               </div>
 
-              <div v-if="selectedWholesaleRules.length" class="rounded-lg border border-emerald-200 bg-emerald-50/70 px-3 py-2 dark:border-emerald-500/20 dark:bg-emerald-500/10">
-                <div class="text-xs font-black text-emerald-700 dark:text-emerald-300">{{ t('products.wholesaleRulesTitle') }}</div>
+              <div v-if="selectedWholesaleRules.length" class="theme-alert-success rounded-lg border px-3 py-2">
+                <div class="text-xs font-semibold">{{ t('products.wholesaleRulesTitle') }}</div>
                 <div class="mt-1 flex flex-wrap gap-1.5">
                   <span
                     v-for="rule in selectedWholesaleRules"
                     :key="rule.id || rule.min_quantity"
-                    class="rounded-md bg-white px-2 py-1 text-xs font-semibold text-emerald-700 ring-1 ring-emerald-100 dark:bg-neutral-950 dark:text-emerald-300 dark:ring-emerald-500/20"
+                    class="theme-badge theme-badge-xs theme-badge-success"
                   >
                     {{ formatWholesaleRule(rule) }}
                   </span>
                 </div>
               </div>
 
-              <div class="border-b border-gray-200 dark:border-white/10"></div>
+              <div class="border-b" style="border-color: var(--ui-border);"></div>
             </div>
 
             <div v-if="activeSkuRows.length > 1" class="mt-3 shrink-0 space-y-2">
               <div class="flex items-center justify-between gap-3">
                 <div>
-                  <div class="text-sm font-semibold text-gray-500 dark:text-gray-400">{{ t('productDetail.skuTitle') }}</div>
-                  <div class="mt-1 text-xs text-gray-400 dark:text-gray-500">
+                  <div class="text-sm font-medium" style="color: var(--ui-text-muted);">{{ t('productDetail.skuTitle') }}</div>
+                  <div class="mt-1 text-xs" style="color: var(--ui-text-muted);">
                     {{ t('productDetail.selectedSkuLabel') }}: {{ selectedSkuSummary }}
                   </div>
                 </div>
                 <button
                   v-if="showSkuToggle"
                   type="button"
-                  class="inline-flex h-8 items-center justify-center rounded-full border border-orange-200 px-3 text-xs font-semibold text-orange-600 transition hover:bg-orange-50 dark:border-orange-500/20 dark:text-orange-300 dark:hover:bg-orange-500/10"
+                  class="theme-btn-ghost inline-flex h-8 items-center justify-center rounded-lg border px-3 text-xs font-medium transition-colors"
                   @click="skuExpanded = !skuExpanded"
                 >
                   {{ skuExpanded ? t('productDetail.collapseSkuList') : t('productDetail.expandSkuList') }}
                 </button>
               </div>
-              <div class="rounded-xl border border-gray-200/80 p-2.5 dark:border-white/10">
+              <div class="rounded-xl border p-2.5" style="border-color: var(--ui-border);">
                 <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-4">
                   <button
                     v-for="sku in visibleSkuRows"
                     :key="sku.id"
                     type="button"
-                    class="min-h-11 rounded-lg border px-2.5 py-2 text-left text-sm transition"
+                    class="min-h-11 rounded-lg border px-2.5 py-2 text-left text-sm transition-colors"
+                    :style="normalizeSkuId(sku.id) === selectedSkuId ? 'border-color: var(--ui-accent); background-color: var(--ui-accent-soft); color: var(--ui-accent);' : 'border-color: var(--ui-border); background-color: var(--ui-bg-elevated); color: var(--ui-text-primary);'"
                     :class="[
-                      normalizeSkuId(sku.id) === selectedSkuId ? 'border-orange-600 bg-orange-50 text-orange-600 dark:bg-orange-500/10' : 'border-gray-200 bg-white text-gray-800 hover:border-orange-400 dark:border-white/10 dark:bg-neutral-950 dark:text-gray-100',
                       isSkuPurchasable(product, sku) ? '' : 'cursor-not-allowed opacity-50',
                       isLongSkuText(sku) ? 'col-span-full' : '',
                     ]"
@@ -212,8 +216,8 @@
                     @click="selectedSkuId = normalizeSkuId(sku.id)"
                     >
                       <div class="flex min-w-0 items-center justify-between gap-2">
-                        <span class="min-w-0 truncate font-semibold leading-snug">{{ skuText(sku) }}</span>
-                        <span class="shrink-0 text-[11px] text-gray-500 dark:text-gray-400">{{ skuStockText(sku) }}</span>
+                        <span class="min-w-0 truncate font-medium leading-snug">{{ skuText(sku) }}</span>
+                        <span class="shrink-0 text-[11px]" style="color: var(--ui-text-muted);">{{ skuStockText(sku) }}</span>
                       </div>
                     </button>
                 </div>
@@ -222,9 +226,9 @@
 
             <div class="mt-3 shrink-0 space-y-3">
               <div class="flex flex-wrap items-center gap-3">
-                <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">{{ t('productDetail.quantity') }}</span>
+                <span class="text-sm font-medium" style="color: var(--ui-text-muted);">{{ t('productDetail.quantity') }}</span>
                 <MallQuantityInput v-model="quantity" :min="minQuantity" :max="quantityLimit" />
-                <span v-if="quantityLimit !== null" class="text-xs text-gray-500 dark:text-gray-400">{{ t('products.stockStatus.stockCount', { count: quantityLimit }) }}</span>
+                <span v-if="quantityLimit !== null" class="text-xs" style="color: var(--ui-text-muted);">{{ t('products.stockStatus.stockCount', { count: quantityLimit }) }}</span>
               </div>
 
               <div v-if="!requiresLogin && selectableCardFields.length" class="space-y-3">
@@ -241,39 +245,39 @@
 
               <div v-if="!requiresLogin && deliveryManualFields.length" class="space-y-3">
                 <div>
-                  <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-200">{{ t('checkout.manualFormTitle') }}</h3>
-                  <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">{{ t('checkout.manualFormTip') }}</p>
+                  <h3 class="text-sm font-medium" style="color: var(--ui-text-secondary);">{{ t('checkout.manualFormTitle') }}</h3>
+                  <p class="mt-1 text-xs" style="color: var(--ui-text-muted);">{{ t('checkout.manualFormTip') }}</p>
                 </div>
                 <div class="grid gap-3 sm:grid-cols-2">
                   <div v-for="field in deliveryManualFields" :key="field.key" class="space-y-1.5">
-                    <label class="text-xs font-semibold text-gray-500 dark:text-gray-400">
+                    <label class="text-xs font-medium" style="color: var(--ui-text-muted);">
                       {{ manualFieldLabel(field) }}
-                      <span v-if="field.required" class="text-red-500">*</span>
+                      <span v-if="field.required" style="color: var(--ui-danger);">*</span>
                     </label>
                     <textarea
                       v-if="field.type === 'textarea'"
                       v-model="manualFormData[field.key]"
                       rows="3"
-                      class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:border-orange-500 dark:border-white/10 dark:bg-neutral-900"
+                      class="form-input w-full rounded-lg text-sm"
                       :placeholder="manualFieldPlaceholder(field)"
                     ></textarea>
                     <select
                       v-else-if="field.type === 'select'"
                       v-model="manualFormData[field.key]"
-                      class="h-10 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus:border-orange-500 dark:border-white/10 dark:bg-neutral-900"
+                      class="form-input h-10 w-full rounded-lg text-sm"
                     >
                       <option value="">{{ t('checkout.manualFormSelectPlaceholder') }}</option>
                       <option v-for="option in field.options" :key="option" :value="option">{{ option }}</option>
                     </select>
-                    <div v-else-if="field.type === 'radio'" class="space-y-2 rounded-lg border border-gray-200 p-3 dark:border-white/10">
-                      <label v-for="option in field.options" :key="option" class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-200">
-                        <input v-model="manualFormData[field.key]" type="radio" :name="`mall-manual-${field.key}`" :value="option" class="h-4 w-4 accent-orange-600" />
+                    <div v-else-if="field.type === 'radio'" class="space-y-2 rounded-lg border p-3" style="border-color: var(--ui-border);">
+                      <label v-for="option in field.options" :key="option" class="flex items-center gap-2 text-sm" style="color: var(--ui-text-secondary);">
+                        <input v-model="manualFormData[field.key]" type="radio" :name="`mall-manual-${field.key}`" :value="option" class="h-4 w-4 theme-accent-checkbox" />
                         <span>{{ option }}</span>
                       </label>
                     </div>
-                    <div v-else-if="field.type === 'checkbox'" class="space-y-2 rounded-lg border border-gray-200 p-3 dark:border-white/10">
-                      <label v-for="option in field.options" :key="option" class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-200">
-                        <input :checked="isManualCheckboxChecked(field.key, option)" type="checkbox" :value="option" class="h-4 w-4 accent-orange-600" @change="toggleManualCheckbox(field.key, option, ($event.target as HTMLInputElement).checked)" />
+                    <div v-else-if="field.type === 'checkbox'" class="space-y-2 rounded-lg border p-3" style="border-color: var(--ui-border);">
+                      <label v-for="option in field.options" :key="option" class="flex items-center gap-2 text-sm" style="color: var(--ui-text-secondary);">
+                        <input :checked="isManualCheckboxChecked(field.key, option)" type="checkbox" :value="option" class="h-4 w-4 theme-accent-checkbox" @change="toggleManualCheckbox(field.key, option, ($event.target as HTMLInputElement).checked)" />
                         <span>{{ option }}</span>
                       </label>
                     </div>
@@ -281,7 +285,7 @@
                       v-else
                       v-model="manualFormData[field.key]"
                       :type="field.type === 'number' ? 'number' : field.type === 'email' ? 'email' : field.type === 'phone' ? 'tel' : 'text'"
-                      class="h-10 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus:border-orange-500 dark:border-white/10 dark:bg-neutral-900"
+                      class="form-input h-10 w-full rounded-lg text-sm"
                       :placeholder="manualFieldPlaceholder(field)"
                     />
                   </div>
@@ -290,23 +294,23 @@
 
               <div v-if="showGuestOrderForm" class="space-y-2">
                 <div class="grid gap-2 sm:grid-cols-[78px_minmax(0,1fr)_minmax(0,1fr)] sm:items-center">
-                  <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-200">{{ t('checkout.guestPurchase') }}</h3>
+                  <h3 class="text-sm font-medium" style="color: var(--ui-text-secondary);">{{ t('checkout.guestPurchase') }}</h3>
                   <input
                     v-model="guestEmail"
                     type="email"
-                    class="h-9 rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus:border-orange-500 dark:border-white/10 dark:bg-neutral-900"
+                    class="form-input-compact h-9 rounded-lg"
                     :placeholder="t('guestOrders.emailPlaceholder')"
                   />
                   <input
                     v-model="guestPassword"
                     type="password"
-                    class="h-9 rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus:border-orange-500 dark:border-white/10 dark:bg-neutral-900"
+                    class="form-input-compact h-9 rounded-lg"
                     :placeholder="t('guestOrders.passwordPlaceholder')"
                   />
                 </div>
-                <div v-if="guestCaptchaEnabled" class="rounded-lg border border-orange-100 bg-orange-50/30 px-3 py-2 shadow-sm dark:border-orange-500/20 dark:bg-orange-500/10">
+                <div v-if="guestCaptchaEnabled" class="theme-alert-warning rounded-lg border px-3 py-2">
                   <div class="flex flex-wrap items-center gap-3">
-                    <div class="shrink-0 text-xs font-black text-orange-600 dark:text-orange-300">{{ t('auth.common.captchaLabel') }}</div>
+                    <div class="shrink-0 text-xs font-semibold">{{ t('auth.common.captchaLabel') }}</div>
                     <div class="min-w-0 flex-1">
                       <ImageCaptcha
                         v-if="captchaProvider === 'image'"

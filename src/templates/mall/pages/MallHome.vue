@@ -4,7 +4,8 @@
       <div class="min-w-0">
         <div
           v-if="heroBanner"
-          class="group relative block h-[168px] w-full overflow-hidden rounded-lg bg-neutral-900 text-left shadow-sm sm:h-[320px] lg:h-[400px]"
+          class="group relative block h-[168px] w-full overflow-hidden rounded-xl text-left sm:h-[320px] lg:h-[400px]"
+          style="background-color: var(--ui-bg-muted);"
           :class="hasHeroLink ? 'cursor-pointer' : 'cursor-default'"
           :role="hasHeroLink ? 'button' : undefined"
           :tabindex="hasHeroLink ? 0 : undefined"
@@ -15,10 +16,10 @@
           @touchend="onBannerTouchEnd"
         >
           <img v-if="heroImage" :src="heroImage" :alt="heroTitle" class="h-full w-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
+          <div class="absolute inset-0 bg-black/50"></div>
           <div class="absolute left-4 top-1/2 max-w-[min(760px,calc(100%-2rem))] -translate-y-1/2 text-white sm:left-6 sm:max-w-[min(760px,calc(100%-3rem))]">
-            <div v-if="heroBadge" class="mb-2 inline-flex rounded-full bg-orange-600 px-2.5 py-1 text-[11px] font-bold sm:mb-3 sm:px-3 sm:text-xs">{{ heroBadge }}</div>
-            <h1 class="line-clamp-2 text-xl font-black leading-tight sm:text-3xl">{{ heroTitle }}</h1>
+            <div v-if="heroBadge" class="theme-badge theme-badge-xs mb-2 inline-flex sm:mb-3" style="background-color: var(--ui-accent); color: var(--ui-text-on-accent); border-color: transparent;">{{ heroBadge }}</div>
+            <h1 class="line-clamp-2 text-xl font-bold leading-tight sm:text-3xl">{{ heroTitle }}</h1>
             <p v-if="heroSubtitle" class="mt-2 line-clamp-2 break-words text-xs leading-5 text-white/85 sm:mt-3 sm:text-sm sm:leading-6">{{ heroSubtitle }}</p>
           </div>
 
@@ -68,30 +69,30 @@
 
       <div
         v-if="productError && !productLoading"
-        class="flex min-h-[220px] flex-col items-center justify-center rounded-lg border border-dashed border-orange-200 bg-orange-50/60 px-6 py-10 text-center text-orange-700 dark:border-orange-500/20 dark:bg-orange-500/10 dark:text-orange-200"
+        class="theme-alert-danger flex min-h-[220px] flex-col items-center justify-center rounded-xl border px-6 py-10 text-center"
       >
-        <h2 class="text-base font-bold">{{ t('emptyState.error') }}</h2>
-        <p class="mt-2 max-w-md text-sm leading-6">{{ productError }}</p>
+        <h2 class="text-base font-semibold">{{ t('emptyState.error') }}</h2>
+        <p class="mt-2 max-w-md text-sm leading-relaxed opacity-80">{{ productError }}</p>
         <button
           type="button"
-          class="mt-5 inline-flex h-10 items-center justify-center rounded-md bg-orange-600 px-4 text-sm font-semibold text-white hover:bg-orange-700"
+          class="theme-btn-primary theme-btn-inline-md mt-5 rounded-lg border text-sm font-medium"
           @click="loadProducts(1, false)"
         >
           {{ t('emptyState.retry') }}
         </button>
       </div>
       <div v-else-if="productLoading && (!visibleProducts.length || productSkeletonVisible)" class="grid grid-cols-2 gap-x-3 gap-y-4 sm:gap-x-4 sm:gap-y-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        <div v-for="index in 10" :key="index" class="animate-pulse rounded-lg">
-          <div class="aspect-square rounded-lg bg-gray-100 dark:bg-white/10"></div>
+        <div v-for="index in 10" :key="index" class="animate-pulse rounded-xl">
+          <div class="aspect-square rounded-xl" style="background-color: var(--ui-bg-muted);"></div>
           <div class="pt-2">
-            <div class="h-4 w-11/12 rounded bg-gray-100 dark:bg-white/10"></div>
+            <div class="h-4 w-11/12 rounded" style="background-color: var(--ui-bg-muted);"></div>
             <div class="mt-2 flex items-end justify-between gap-2">
-              <div class="h-6 w-20 rounded bg-orange-100 dark:bg-orange-500/20"></div>
-              <div class="h-8 w-8 rounded-full bg-gray-100 dark:bg-white/10"></div>
+              <div class="h-6 w-20 rounded" style="background-color: var(--ui-accent-soft);"></div>
+              <div class="h-8 w-8 rounded-lg" style="background-color: var(--ui-bg-muted);"></div>
             </div>
             <div class="mt-2 flex justify-between gap-2">
-              <div class="h-5 w-16 rounded-full bg-gray-100 dark:bg-white/10"></div>
-              <div class="h-5 w-20 rounded-full bg-gray-100 dark:bg-white/10"></div>
+              <div class="h-5 w-16 rounded-full" style="background-color: var(--ui-bg-muted);"></div>
+              <div class="h-5 w-20 rounded-full" style="background-color: var(--ui-bg-muted);"></div>
             </div>
           </div>
         </div>

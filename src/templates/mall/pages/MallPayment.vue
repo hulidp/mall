@@ -2,22 +2,22 @@
   <div class="mx-auto max-w-[1472px] px-0 pb-20 pt-1.5 sm:px-6 sm:pt-3 lg:px-8 lg:pb-8">
     <div class="mb-2 flex flex-wrap items-center justify-between gap-3 px-3 sm:mb-4 sm:px-0">
       <div>
-        <h1 class="text-xl font-black leading-tight text-gray-950 dark:text-white sm:text-[26px]">{{ t('payment.title') }}</h1>
-        <p class="mt-0.5 text-xs text-gray-500 dark:text-gray-400 sm:text-sm">{{ t('payment.subtitle') }}</p>
+        <h1 class="text-xl font-bold leading-tight sm:text-[26px]" style="color: var(--ui-text-primary);">{{ t('payment.title') }}</h1>
+        <p class="mt-0.5 text-xs sm:text-sm" style="color: var(--ui-text-muted);">{{ t('payment.subtitle') }}</p>
       </div>
     </div>
 
-    <div v-if="showGuestAuth" class="overflow-hidden border-y border-gray-100 bg-white shadow-none ring-0 dark:border-white/10 dark:bg-neutral-900/95 sm:rounded-2xl sm:border-0 sm:shadow-sm sm:ring-1 sm:ring-gray-100 sm:dark:ring-white/10">
-      <div class="border-b border-gray-100 px-3 py-2 dark:border-white/10 sm:px-5 sm:py-4">
-        <h2 class="text-lg font-black text-gray-950 dark:text-white">{{ t('payment.guestAuthTitle') }}</h2>
-        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ t('payment.guestAuthHint') }}</p>
+    <div v-if="showGuestAuth" class="overflow-hidden border-y sm:rounded-2xl sm:border" style="background-color: var(--ui-bg-elevated); border-color: var(--ui-border);">
+      <div class="border-b px-3 py-2 sm:px-5 sm:py-4" style="border-color: var(--ui-border);">
+        <h2 class="text-lg font-semibold" style="color: var(--ui-text-primary);">{{ t('payment.guestAuthTitle') }}</h2>
+        <p class="mt-1 text-sm" style="color: var(--ui-text-muted);">{{ t('payment.guestAuthHint') }}</p>
       </div>
       <div class="p-3 sm:p-5">
         <div class="grid gap-2.5 sm:grid-cols-2 sm:gap-3">
-          <input v-model="guestAuth.email" type="email" class="h-10 rounded-md border border-gray-200 bg-white px-3 text-sm outline-none focus:border-orange-500 dark:border-white/10 dark:bg-neutral-900 sm:h-11" :placeholder="t('guestOrders.emailPlaceholder')" />
-          <input v-model="guestAuth.order_password" type="password" class="h-10 rounded-md border border-gray-200 bg-white px-3 text-sm outline-none focus:border-orange-500 dark:border-white/10 dark:bg-neutral-900 sm:h-11" :placeholder="t('guestOrders.passwordPlaceholder')" />
+          <input v-model="guestAuth.email" type="email" class="form-input h-10 rounded-lg sm:h-11" :placeholder="t('guestOrders.emailPlaceholder')" />
+          <input v-model="guestAuth.order_password" type="password" class="form-input h-10 rounded-lg sm:h-11" :placeholder="t('guestOrders.passwordPlaceholder')" />
         </div>
-        <button class="mt-4 h-11 rounded-xl bg-[#ff5000] px-6 text-sm font-black text-white hover:bg-orange-600" @click="saveGuestAuth">
+        <button class="theme-btn-primary mt-4 h-11 rounded-xl border px-6 text-sm font-semibold" @click="saveGuestAuth">
           {{ t('payment.guestAuthSubmit') }}
         </button>
       </div>
@@ -27,121 +27,121 @@
 
     <div v-else class="grid items-start gap-3 lg:grid-cols-[minmax(0,1fr)_368px] lg:gap-4">
       <section class="space-y-2 sm:space-y-4">
-        <div class="overflow-hidden border-y border-gray-100 bg-white/95 shadow-[0_8px_28px_rgba(15,23,42,0.04)] ring-0 dark:border-white/10 dark:bg-neutral-900/95 sm:rounded-2xl sm:border-0 sm:shadow-sm sm:ring-1 sm:ring-gray-100 sm:dark:ring-white/10">
+        <div class="overflow-hidden border-y sm:rounded-2xl sm:border" style="background-color: var(--ui-bg-elevated); border-color: var(--ui-border);">
           <div class="px-3 py-2 sm:px-5 sm:py-4">
-            <h2 class="text-base font-black text-gray-950 dark:text-white sm:text-lg">{{ t('payment.title') }}</h2>
+            <h2 class="text-base font-semibold sm:text-lg" style="color: var(--ui-text-primary);">{{ t('payment.title') }}</h2>
           </div>
 
           <div v-if="loading" class="p-5">
-            <div class="h-28 rounded-xl bg-gray-100 dark:bg-white/10"></div>
+            <div class="h-28 rounded-xl" style="background-color: var(--ui-bg-muted);"></div>
           </div>
           <template v-else-if="order">
-            <div class="border-t border-gray-100 bg-gray-50/70 px-3 py-2 dark:border-white/10 dark:bg-white/[0.03] sm:px-5 sm:py-3">
+            <div class="border-t px-3 py-2 sm:px-5 sm:py-3" style="border-color: var(--ui-border); background-color: var(--ui-bg-soft);">
               <div class="flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400">{{ t('payment.orderNo') }}</div>
-                  <div class="mt-1 font-mono text-sm font-bold text-gray-950 dark:text-white">{{ order.order_no }}</div>
+                  <div class="text-xs" style="color: var(--ui-text-muted);">{{ t('payment.orderNo') }}</div>
+                  <div class="mt-1 font-mono text-sm font-semibold" style="color: var(--ui-text-primary);">{{ order.order_no }}</div>
                 </div>
-                <span class="rounded-full bg-orange-50 px-3 py-1 text-xs font-bold text-orange-600 dark:bg-orange-500/10">
+                <span class="theme-badge theme-badge-warning">
                   {{ statusLabel(order.status) }}
                 </span>
               </div>
             </div>
-            <div class="grid grid-cols-3 gap-px bg-gray-100 px-3 py-2 text-sm dark:bg-white/10 sm:gap-3 sm:bg-transparent sm:p-5 sm:dark:bg-transparent">
-              <div class="bg-[#fbfaf8] px-2 py-2 first:rounded-l-xl dark:bg-white/[0.04] sm:rounded-xl sm:p-4">
-                <div class="text-xs text-gray-500 dark:text-gray-400">{{ t('orderDetail.amountTotal') }}</div>
-                <div class="mt-1 break-all text-sm font-black text-[#ff5000] sm:text-base">{{ formatMoney(order.total_amount, order.currency) }}</div>
+            <div class="grid grid-cols-3 gap-px px-3 py-2 text-sm sm:gap-3 sm:p-5" style="background-color: var(--ui-border);">
+              <div class="rounded-l-xl px-2 py-2 first:rounded-l-xl sm:rounded-xl sm:p-4" style="background-color: var(--ui-bg-soft);">
+                <div class="text-xs" style="color: var(--ui-text-muted);">{{ t('orderDetail.amountTotal') }}</div>
+                <div class="mt-1 break-all text-sm font-bold sm:text-base" style="color: var(--ui-accent);">{{ formatMoney(order.total_amount, order.currency) }}</div>
               </div>
-              <div class="bg-[#fbfaf8] px-2 py-2 dark:bg-white/[0.04] sm:rounded-xl sm:p-4">
-                <div class="text-xs text-gray-500 dark:text-gray-400">{{ t('orderDetail.amountOnlinePaid') }}</div>
-                <div class="mt-1 break-all text-sm font-bold text-gray-950 dark:text-white sm:text-base">{{ formatMoney(order.online_paid_amount, order.currency) }}</div>
+              <div class="px-2 py-2 sm:rounded-xl sm:p-4" style="background-color: var(--ui-bg-soft);">
+                <div class="text-xs" style="color: var(--ui-text-muted);">{{ t('orderDetail.amountOnlinePaid') }}</div>
+                <div class="mt-1 break-all text-sm font-semibold sm:text-base" style="color: var(--ui-text-primary);">{{ formatMoney(order.online_paid_amount, order.currency) }}</div>
               </div>
-              <div class="bg-[#fbfaf8] px-2 py-2 last:rounded-r-xl dark:bg-white/[0.04] sm:rounded-xl sm:p-4">
-                <div class="text-xs text-gray-500 dark:text-gray-400">{{ t('orderDetail.createdAtLabel') }}</div>
-                <div class="mt-1 line-clamp-2 break-all text-xs font-bold text-gray-950 dark:text-white sm:text-base">{{ formatDate(order.created_at) }}</div>
+              <div class="rounded-r-xl px-2 py-2 last:rounded-r-xl sm:rounded-xl sm:p-4" style="background-color: var(--ui-bg-soft);">
+                <div class="text-xs" style="color: var(--ui-text-muted);">{{ t('orderDetail.createdAtLabel') }}</div>
+                <div class="mt-1 line-clamp-2 break-all text-xs font-semibold sm:text-base" style="color: var(--ui-text-primary);">{{ formatDate(order.created_at) }}</div>
               </div>
             </div>
           </template>
         </div>
 
-        <div v-if="paymentResult" class="overflow-hidden border-y border-gray-100 bg-white shadow-none ring-0 dark:border-white/10 dark:bg-neutral-900/95 sm:rounded-2xl sm:border-0 sm:shadow-sm sm:ring-1 sm:ring-gray-100 sm:dark:ring-white/10">
-          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-gray-100 px-3 py-2 dark:border-white/10 sm:px-5 sm:py-4">
+        <div v-if="paymentResult" class="overflow-hidden border-y sm:rounded-2xl sm:border" style="background-color: var(--ui-bg-elevated); border-color: var(--ui-border);">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b px-3 py-2 sm:px-5 sm:py-4" style="border-color: var(--ui-border);">
             <div>
-              <h2 class="text-base font-black text-gray-950 dark:text-white sm:text-lg">{{ interactionMode === 'redirect' ? t('payment.resultRedirectTitle') : t('payment.resultTitle') }}</h2>
-              <p class="mt-0.5 text-xs text-gray-500 dark:text-gray-400 sm:mt-1 sm:text-sm">{{ interactionMode === 'redirect' ? t('payment.redirectTip') : t('payment.qrTip') }}</p>
+              <h2 class="text-base font-semibold sm:text-lg" style="color: var(--ui-text-primary);">{{ interactionMode === 'redirect' ? t('payment.resultRedirectTitle') : t('payment.resultTitle') }}</h2>
+              <p class="mt-0.5 text-xs sm:mt-1 sm:text-sm" style="color: var(--ui-text-muted);">{{ interactionMode === 'redirect' ? t('payment.redirectTip') : t('payment.qrTip') }}</p>
             </div>
-            <button class="rounded-full border border-gray-200 px-4 py-2 text-sm font-semibold hover:border-orange-500 hover:text-orange-600 dark:border-white/10" @click="resetPayment">
+            <button class="theme-btn-ghost rounded-lg border px-4 py-2 text-sm font-medium" @click="resetPayment">
               {{ t('payment.changeMethod') }}
             </button>
           </div>
-          <div v-if="showQRCode" class="flex flex-col items-center bg-gray-50 p-3 dark:bg-white/[0.04] sm:p-6">
-            <img :src="qrImageUrl" alt="QR Code" class="h-44 w-44 rounded bg-white p-2 sm:h-60 sm:w-60" />
-            <div class="mt-3 text-sm text-gray-500 dark:text-gray-400">{{ t('payment.qrTitle') }}</div>
+          <div v-if="showQRCode" class="flex flex-col items-center p-3 sm:p-6" style="background-color: var(--ui-bg-soft);">
+            <img :src="qrImageUrl" alt="QR Code" class="h-44 w-44 rounded-lg p-2 sm:h-60 sm:w-60" style="background-color: var(--ui-bg-elevated);" />
+            <div class="mt-3 text-sm" style="color: var(--ui-text-muted);">{{ t('payment.qrTitle') }}</div>
           </div>
-          <div v-else-if="payLink" class="bg-gray-50 p-5 dark:bg-white/[0.04]">
-            <button type="button" class="inline-flex h-11 items-center justify-center rounded-xl bg-[#ff5000] px-5 text-sm font-black text-white hover:bg-orange-600" @click="openPayLink()">
+          <div v-else-if="payLink" class="p-5" style="background-color: var(--ui-bg-soft);">
+            <button type="button" class="theme-btn-primary inline-flex h-11 items-center justify-center rounded-xl border px-5 text-sm font-semibold" @click="openPayLink()">
               {{ t('payment.openPayLink') }}
             </button>
-            <div class="mt-3 break-all text-xs text-gray-500 dark:text-gray-400">{{ payLink }}</div>
-            <div v-if="showTelegramPayHint" class="mt-3 text-xs text-gray-500 dark:text-gray-400">
+            <div class="mt-3 break-all text-xs" style="color: var(--ui-text-muted);">{{ payLink }}</div>
+            <div v-if="showTelegramPayHint" class="mt-3 text-xs" style="color: var(--ui-text-muted);">
               {{ t('payment.telegramExternalHint') }}
             </div>
           </div>
         </div>
 
-        <div v-if="order && orderItems.length" class="overflow-hidden border-y border-gray-100 bg-white shadow-none ring-0 dark:border-white/10 dark:bg-neutral-900/95 sm:rounded-2xl sm:border-0 sm:shadow-sm sm:ring-1 sm:ring-gray-100 sm:dark:ring-white/10">
+        <div v-if="order && orderItems.length" class="overflow-hidden border-y sm:rounded-2xl sm:border" style="background-color: var(--ui-bg-elevated); border-color: var(--ui-border);">
           <div class="px-3 py-2 sm:px-5 sm:py-4">
-            <h2 class="text-base font-black text-gray-950 dark:text-white sm:text-lg">{{ t('payment.itemsTitle') }}</h2>
+            <h2 class="text-base font-semibold sm:text-lg" style="color: var(--ui-text-primary);">{{ t('payment.itemsTitle') }}</h2>
           </div>
-          <div class="hidden gap-4 grid-cols-[minmax(0,1fr)_110px_128px] border-y border-gray-100 bg-gray-50 px-5 py-3 text-xs font-semibold text-gray-500 dark:border-white/10 dark:bg-white/[0.04] lg:grid">
+          <div class="hidden gap-4 grid-cols-[minmax(0,1fr)_110px_128px] border-y px-5 py-3 text-xs font-medium lg:grid" style="border-color: var(--ui-border); background-color: var(--ui-bg-soft); color: var(--ui-text-muted);">
             <div>{{ t('checkout.orderProductLabel') }}</div>
             <div class="flex items-center justify-center text-center">{{ t('checkout.quantityLabel') }}</div>
             <div class="flex items-center justify-center text-center">{{ t('checkout.priceLabel') }}</div>
           </div>
-          <div class="divide-y divide-gray-100 dark:divide-white/10">
+          <div class="divide-y" style="border-color: var(--ui-border);">
             <div v-for="(item, index) in orderItems" :key="index" class="grid gap-2 px-3 py-2 text-sm sm:gap-4 sm:px-5 sm:py-4 lg:grid-cols-[minmax(0,1fr)_110px_128px] lg:items-center">
               <div class="min-w-0">
-                <div class="line-clamp-1 font-semibold leading-5 text-gray-950 dark:text-white sm:line-clamp-2 sm:leading-6">{{ getLocalizedText(item.title) }}</div>
+                <div class="line-clamp-1 font-medium leading-5 sm:line-clamp-2 sm:leading-6" style="color: var(--ui-text-primary);">{{ getLocalizedText(item.title) }}</div>
               </div>
-              <div class="grid grid-cols-2 gap-px overflow-hidden rounded-xl bg-gray-100 text-xs ring-1 ring-black/[0.03] dark:bg-white/10 dark:ring-white/10 lg:hidden">
-                <div class="bg-[#f8f5f0] px-2.5 py-2 dark:bg-white/[0.04]">
-                  <div class="text-[11px] font-semibold text-gray-400">{{ t('checkout.quantityLabel') }}</div>
-                  <div class="mt-0.5 font-black text-gray-950 dark:text-white">{{ item.quantity }}</div>
+              <div class="grid grid-cols-2 gap-px overflow-hidden rounded-xl border text-xs lg:hidden" style="border-color: var(--ui-border);">
+                <div class="px-2.5 py-2" style="background-color: var(--ui-bg-soft);">
+                  <div class="text-[11px] font-medium" style="color: var(--ui-text-muted);">{{ t('checkout.quantityLabel') }}</div>
+                  <div class="mt-0.5 font-semibold" style="color: var(--ui-text-primary);">{{ item.quantity }}</div>
                 </div>
-                <div class="bg-[#f8f5f0] px-2.5 py-2 text-right dark:bg-white/[0.04]">
-                  <div class="text-[11px] font-semibold text-gray-400">{{ t('checkout.priceLabel') }}</div>
-                  <div class="mt-0.5 font-black text-[#ff5000]">{{ formatMoney(item.total_price, order.currency) }}</div>
+                <div class="px-2.5 py-2 text-right" style="background-color: var(--ui-bg-soft);">
+                  <div class="text-[11px] font-medium" style="color: var(--ui-text-muted);">{{ t('checkout.priceLabel') }}</div>
+                  <div class="mt-0.5 font-bold" style="color: var(--ui-accent);">{{ formatMoney(item.total_price, order.currency) }}</div>
                 </div>
               </div>
               <div class="hidden items-center justify-between lg:flex lg:justify-center lg:text-center">
-                <div class="font-semibold text-gray-950 dark:text-white">{{ item.quantity }}</div>
+                <div class="font-medium" style="color: var(--ui-text-primary);">{{ item.quantity }}</div>
               </div>
               <div class="hidden items-center justify-between lg:flex lg:justify-center">
-                <div class="text-sm font-black text-[#ff5000]">{{ formatMoney(item.total_price, order.currency) }}</div>
+                <div class="text-sm font-bold" style="color: var(--ui-accent);">{{ formatMoney(item.total_price, order.currency) }}</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <aside class="h-fit border-y border-gray-100 bg-white p-3 shadow-none ring-0 dark:border-white/10 dark:bg-neutral-900/95 sm:rounded-2xl sm:border-0 sm:p-4 sm:shadow-sm sm:ring-1 sm:ring-gray-100 sm:dark:ring-white/10 lg:sticky lg:top-3">
+      <aside class="h-fit border-y p-3 sm:rounded-2xl sm:border sm:p-4 lg:sticky lg:top-3" style="background-color: var(--ui-bg-elevated); border-color: var(--ui-border);">
         <div class="flex items-center justify-between gap-3">
-          <h2 class="text-lg font-black text-gray-950 dark:text-white">{{ t('payment.channelTitle') }}</h2>
-          <span v-if="order" class="text-sm text-gray-500 dark:text-gray-400">{{ t('checkout.totalQuantityLabel', { count: orderItems.length }) }}</span>
+          <h2 class="text-lg font-semibold" style="color: var(--ui-text-primary);">{{ t('payment.channelTitle') }}</h2>
+          <span v-if="order" class="text-sm" style="color: var(--ui-text-muted);">{{ t('checkout.totalQuantityLabel', { count: orderItems.length }) }}</span>
         </div>
 
-        <div v-if="order" class="mt-3 space-y-2 rounded-xl bg-[#fbfaf8] p-2.5 text-sm ring-1 ring-black/[0.03] dark:bg-white/[0.04] dark:ring-white/10 sm:mt-5 sm:space-y-3 sm:bg-transparent sm:p-0 sm:ring-0">
+        <div v-if="order" class="mt-3 space-y-2 rounded-xl border p-2.5 text-sm sm:mt-5 sm:space-y-3 sm:border-0 sm:p-0" style="border-color: var(--ui-border); background-color: var(--ui-bg-soft);">
           <div class="flex items-center justify-between">
-            <span class="text-gray-500 dark:text-gray-400">{{ t('orderDetail.amountTotal') }}</span>
-            <span class="font-bold text-gray-950 dark:text-white">{{ formatMoney(order.total_amount, order.currency) }}</span>
+            <span style="color: var(--ui-text-muted);">{{ t('orderDetail.amountTotal') }}</span>
+            <span class="font-semibold" style="color: var(--ui-text-primary);">{{ formatMoney(order.total_amount, order.currency) }}</span>
           </div>
-          <div class="flex items-center justify-between border-t border-gray-100 pt-2 dark:border-white/10 sm:pt-3">
-            <span class="text-gray-500 dark:text-gray-400">{{ t('orderDetail.amountOnlinePaid') }}</span>
-            <span class="text-lg font-black text-[#ff5000] sm:text-xl">{{ formatMoney(order.online_paid_amount, order.currency) }}</span>
+          <div class="flex items-center justify-between border-t pt-2 sm:pt-3" style="border-color: var(--ui-border);">
+            <span style="color: var(--ui-text-muted);">{{ t('orderDetail.amountOnlinePaid') }}</span>
+            <span class="text-lg font-bold sm:text-xl" style="color: var(--ui-accent);">{{ formatMoney(order.online_paid_amount, order.currency) }}</span>
           </div>
         </div>
 
-        <div v-if="orderPaid" class="mt-5 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm font-semibold text-emerald-700 dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-300">
+        <div v-if="orderPaid" class="theme-alert-success mt-5 rounded-xl border p-4 text-sm font-medium">
           {{ statusLabel(order?.status || 'paid') }}
         </div>
         <template v-else>
@@ -149,8 +149,8 @@
             <button
               v-if="!isGuest"
               type="button"
-              class="inline-flex min-h-10 min-w-0 items-center justify-center rounded-lg border px-2.5 py-2 text-center text-sm font-semibold transition sm:justify-start sm:px-3"
-              :class="useBalance ? 'border-orange-600 bg-orange-50 text-orange-600 dark:bg-orange-500/10' : 'border-gray-200 bg-white hover:border-orange-400 dark:border-white/10 dark:bg-transparent'"
+              class="inline-flex min-h-10 min-w-0 items-center justify-center rounded-lg border px-2.5 py-2 text-center text-sm font-medium transition sm:justify-start sm:px-3"
+              :style="useBalance ? 'border-color: var(--ui-accent); background-color: var(--ui-accent-soft); color: var(--ui-accent);' : 'border-color: var(--ui-border); background-color: var(--ui-bg-elevated);'"
               @click="selectBalancePayment"
             >
               <span class="min-w-0 truncate">{{ balancePaymentLabel }}</span>
@@ -159,45 +159,45 @@
               v-for="channel in channels"
               :key="channel.id"
               type="button"
-              class="inline-flex min-h-10 min-w-0 items-center justify-center gap-2 rounded-lg border px-2.5 py-2 text-center text-sm font-semibold transition sm:justify-start sm:px-3"
-              :class="Number(selectedChannelId) === Number(channel.id) ? 'border-orange-600 bg-orange-50 text-orange-600 dark:bg-orange-500/10' : 'border-gray-200 bg-white hover:border-orange-400 dark:border-white/10 dark:bg-transparent'"
+              class="inline-flex min-h-10 min-w-0 items-center justify-center gap-2 rounded-lg border px-2.5 py-2 text-center text-sm font-medium transition sm:justify-start sm:px-3"
+              :style="Number(selectedChannelId) === Number(channel.id) ? 'border-color: var(--ui-accent); background-color: var(--ui-accent-soft); color: var(--ui-accent);' : 'border-color: var(--ui-border); background-color: var(--ui-bg-elevated);'"
               @click="selectPaymentChannel(channel.id)"
             >
               <img v-if="paymentChannelIcon(channel)" :src="paymentChannelIcon(channel)" :alt="channelName(channel)" loading="lazy" class="h-5 w-5 shrink-0 rounded object-contain" />
               <span class="min-w-0 truncate">{{ channelName(channel) }}</span>
             </button>
           </div>
-          <div v-if="error" class="mt-4 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700 dark:border-red-500/20 dark:bg-red-500/10 dark:text-red-300">
+          <div v-if="error" class="theme-alert-danger mt-4 rounded-lg border px-3 py-2 text-sm">
             {{ error }}
           </div>
           <button
-            class="mt-5 hidden h-12 w-full rounded-xl bg-[#ff5000] text-sm font-black text-white transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-50 lg:block"
+            class="theme-btn-primary mt-5 hidden h-12 w-full rounded-xl border text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50 lg:block"
             :disabled="submitting || (isGuest && channels.length === 0)"
             @click="createPayment"
           >
             {{ submitting ? t('payment.submitting') : t('payment.submitButton') }}
           </button>
         </template>
-        <button class="mt-3 h-11 w-full rounded-xl border border-gray-200 text-sm font-semibold hover:border-orange-500 hover:text-orange-600 dark:border-white/10" @click="loadOrder()">
+        <button class="theme-btn-ghost mt-3 h-11 w-full rounded-xl border text-sm font-medium" @click="loadOrder()">
           {{ t('payment.refreshStatus') }}
         </button>
-        <router-link v-if="order" class="mt-3 flex h-11 w-full items-center justify-center rounded-xl border border-gray-200 text-sm font-semibold hover:border-orange-500 hover:text-orange-600 dark:border-white/10" :to="orderDetailLink">
+        <router-link v-if="order" class="theme-btn-ghost mt-3 flex h-11 w-full items-center justify-center rounded-xl border text-sm font-medium" :to="orderDetailLink">
           {{ t('payment.backToOrders') }}
         </router-link>
-        <router-link class="mt-3 flex h-11 w-full items-center justify-center rounded-xl border border-gray-200 text-sm font-semibold hover:border-orange-500 hover:text-orange-600 dark:border-white/10" to="/">
+        <router-link class="theme-btn-ghost mt-3 flex h-11 w-full items-center justify-center rounded-xl border text-sm font-medium" to="/">
           {{ t('notFoundPage.backHome') }}
         </router-link>
       </aside>
     </div>
 
-    <div v-if="!showGuestAuth && order" class="fixed inset-x-0 bottom-0 z-40 border-t border-gray-200 bg-white/95 p-2.5 pb-[calc(0.5rem+env(safe-area-inset-bottom))] backdrop-blur lg:hidden dark:border-white/10 dark:bg-neutral-950/95">
+    <div v-if="!showGuestAuth && order" class="fixed inset-x-0 bottom-0 z-40 border-t p-2.5 pb-[calc(0.5rem+env(safe-area-inset-bottom))] backdrop-blur lg:hidden" style="background-color: var(--ui-bg-overlay-strong); border-color: var(--ui-border);">
       <div class="mx-auto flex max-w-[1472px] items-center gap-3">
         <div class="min-w-0 flex-1">
-          <div class="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400 dark:text-gray-500">{{ t('orderDetail.amountOnlinePaid') }}</div>
-          <div class="mt-1 truncate text-lg font-black text-[#ff5000]">{{ formatMoney(order.online_paid_amount, order.currency) }}</div>
+          <div class="text-[11px] font-medium uppercase tracking-[0.08em]" style="color: var(--ui-text-muted);">{{ t('orderDetail.amountOnlinePaid') }}</div>
+          <div class="mt-1 truncate text-lg font-bold" style="color: var(--ui-accent);">{{ formatMoney(order.online_paid_amount, order.currency) }}</div>
         </div>
         <button
-          class="flex h-11 w-[44%] min-w-0 shrink-0 items-center justify-center rounded-xl bg-[#ff5000] px-3 text-center text-sm font-black leading-tight text-white transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-50 sm:h-12 sm:w-auto sm:min-w-[148px] sm:px-5"
+          class="theme-btn-primary flex h-11 w-[44%] min-w-0 shrink-0 items-center justify-center rounded-xl border px-3 text-center text-sm font-semibold leading-tight transition disabled:cursor-not-allowed disabled:opacity-50 sm:h-12 sm:w-auto sm:min-w-[148px] sm:px-5"
           :disabled="mobilePrimaryDisabled"
           @click="handleMobilePrimaryAction"
         >

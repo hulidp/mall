@@ -1,8 +1,7 @@
 <template>
   <section
-    :class="compact
-      ? 'space-y-2'
-      : 'rounded-xl border border-orange-100 bg-orange-50/40 px-3 py-2 shadow-sm dark:border-white/10 dark:bg-white/[0.03]'"
+    :class="compact ? 'space-y-2'
+      : 'rounded-xl border border-orange-100 /40 px-3 py-2 shadow-sm dark:border-white/10 dark:bg-white/[0.03]'" style="background-color: var(--ui-accent-soft);"
   >
     <div :class="compact ? 'space-y-2' : 'flex flex-col gap-2 sm:flex-row sm:items-center'">
       <div
@@ -10,8 +9,8 @@
         :class="compact ? 'w-full' : 'w-full sm:w-[86px]'"
       >
         <span
-          class="flex items-center justify-center text-[#ff5000]"
-          :class="compact ? 'h-4 w-4' : 'h-6 w-6 rounded-full bg-orange-50 dark:bg-orange-500/10'"
+          class="flex items-center justify-center" style="color: var(--ui-accent);"
+          :class="compact ? 'h-4 w-4' : 'h-6 w-6 rounded-full '" style="background-color: var(--ui-accent-soft);"
         >
           <TicketIcon :class="compact ? 'h-4 w-4' : 'h-3.5 w-3.5'" aria-hidden="true" />
         </span>
@@ -20,7 +19,7 @@
 
       <label
         class="flex min-w-0 flex-1 overflow-hidden rounded-lg border bg-white transition dark:border-white/10 dark:bg-neutral-950"
-        :class="compact ? 'h-10 border-gray-200 focus-within:border-orange-400 focus-within:ring-2 focus-within:ring-orange-100 dark:focus-within:ring-orange-500/20' : 'h-9 border-orange-100 focus-within:border-[#ff5000]'"
+        :class="compact ? 'h-10 border-gray-200 focus-within:border-orange-400 focus-within:ring-2 focus-within: dark:focus-within:ring-orange-500/20' : 'h-9 border-orange-100 focus-within: '" style="border-color: var(--ui-accent);"
       >
         <input
           :value="modelValue"
@@ -29,7 +28,7 @@
           :placeholder="t('checkout.couponPlaceholder')"
           @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
         />
-        <div v-if="!compact" class="flex w-9 shrink-0 items-center justify-center border-l border-gray-200 text-[#ff5000] dark:border-white/10">
+        <div v-if="!compact" class="flex w-9 shrink-0 items-center justify-center border-l border-gray-200 dark:border-white/10" style="color: var(--ui-accent);">
           <TicketIcon class="h-3.5 w-3.5" aria-hidden="true" />
         </div>
       </label>
@@ -52,7 +51,7 @@
         <span v-if="showCouponRow" class="font-semibold text-emerald-600 dark:text-emerald-300">{{ t('checkout.previewCoupon') }} {{ couponText }}</span>
         <span v-if="showPromotionRow" class="font-semibold text-emerald-600 dark:text-emerald-300">{{ t('checkout.previewPromotion') }} {{ promotionText }}</span>
         <span v-if="showMemberRow" class="font-semibold text-amber-600 dark:text-amber-300">{{ t('checkout.previewMemberDiscount') }} {{ memberText }}</span>
-        <span class="font-black text-[#ff5000]">{{ t('checkout.previewTotal') }} {{ totalText }}</span>
+        <span class="font-black" style="color: var(--ui-accent);">{{ t('checkout.previewTotal') }} {{ totalText }}</span>
       </div>
     </div>
   </section>

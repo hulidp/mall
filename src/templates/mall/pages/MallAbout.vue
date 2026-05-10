@@ -29,7 +29,7 @@
               :href="link.url"
               target="_blank"
               rel="noopener noreferrer"
-              class="rounded-md border border-gray-200 px-4 py-3 text-center text-sm font-bold text-gray-700 transition hover:border-orange-200 hover:bg-orange-50 hover:text-orange-600 dark:border-white/10 dark:text-gray-200 dark:hover:border-orange-500/40 dark:hover:bg-orange-500/10"
+              class="rounded-md border border-gray-200 px-4 py-3 text-center text-sm font-bold text-gray-700 transition hover: dark:border-white/10 dark:text-gray-200 dark:/40 dark:hover:bg-orange-500/10" style="background-color: var(--ui-accent-soft);"
             >
               {{ link.label }}
             </a>

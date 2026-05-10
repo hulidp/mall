@@ -16,7 +16,7 @@
           <input v-model="guestAuth.email" type="email" class="h-11 rounded-md border border-gray-200 bg-white px-3 text-sm outline-none focus:border-orange-500 dark:border-white/10 dark:bg-neutral-900" :placeholder="t('guestOrders.emailPlaceholder')" />
           <input v-model="guestAuth.order_password" type="password" class="h-11 rounded-md border border-gray-200 bg-white px-3 text-sm outline-none focus:border-orange-500 dark:border-white/10 dark:bg-neutral-900" :placeholder="t('guestOrders.passwordPlaceholder')" />
         </div>
-        <button class="mt-3 h-10 rounded-xl bg-[#ff5000] px-5 text-sm font-black text-white hover:bg-orange-600 sm:mt-4 sm:h-11 sm:px-6" @click="saveGuestAuth">
+        <button class="mt-3 h-10 rounded-xl px-5 text-sm font-black text-white sm:mt-4 sm:h-11 sm:px-6" style="background-color: var(--ui-accent);" @click="saveGuestAuth">
           {{ t('guestOrderDetail.authSubmit') }}
         </button>
       </div>
@@ -34,7 +34,7 @@
                 <div class="mt-1 font-mono text-sm font-bold text-gray-950 dark:text-white">{{ order.order_no }}</div>
                 <div class="mt-2 text-xs text-gray-500 dark:text-gray-400">{{ t('orderDetail.createdAtLabel') }}: {{ formatDate(order.created_at) }}</div>
               </div>
-              <span class="rounded-full bg-orange-50 px-3 py-1 text-xs font-bold text-orange-600 dark:bg-orange-500/10">
+              <span class="rounded-full px-3 py-1 text-xs font-bold text-orange-600" style="background-color: var(--ui-accent-soft);">
                 {{ statusLabel(order.status) }}
               </span>
             </div>
@@ -50,7 +50,7 @@
             </div>
             <div class="bg-[#fbfaf8] px-2 py-2 text-sm last:rounded-r-xl dark:bg-white/[0.04] sm:rounded-xl sm:p-4">
               <div class="text-xs text-gray-500 dark:text-gray-400">{{ t('orderDetail.amountTotal') }}</div>
-              <div class="mt-1 break-all text-sm font-black text-[#ff5000] sm:text-base">{{ formatMoney(order.total_amount, order.currency) }}</div>
+              <div class="mt-1 break-all text-sm font-black sm:text-base" style="color: var(--ui-accent);">{{ formatMoney(order.total_amount, order.currency) }}</div>
             </div>
           </div>
         </div>
@@ -65,7 +65,7 @@
               <button
                 v-if="copyableFulfillmentText"
                 type="button"
-                class="inline-flex h-9 items-center justify-center rounded-full bg-[#ff5000] px-4 text-sm font-bold text-white transition hover:bg-orange-600"
+                class="inline-flex h-9 items-center justify-center rounded-full px-4 text-sm font-bold text-white transition" style="background-color: var(--ui-accent);"
                 @click="copyAllFulfillment"
               >
                 {{ copiedKey === 'all' ? t('orderDetail.fulfillmentCopied') : copyCardSecretLabel }}
@@ -76,7 +76,7 @@
             <div
               v-for="(row, index) in fulfillmentRows"
               :key="row.key"
-              class="rounded-lg border border-orange-100 bg-orange-50/30 p-2.5 dark:border-orange-500/20 dark:bg-orange-500/10 sm:rounded-xl sm:p-4"
+              class="rounded-lg border border-orange-100 /30 p-2.5 dark:border-orange-500/20 sm:rounded-xl sm:p-4" style="background-color: var(--ui-accent-soft);"
             >
               <div class="flex flex-wrap items-center justify-between gap-3">
                 <div>
@@ -91,7 +91,7 @@
                   <button
                     v-if="fulfillmentCopyText(row.fulfillment)"
                     type="button"
-                    class="inline-flex h-8 items-center rounded-full border border-orange-200 bg-white px-3 text-xs font-bold text-[#ff5000] transition hover:border-orange-500 dark:border-orange-500/30 dark:bg-neutral-950"
+                    class="inline-flex h-8 items-center rounded-full border border-orange-200 bg-white px-3 text-xs font-bold transition dark:border-orange-500/30 dark:bg-neutral-950" style="color: var(--ui-accent);"
                     @click="copyFulfillmentRow(row)"
                   >
                     {{ copiedKey === row.key ? t('orderDetail.fulfillmentCopied') : copyCardSecretLabel }}
@@ -99,7 +99,7 @@
                   <button
                     v-if="isFulfillmentTruncated(row.fulfillment)"
                     type="button"
-                    class="inline-flex h-8 items-center rounded-full border border-gray-200 bg-white px-3 text-xs font-bold text-gray-700 transition hover:border-orange-500 hover:text-orange-600 disabled:opacity-50 dark:border-white/10 dark:bg-neutral-950 dark:text-gray-200"
+                    class="inline-flex h-8 items-center rounded-full border border-gray-200 bg-white px-3 text-xs font-bold text-gray-700 transition disabled:opacity-50 dark:border-white/10 dark:bg-neutral-950 dark:text-gray-200"
                     :disabled="downloading"
                     @click="downloadFulfillment(row.orderNo)"
                   >
@@ -162,13 +162,13 @@
                 </div>
                 <div class="text-center">
                   <div class="text-[11px] font-semibold text-gray-400">{{ t('orderDetail.itemFulfillmentLabel') }}</div>
-                  <div class="mt-0.5 truncate rounded-full bg-orange-50 px-1.5 py-0.5 text-[11px] font-semibold text-[#ff5000] dark:bg-orange-500/10">
+                  <div class="mt-0.5 truncate rounded-full px-1.5 py-0.5 text-[11px] font-semibold" style="background-color: var(--ui-accent-soft); color: var(--ui-accent);">
                     {{ fulfillmentTypeLabelText(item.fulfillment_type) }}
                   </div>
                 </div>
                 <div class="text-right">
                   <div class="text-[11px] font-semibold text-gray-400">{{ t('checkout.priceLabel') }}</div>
-                  <div class="mt-0.5 font-black text-[#ff5000]">{{ formatMoney(item.total_price, order.currency) }}</div>
+                  <div class="mt-0.5 font-black" style="color: var(--ui-accent);">{{ formatMoney(item.total_price, order.currency) }}</div>
                 </div>
               </div>
               <div class="hidden text-sm text-gray-600 dark:text-gray-300 lg:flex lg:min-h-16 lg:items-center lg:justify-center lg:text-center">
@@ -178,12 +178,12 @@
                 <div class="font-semibold text-gray-950 dark:text-white">{{ item.quantity }}</div>
               </div>
               <div class="hidden items-center justify-between text-sm lg:flex lg:min-h-16 lg:justify-center lg:text-center">
-                <div class="rounded-full bg-orange-50 px-2 py-0.5 text-xs font-semibold text-[#ff5000] dark:bg-orange-500/10">
+                <div class="rounded-full px-2 py-0.5 text-xs font-semibold" style="background-color: var(--ui-accent-soft); color: var(--ui-accent);">
                   {{ fulfillmentTypeLabelText(item.fulfillment_type) }}
                 </div>
               </div>
               <div class="hidden items-center justify-between lg:flex lg:min-h-16 lg:justify-center">
-                <div class="text-sm font-black text-[#ff5000]">{{ formatMoney(item.total_price, order.currency) }}</div>
+                <div class="text-sm font-black" style="color: var(--ui-accent);">{{ formatMoney(item.total_price, order.currency) }}</div>
               </div>
             </div>
           </div>
@@ -194,7 +194,7 @@
       <aside class="h-fit border-y border-gray-100 bg-white p-3 shadow-none ring-0 dark:border-white/10 dark:bg-neutral-900/95 sm:rounded-2xl sm:border-0 sm:p-4 sm:shadow-sm sm:ring-1 sm:ring-gray-100 sm:dark:ring-white/10 lg:sticky lg:top-4">
         <div class="flex items-center justify-between gap-3">
           <h2 class="text-lg font-black text-gray-950 dark:text-white">{{ t('checkout.paymentDetailLabel') }}</h2>
-          <span class="rounded-full bg-orange-50 px-3 py-1 text-xs font-bold text-orange-600 dark:bg-orange-500/10">
+          <span class="rounded-full px-3 py-1 text-xs font-bold text-orange-600" style="background-color: var(--ui-accent-soft);">
             {{ statusLabel(order.status) }}
           </span>
         </div>
@@ -210,25 +210,25 @@
           </div>
           <div class="flex items-center justify-between border-t border-gray-100 pt-2 dark:border-white/10 sm:pt-3">
             <span class="text-gray-500 dark:text-gray-400">{{ t('orderDetail.amountTotal') }}</span>
-            <span class="text-xl font-black text-[#ff5000]">{{ formatMoney(order.total_amount, order.currency) }}</span>
+            <span class="text-xl font-black" style="color: var(--ui-accent);">{{ formatMoney(order.total_amount, order.currency) }}</span>
           </div>
         </div>
 
         <router-link
           v-if="order.status === 'pending_payment'"
-          class="mt-5 flex h-12 items-center justify-center rounded-xl bg-[#ff5000] text-sm font-black text-white transition hover:bg-orange-600"
+          class="mt-5 flex h-12 items-center justify-center rounded-xl text-sm font-black text-white transition" style="background-color: var(--ui-accent);"
           :to="payLink"
         >
           {{ t('orderDetail.payNow') }}
         </router-link>
         <router-link
-          class="mt-3 flex h-11 items-center justify-center rounded-xl border border-gray-200 text-sm font-semibold hover:border-orange-500 hover:text-orange-600 dark:border-white/10"
+          class="mt-3 flex h-11 items-center justify-center rounded-xl border border-gray-200 text-sm font-semibold dark:border-white/10"
           :to="guest ? '/guest/orders' : '/me/orders'"
         >
           {{ t('payment.backToOrders') }}
         </router-link>
         <router-link
-          class="mt-3 flex h-11 items-center justify-center rounded-xl border border-gray-200 text-sm font-semibold hover:border-orange-500 hover:text-orange-600 dark:border-white/10"
+          class="mt-3 flex h-11 items-center justify-center rounded-xl border border-gray-200 text-sm font-semibold dark:border-white/10"
           to="/"
         >
           {{ t('notFoundPage.backHome') }}

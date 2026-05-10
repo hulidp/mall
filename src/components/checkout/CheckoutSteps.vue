@@ -18,8 +18,7 @@
         <div class="flex items-center gap-2 shrink-0">
           <span
             class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold border-2 transition-colors"
-            :class="step.status !== 'upcoming'
-              ? 'theme-btn-primary border-transparent'
+            :class="step.status !== 'upcoming' ? 'theme-btn-primary border-transparent'
               : 'border-gray-300 dark:border-gray-600 theme-text-muted'"
           >
             <svg

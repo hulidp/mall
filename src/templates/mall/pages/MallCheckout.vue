@@ -7,7 +7,7 @@
       </div>
       <router-link
         to="/cart"
-        class="inline-flex h-9 items-center justify-center rounded-full border border-gray-200 bg-white px-3.5 text-sm font-semibold text-gray-700 transition hover:border-orange-500 hover:text-orange-600 dark:border-white/10 dark:bg-neutral-900 dark:text-gray-200 sm:h-10 sm:px-4"
+        class="inline-flex h-9 items-center justify-center rounded-full border border-gray-200 bg-white px-3.5 text-sm font-semibold text-gray-700 transition dark:border-white/10 dark:bg-neutral-900 dark:text-gray-200 sm:h-10 sm:px-4"
       >
         {{ t('navbar.cart') }}
       </router-link>
@@ -71,7 +71,7 @@
                 </div>
                 <div class="text-right">
                   <div class="text-[11px] font-semibold text-gray-400">{{ priceLabel }}</div>
-                  <div class="mt-0.5 font-black text-[#ff5000]">{{ itemSubtotal(item) }}</div>
+                  <div class="mt-0.5 font-black" style="color: var(--ui-accent);">{{ itemSubtotal(item) }}</div>
                 </div>
               </div>
 
@@ -84,7 +84,7 @@
               </div>
 
               <div class="hidden items-center justify-between lg:flex lg:min-h-20 lg:justify-center">
-                <div class="text-center text-sm font-black text-[#ff5000]">{{ itemSubtotal(item) }}</div>
+                <div class="text-center text-sm font-black" style="color: var(--ui-accent);">{{ itemSubtotal(item) }}</div>
               </div>
             </div>
           </div>
@@ -109,7 +109,7 @@
               <input v-model="guestEmail" type="email" class="h-10 rounded-md border border-gray-200 bg-white px-3 text-sm outline-none focus:border-orange-500 dark:border-white/10 dark:bg-neutral-900 sm:h-11" :placeholder="t('guestOrders.emailPlaceholder')" />
               <input v-model="guestPassword" type="password" class="h-10 rounded-md border border-gray-200 bg-white px-3 text-sm outline-none focus:border-orange-500 dark:border-white/10 dark:bg-neutral-900 sm:h-11" :placeholder="t('guestOrders.passwordPlaceholder')" />
             </div>
-            <div v-if="guestCaptchaEnabled" class="mt-4 rounded-lg border border-orange-100 bg-orange-50/30 px-3 py-2 shadow-sm dark:border-orange-500/20 dark:bg-orange-500/10">
+            <div v-if="guestCaptchaEnabled" class="mt-4 rounded-lg border border-orange-100 /30 px-3 py-2 shadow-sm dark:border-orange-500/20" style="background-color: var(--ui-accent-soft);">
               <div class="flex flex-wrap items-center gap-3">
                 <div class="shrink-0 text-xs font-black text-orange-600 dark:text-orange-300">{{ t('auth.common.captchaLabel') }}</div>
                 <div class="min-w-0 flex-1">
@@ -159,7 +159,7 @@
           </div>
           <div class="flex items-center justify-between border-t border-gray-100 pt-2 dark:border-white/10 sm:pt-3">
             <span class="text-gray-500">{{ t('checkout.previewTotal') }}</span>
-            <span class="text-lg font-black text-[#ff5000] sm:text-xl">{{ previewMoneyText(previewTotal) }}</span>
+            <span class="text-lg font-black sm:text-xl" style="color: var(--ui-accent);">{{ previewMoneyText(previewTotal) }}</span>
           </div>
         </div>
 
@@ -191,7 +191,7 @@
               v-if="userAuthStore.isAuthenticated"
               type="button"
               class="inline-flex min-h-10 min-w-0 items-center justify-center rounded-lg border px-2.5 py-2 text-center text-sm font-semibold transition sm:justify-start sm:px-3"
-              :class="useBalance ? 'border-orange-600 bg-orange-50 text-orange-600 dark:bg-orange-500/10' : 'border-gray-200 bg-white text-gray-800 hover:border-orange-400 dark:border-white/10 dark:bg-neutral-950 dark:text-gray-100'"
+              :class="useBalance ? 'border-orange-600 text-orange-600 ' : 'border-gray-200 bg-white text-gray-800 dark:border-white/10 dark:bg-neutral-950 dark:text-gray-100'" style="background-color: var(--ui-accent-soft);"
               @click="selectBalancePayment"
             >
               <span class="min-w-0 truncate">{{ balancePaymentLabel }}</span>
@@ -201,7 +201,7 @@
               :key="channel.id"
               type="button"
               class="inline-flex min-h-10 min-w-0 items-center justify-center gap-2 rounded-lg border px-2.5 py-2 text-center text-sm font-semibold transition sm:justify-start sm:px-3"
-              :class="Number(selectedChannelId) === Number(channel.id) ? 'border-orange-600 bg-orange-50 text-orange-600 dark:bg-orange-500/10' : 'border-gray-200 bg-white text-gray-800 hover:border-orange-400 dark:border-white/10 dark:bg-neutral-950 dark:text-gray-100'"
+              :class="Number(selectedChannelId) === Number(channel.id) ? 'border-orange-600 text-orange-600 ' : 'border-gray-200 bg-white text-gray-800 dark:border-white/10 dark:bg-neutral-950 dark:text-gray-100'" style="background-color: var(--ui-accent-soft);"
               @click="selectPaymentChannel(channel.id)"
             >
               <img v-if="paymentChannelIcon(channel)" :src="paymentChannelIcon(channel)" :alt="channelName(channel)" loading="lazy" class="h-5 w-5 shrink-0 rounded object-contain" />
@@ -215,7 +215,7 @@
         </div>
 
         <button
-          class="mt-5 hidden h-12 w-full items-center justify-center rounded-xl bg-[#ff5000] text-sm font-black text-white transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-50 lg:flex"
+          class="mt-5 hidden h-12 w-full items-center justify-center rounded-xl text-sm font-black text-white transition disabled:cursor-not-allowed disabled:opacity-50 lg:flex" style="background-color: var(--ui-accent);"
           :disabled="submitting"
           @click="submitOrder"
         >
@@ -228,10 +228,10 @@
       <div class="mx-auto flex max-w-[1472px] items-center gap-3">
         <div class="min-w-0 flex-1">
           <div class="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400 dark:text-gray-500">{{ t('checkout.previewTotal') }}</div>
-          <div class="mt-1 truncate text-lg font-black text-[#ff5000]">{{ previewMoneyText(previewTotal) }}</div>
+          <div class="mt-1 truncate text-lg font-black" style="color: var(--ui-accent);">{{ previewMoneyText(previewTotal) }}</div>
         </div>
         <button
-          class="flex h-11 w-[44%] min-w-0 shrink-0 items-center justify-center rounded-xl bg-[#ff5000] px-3 text-center text-sm font-black leading-tight text-white transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-50 sm:h-12 sm:w-auto sm:min-w-[148px] sm:px-5"
+          class="flex h-11 w-[44%] min-w-0 shrink-0 items-center justify-center rounded-xl px-3 text-center text-sm font-black leading-tight text-white transition disabled:cursor-not-allowed disabled:opacity-50 sm:h-12 sm:w-auto sm:min-w-[148px] sm:px-5" style="background-color: var(--ui-accent);"
           :disabled="submitting"
           @click="submitOrder"
         >

@@ -11,7 +11,7 @@
 
     <div
       v-if="error && !loading"
-      class="flex min-h-[220px] flex-col items-center justify-center rounded-lg border border-dashed border-orange-200 bg-orange-50/60 px-6 py-10 text-center text-orange-700 dark:border-orange-500/20 dark:bg-orange-500/10 dark:text-orange-200"
+      class="flex min-h-[220px] flex-col items-center justify-center rounded-lg border border-dashed border-orange-200 /60 px-6 py-10 text-center text-orange-700 dark:border-orange-500/20 dark:text-orange-200" style="background-color: var(--ui-accent-soft);"
     >
       <h2 class="text-base font-bold">{{ t('emptyState.error') }}</h2>
       <p v-if="error" class="mt-2 max-w-md text-sm leading-6">{{ error }}</p>

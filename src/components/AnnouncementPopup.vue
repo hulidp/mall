@@ -23,7 +23,7 @@
             </div>
             <button
               type="button"
-              class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 transition hover:border-orange-500 hover:text-orange-600 dark:border-white/10 dark:bg-neutral-900 dark:text-gray-300"
+              class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 transition dark:border-white/10 dark:bg-neutral-900 dark:text-gray-300"
               :aria-label="t('common.close')"
               @click="close"
             >
@@ -41,7 +41,7 @@
               class="mb-4 max-h-56 w-full rounded-xl object-cover"
               loading="lazy"
             />
-            <p v-if="noticeSummary" class="rounded-xl border-l-4 border-orange-500 bg-orange-50 px-4 py-3 text-sm leading-7 text-gray-600 dark:bg-orange-500/10 dark:text-gray-300">
+            <p v-if="noticeSummary" class="rounded-xl border-l-4 border-orange-500 px-4 py-3 text-sm leading-7 text-gray-600 dark:text-gray-300" style="background-color: var(--ui-accent-soft);">
               {{ noticeSummary }}
             </p>
             <div

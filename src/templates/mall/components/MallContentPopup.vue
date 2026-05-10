@@ -23,7 +23,7 @@
             </div>
             <button
               type="button"
-              class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 transition hover:border-orange-500 hover:text-orange-600 dark:border-white/10 dark:bg-neutral-900 dark:text-gray-300"
+              class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 transition dark:border-white/10 dark:bg-neutral-900 dark:text-gray-300"
               :aria-label="t('common.cancel')"
               @click="close"
             >
@@ -91,7 +91,7 @@
                         :key="post.id"
                         type="button"
                         class="group flex w-full gap-3 rounded-lg border bg-white p-2.5 text-left shadow-sm transition dark:bg-neutral-900"
-                        :class="isSelectedPost(post) ? 'border-orange-500 ring-1 ring-orange-500/20' : 'border-transparent hover:border-orange-200 dark:hover:border-orange-500/40'"
+                        :class="isSelectedPost(post) ? 'border-orange-500 ring-1 ring-orange-500/20' : 'border-transparent dark:/40'"
                         @click="selectPost(post)"
                       >
                         <div class="h-14 w-[72px] shrink-0 overflow-hidden rounded-md bg-gray-100 dark:bg-white/10">
@@ -105,12 +105,12 @@
                         </div>
                         <div class="min-w-0 flex-1">
                           <div class="flex items-center justify-between gap-2">
-                            <span class="rounded-full bg-orange-50 px-2 py-0.5 text-[11px] font-bold text-orange-600 dark:bg-orange-500/10">
+                            <span class="rounded-full px-2 py-0.5 text-[11px] font-bold text-orange-600" style="background-color: var(--ui-accent-soft);">
                               {{ post.type === 'notice' ? t('nav.notice') : t('nav.blog') }}
                             </span>
                             <time class="shrink-0 text-[11px] text-gray-400">{{ formatDate(post.published_at) }}</time>
                           </div>
-                          <h3 class="mt-1.5 line-clamp-2 text-sm font-black leading-5 group-hover:text-orange-600">{{ getLocalizedText(post.title) }}</h3>
+                          <h3 class="mt-1.5 line-clamp-2 text-sm font-black leading-5 group-">{{ getLocalizedText(post.title) }}</h3>
                           <p v-if="getLocalizedText(post.summary)" class="mt-1 line-clamp-1 text-xs text-gray-500 dark:text-gray-400">
                             {{ getLocalizedText(post.summary) }}
                           </p>
@@ -150,13 +150,13 @@
 
                   <article v-else-if="selectedPost" class="mx-auto max-w-3xl px-4 py-4 sm:px-7 sm:py-5">
                     <div class="mb-4 flex flex-wrap items-center gap-3 text-xs text-gray-400">
-                      <span class="rounded-full bg-orange-50 px-3 py-1 font-bold text-orange-600 dark:bg-orange-500/10">
+                      <span class="rounded-full px-3 py-1 font-bold text-orange-600" style="background-color: var(--ui-accent-soft);">
                         {{ selectedPost.type === 'notice' ? t('nav.notice') : t('nav.blog') }}
                       </span>
                       <time>{{ formatDate(selectedPost.published_at) }}</time>
                     </div>
                     <h3 class="text-xl font-black leading-tight tracking-tight sm:text-2xl">{{ getLocalizedText(selectedPost.title) }}</h3>
-                    <p v-if="getLocalizedText(selectedPost.summary)" class="mt-3 border-l-4 border-orange-500 bg-orange-50 px-4 py-3 text-sm leading-7 text-gray-600 dark:bg-orange-500/10 dark:text-gray-300">
+                    <p v-if="getLocalizedText(selectedPost.summary)" class="mt-3 border-l-4 border-orange-500 px-4 py-3 text-sm leading-7 text-gray-600 dark:text-gray-300" style="background-color: var(--ui-accent-soft);">
                       {{ getLocalizedText(selectedPost.summary) }}
                     </p>
                     <img

@@ -4,7 +4,7 @@
     <div v-if="showPageReturn" class="mx-auto w-full max-w-[1536px] px-4 pt-3 sm:px-6 lg:px-8">
       <button
         type="button"
-        class="inline-flex h-9 items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3 text-xs font-semibold text-gray-600 transition hover:border-orange-500 hover:text-orange-600 dark:border-white/10 dark:bg-neutral-950 dark:text-gray-300"
+        class="inline-flex h-9 items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3 text-xs font-semibold text-gray-600 transition dark:border-white/10 dark:bg-neutral-950 dark:text-gray-300"
         @click="returnHome"
       >
         <ArrowLeftIcon class="h-4 w-4" aria-hidden="true" />

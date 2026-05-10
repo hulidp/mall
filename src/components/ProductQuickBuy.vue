@@ -33,8 +33,7 @@
         <div
           role="dialog"
           aria-modal="true"
-          class="
-            flex max-h-[88dvh] w-full flex-col
+          class=" flex max-h-[88dvh] w-full flex-col
             rounded-t-2xl md:rounded-2xl
             theme-panel-strong border-t md:border theme-border
             shadow-2xl
@@ -153,7 +152,7 @@
             </p>
 
             <!-- Promotion rules -->
-            <div v-if="hasPromotionRules(product)" class="mb-3 rounded-lg border border-orange-200 bg-orange-50/50 px-3 py-2 dark:border-orange-800/50 dark:bg-orange-950/20 md:mb-4">
+            <div v-if="hasPromotionRules(product)" class="mb-3 rounded-lg border border-orange-200 /50 px-3 py-2 dark:border-orange-800/50 dark:bg-orange-950/20 md:mb-4" style="background-color: var(--ui-accent-soft);">
               <div class="flex items-center gap-1 mb-1">
                 <svg class="w-3.5 h-3.5 text-orange-500 dark:text-orange-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z" />
@@ -164,7 +163,7 @@
               </div>
               <ul class="space-y-0.5">
                 <li v-for="rule in getPromotionRules(product)" :key="rule.id" class="text-[11px] text-orange-600 dark:text-orange-300/90 flex items-center gap-1">
-                  <span class="w-1 h-1 rounded-full bg-orange-400 dark:bg-orange-500 shrink-0"></span>
+                  <span class="w-1 h-1 rounded-full bg-orange-400 dark: 0 shrink-0" style="background-color: var(--ui-accent-soft);"></span>
                   <span>{{ formatPromotionRule(rule) }}</span>
                 </li>
               </ul>
@@ -198,8 +197,7 @@
                   :key="sku.id"
                   type="button"
                   class="rounded-lg border px-3 py-1.5 text-[13px] transition-all"
-                  :class="[
-                    normalizeSkuId(sku.id) === selectedSkuId
+                  :class="[ normalizeSkuId(sku.id) === selectedSkuId
                       ? 'theme-selected-surface ring-1 ring-primary/30 font-semibold'
                       : 'theme-btn-secondary font-medium',
                     isSkuPurchasable(sku) ? 'cursor-pointer' : 'cursor-not-allowed opacity-45 border-dashed',

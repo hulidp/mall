@@ -3,7 +3,7 @@
     <aside class="hidden h-screen w-[260px] shrink-0 flex-col overflow-hidden border-r border-black/10 bg-white px-4 py-4 dark:border-white/10 dark:bg-neutral-950 lg:flex">
       <section class="rounded-3xl border border-black/10 bg-white p-4 dark:border-white/10 dark:bg-neutral-900">
         <div class="flex items-center gap-3">
-          <div class="flex h-12 w-12 items-center justify-center rounded-full bg-orange-50 text-lg font-black text-[#ff5000] dark:bg-orange-500/10">
+          <div class="flex h-12 w-12 items-center justify-center rounded-full text-lg font-black" style="background-color: var(--ui-accent-soft); color: var(--ui-accent);">
             {{ displayInitial }}
           </div>
           <div class="min-w-0">
@@ -19,7 +19,7 @@
           :key="tab.key"
           :to="tab.path"
           class="group flex h-11 items-center justify-between rounded-2xl px-4 text-sm font-bold transition"
-          :class="currentSection === tab.key ? 'bg-orange-50 text-[#ff5000] ring-1 ring-orange-100 dark:bg-orange-500/10 dark:ring-orange-500/20' : 'text-gray-700 hover:bg-gray-50 hover:text-[#ff5000] dark:text-gray-200 dark:hover:bg-white/5'"
+          :class="currentSection === tab.key ? ' ring-1 ' : 'text-gray-700 hover:bg-gray-50 hover:text-[#ff5000] dark:text-gray-200 dark:hover:bg-white/5'" style="background-color: var(--ui-accent-soft); color: var(--ui-accent);"
         >
           <span class="flex min-w-0 items-center gap-3">
             <component :is="tab.icon" class="h-4 w-4 shrink-0" aria-hidden="true" />
@@ -31,7 +31,7 @@
       <div class="mt-4 space-y-2">
         <button
           type="button"
-          class="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-[#ff5000] text-sm font-black text-white transition hover:bg-orange-600"
+          class="flex h-11 w-full items-center justify-center gap-2 rounded-xl text-sm font-black text-white transition" style="background-color: var(--ui-accent);"
           @click="goShopping"
         >
           <HomeIcon class="h-4 w-4" aria-hidden="true" />
@@ -78,7 +78,7 @@
         <div class="flex items-start justify-between gap-3">
           <section class="min-w-0 flex-1 rounded-3xl border border-black/10 bg-white p-4 dark:border-white/10 dark:bg-neutral-900">
             <div class="flex items-center gap-3">
-              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-orange-50 text-lg font-black text-[#ff5000] dark:bg-orange-500/10">
+              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-lg font-black" style="background-color: var(--ui-accent-soft); color: var(--ui-accent);">
                 {{ displayInitial }}
               </div>
               <div class="min-w-0">
@@ -103,7 +103,7 @@
             :key="tab.key"
             :to="tab.path"
             class="group flex h-11 items-center justify-between rounded-2xl px-4 text-sm font-bold transition"
-            :class="currentSection === tab.key ? 'bg-orange-50 text-[#ff5000] ring-1 ring-orange-100 dark:bg-orange-500/10 dark:ring-orange-500/20' : 'text-gray-700 hover:bg-gray-50 hover:text-[#ff5000] dark:text-gray-200 dark:hover:bg-white/5'"
+            :class="currentSection === tab.key ? ' ring-1 ' : 'text-gray-700 hover:bg-gray-50 hover:text-[#ff5000] dark:text-gray-200 dark:hover:bg-white/5'" style="background-color: var(--ui-accent-soft); color: var(--ui-accent);"
             @click="closeMobileMenu"
           >
             <span class="flex min-w-0 items-center gap-3">
@@ -116,7 +116,7 @@
         <div class="mt-4 space-y-2">
           <button
             type="button"
-            class="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-[#ff5000] text-sm font-black text-white transition hover:bg-orange-600"
+            class="flex h-11 w-full items-center justify-center gap-2 rounded-xl text-sm font-black text-white transition" style="background-color: var(--ui-accent);"
             @click="goShopping"
           >
             <HomeIcon class="h-4 w-4" aria-hidden="true" />
@@ -151,7 +151,7 @@
         </div>
         <button
           type="button"
-          class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#ff5000] text-white"
+          class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white" style="background-color: var(--ui-accent);"
           :aria-label="t('orders.continueShopping')"
           @click="goShopping"
         >
@@ -176,7 +176,7 @@
                     </div>
                     <div class="min-w-0 bg-[#fbfaf8] px-2 py-2 dark:bg-white/[0.04] sm:rounded-2xl sm:border sm:border-black/10 sm:bg-white/70 sm:p-4 sm:dark:border-white/10">
                       <div class="text-xs font-bold text-gray-500">{{ t('personalCenter.wallet.balanceLabel') }}</div>
-                      <div class="mt-1 truncate text-lg font-black text-[#ff5000] sm:mt-2 sm:break-all sm:text-xl">{{ walletBalanceDisplay }}</div>
+                      <div class="mt-1 truncate text-lg font-black sm:mt-2 sm:break-all sm:text-xl" style="color: var(--ui-accent);">{{ walletBalanceDisplay }}</div>
                     </div>
                     <div class="min-w-0 bg-[#fbfaf8] px-2 py-2 dark:bg-white/[0.04] sm:rounded-2xl sm:border sm:border-black/10 sm:bg-white/70 sm:p-4 sm:dark:border-white/10">
                       <div class="text-xs font-bold text-gray-500">{{ t('personalCenter.overview.recentOrdersTitle') }}</div>
@@ -192,14 +192,14 @@
                 <div class="min-w-0">
                   <p class="text-[10px] font-black uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400 sm:text-[11px] sm:tracking-[0.35em]">{{ t('personalCenter.memberLevel.currentLevel') }}</p>
                   <div class="mt-1.5 flex min-w-0 items-center gap-2 text-lg font-black sm:mt-4 sm:text-2xl">
-                    <SparklesIcon class="h-5 w-5 text-[#ff5000] sm:h-6 sm:w-6" aria-hidden="true" />
+                    <SparklesIcon class="h-5 w-5 sm:h-6 sm:w-6" style="color: var(--ui-accent);" aria-hidden="true" />
                     <span class="min-w-0 break-words">{{ memberLevelName }}</span>
                   </div>
                 </div>
-                <span class="shrink-0 rounded-full bg-orange-50 px-3 py-1 text-xs font-black text-[#ff5000] dark:bg-orange-500/10">{{ memberDiscountText }}</span>
+                <span class="shrink-0 rounded-full px-3 py-1 text-xs font-black" style="background-color: var(--ui-accent-soft); color: var(--ui-accent);">{{ memberDiscountText }}</span>
               </div>
               <div class="mt-2 h-2 overflow-hidden rounded-full bg-gray-100 dark:bg-white/10 sm:mt-8">
-                <div class="h-full w-1/2 rounded-full bg-[#ff5000]"></div>
+                <div class="h-full w-1/2 rounded-full" style="background-color: var(--ui-accent);"></div>
               </div>
               <div class="mt-2 grid grid-cols-2 gap-px overflow-hidden rounded-xl bg-black/10 dark:bg-white/10 sm:mt-4 sm:gap-3 sm:overflow-visible sm:rounded-none sm:bg-transparent sm:dark:bg-transparent">
                 <div class="bg-[#fbfaf8] px-2 py-2 dark:bg-white/[0.04] sm:rounded-2xl sm:border sm:border-black/10 sm:bg-transparent sm:p-4 sm:dark:border-white/10">
@@ -215,7 +215,7 @@
               </div>
               <router-link
                 to="/me/wallet"
-                class="mt-2 flex h-9 items-center justify-center gap-2 rounded-xl bg-[#ff5000] text-sm font-black text-white transition hover:bg-orange-600 sm:mt-5 sm:h-11"
+                class="mt-2 flex h-9 items-center justify-center gap-2 rounded-xl text-sm font-black text-white transition sm:mt-5 sm:h-11" style="background-color: var(--ui-accent);"
               >
                 <BoltIcon class="h-4 w-4" aria-hidden="true" />
                 {{ t('personalCenter.tabs.wallet') }}
@@ -230,7 +230,7 @@
                   <p class="text-[10px] font-black uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400 sm:text-[11px] sm:tracking-[0.35em]">{{ t('personalCenter.tabs.profile') }}</p>
                   <h2 class="mt-1 break-words text-lg font-black sm:mt-3 sm:text-2xl">{{ t('personalCenter.overview.accountLabel') }}</h2>
                 </div>
-                <router-link to="/me/wallet" class="hidden rounded-xl border border-black/10 px-4 py-2 text-sm font-bold hover:text-[#ff5000] dark:border-white/10 sm:inline-flex">
+                <router-link to="/me/wallet" class="hidden rounded-xl border border-black/10 px-4 py-2 text-sm font-bold hover: dark:border-white/10 sm:inline-flex" style="color: var(--ui-accent);">
                   {{ t('personalCenter.tabs.wallet') }}
                 </router-link>
               </div>
@@ -242,11 +242,11 @@
                 </div>
                 <div class="grid gap-1 py-2 sm:grid-cols-[160px_minmax(0,1fr)] sm:gap-2 sm:py-4">
                   <div class="text-sm font-bold text-gray-500">{{ t('personalCenter.wallet.balanceLabel') }}</div>
-                  <div class="break-all font-black text-[#ff5000] sm:text-right">{{ walletBalanceDisplay }}</div>
+                  <div class="break-all font-black sm:text-right" style="color: var(--ui-accent);">{{ walletBalanceDisplay }}</div>
                 </div>
               </div>
 
-              <div v-if="!emailVerified" class="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-orange-200 bg-orange-50 p-4 text-sm text-orange-700 dark:border-orange-500/20 dark:bg-orange-500/10 dark:text-orange-300">
+              <div v-if="!emailVerified" class="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-orange-200 p-4 text-sm text-orange-700 dark:border-orange-500/20 dark:text-orange-300" style="background-color: var(--ui-accent-soft);">
                 <div class="flex min-w-0 items-center gap-2">
                   <ExclamationTriangleIcon class="h-5 w-5 shrink-0" aria-hidden="true" />
                   <span>{{ t('personalCenter.overview.emailUnverified') }}</span>
@@ -268,7 +268,7 @@
                   v-for="action in quickActions"
                   :key="action.path"
                   :to="action.path"
-                  class="flex items-center gap-2.5 rounded-xl border border-black/10 p-2.5 transition hover:border-orange-200 hover:bg-orange-50 dark:border-white/10 dark:hover:border-orange-500/20 dark:hover:bg-orange-500/10 sm:gap-4 sm:rounded-2xl sm:p-4"
+                  class="flex items-center gap-2.5 rounded-xl border border-black/10 p-2.5 transition hover: dark:border-white/10 dark:/20 dark:hover:bg-orange-500/10 sm:gap-4 sm:rounded-2xl sm:p-4" style="background-color: var(--ui-accent-soft);"
                 >
                   <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl sm:h-11 sm:w-11 sm:rounded-2xl" :class="action.iconClass">
                     <component :is="action.icon" class="h-5 w-5" aria-hidden="true" />
@@ -395,7 +395,7 @@ const quickActions = computed(() => [
     description: t('orders.subtitle'),
     path: '/me/orders',
     icon: ShoppingBagIcon,
-    iconClass: 'bg-orange-50 text-[#ff5000] dark:bg-orange-500/10',
+    iconClass: 'bg-orange-50 text-[#ff5000] ',
   },
   {
     title: t('personalCenter.tabs.wallet'),

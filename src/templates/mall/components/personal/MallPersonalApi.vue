@@ -17,12 +17,12 @@
 
     <div v-else-if="!credential" class="mt-5 rounded-2xl border border-dashed border-gray-200 p-4 dark:border-white/10 sm:p-6">
       <p class="text-sm text-gray-500">{{ t('personalCenter.apiPanel.noCredential') }}</p>
-      <button type="button" :disabled="submitting" class="mt-4 h-11 w-full rounded-full bg-[#ff5000] px-6 text-sm font-black text-white hover:bg-orange-600 disabled:opacity-60 sm:w-auto" @click="handleApply">
+      <button type="button" :disabled="submitting" class="mt-4 h-11 w-full rounded-full px-6 text-sm font-black text-white disabled:opacity-60 sm:w-auto" style="background-color: var(--ui-accent);" @click="handleApply">
         {{ submitting ? t('personalCenter.apiPanel.applying') : t('personalCenter.apiPanel.apply') }}
       </button>
     </div>
 
-    <div v-else-if="credential.status === 'pending_review'" class="mt-5 rounded-2xl bg-orange-50 p-4 text-sm leading-6 text-[#ff5000] dark:bg-orange-500/10 sm:p-5">
+    <div v-else-if="credential.status === 'pending_review'" class="mt-5 rounded-2xl p-4 text-sm leading-6 sm:p-5" style="background-color: var(--ui-accent-soft); color: var(--ui-accent);">
       <h3 class="font-black">{{ t('personalCenter.apiPanel.pendingTitle') }}</h3>
       <p class="mt-1 break-words">{{ t('personalCenter.apiPanel.pendingDesc') }}</p>
     </div>
@@ -30,7 +30,7 @@
     <div v-else-if="credential.status === 'rejected'" class="mt-5 rounded-2xl bg-red-50 p-4 text-sm leading-6 text-red-600 dark:bg-red-500/10 sm:p-5">
       <h3 class="font-black">{{ t('personalCenter.apiPanel.rejectedTitle') }}</h3>
       <p v-if="credential.reject_reason" class="mt-1 break-words">{{ t('personalCenter.apiPanel.rejectReason', { reason: credential.reject_reason }) }}</p>
-      <button type="button" :disabled="submitting" class="mt-4 h-10 w-full rounded-full bg-[#ff5000] px-5 text-sm font-black text-white disabled:opacity-60 sm:w-auto" @click="handleApply">
+      <button type="button" :disabled="submitting" class="mt-4 h-10 w-full rounded-full px-5 text-sm font-black text-white disabled:opacity-60 sm:w-auto" style="background-color: var(--ui-accent);" @click="handleApply">
         {{ submitting ? t('personalCenter.apiPanel.applying') : t('personalCenter.apiPanel.reapply') }}
       </button>
     </div>

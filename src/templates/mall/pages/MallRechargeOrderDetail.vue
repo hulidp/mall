@@ -7,7 +7,7 @@
       </div>
       <router-link
         to="/me/orders"
-        class="inline-flex h-9 items-center justify-center rounded-full border border-gray-200 bg-white px-3.5 text-sm font-semibold text-gray-700 transition hover:border-orange-500 hover:text-orange-600 dark:border-white/10 dark:bg-neutral-900 dark:text-gray-200 sm:h-10 sm:px-5"
+        class="inline-flex h-9 items-center justify-center rounded-full border border-gray-200 bg-white px-3.5 text-sm font-semibold text-gray-700 transition dark:border-white/10 dark:bg-neutral-900 dark:text-gray-200 sm:h-10 sm:px-5"
       >
         {{ t('rechargeOrder.backList') }}
       </router-link>
@@ -54,7 +54,7 @@
             </div>
             <div class="bg-[#fbfaf8] px-2 py-2 text-sm last:rounded-r-xl dark:bg-white/[0.04] sm:rounded-xl sm:p-4">
               <div class="text-xs text-gray-500 dark:text-gray-400">{{ t('orderDetail.amountTotal') }}</div>
-              <div class="mt-1 break-all text-sm font-black text-[#ff5000] sm:text-base">{{ formatMoney(recharge.payable_amount, recharge.currency) }}</div>
+              <div class="mt-1 break-all text-sm font-black sm:text-base" style="color: var(--ui-accent);">{{ formatMoney(recharge.payable_amount, recharge.currency) }}</div>
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@
             </div>
             <div class="rounded-lg bg-gray-50 p-2 dark:bg-white/[0.04] sm:rounded-xl sm:p-4">
               <div class="text-xs text-gray-500 dark:text-gray-400">{{ t('personalCenter.wallet.payAmountLabel') }}</div>
-              <div class="mt-1 font-black text-[#ff5000]">{{ formatMoney(recharge.payable_amount, recharge.currency) }}</div>
+              <div class="mt-1 font-black" style="color: var(--ui-accent);">{{ formatMoney(recharge.payable_amount, recharge.currency) }}</div>
             </div>
           </div>
         </div>
@@ -135,14 +135,14 @@
                 <button
                   v-if="payLink"
                   type="button"
-                  class="inline-flex h-10 items-center justify-center rounded-xl bg-[#ff5000] px-4 text-sm font-black text-white transition hover:bg-orange-600"
+                  class="inline-flex h-10 items-center justify-center rounded-xl px-4 text-sm font-black text-white transition" style="background-color: var(--ui-accent);"
                   @click="handleOpenPayLink"
                 >
                   {{ t('payment.openPayLink') }}
                 </button>
                 <button
                   type="button"
-                  class="inline-flex h-10 items-center justify-center rounded-xl border border-gray-200 px-4 text-sm font-semibold text-gray-700 transition hover:border-orange-500 hover:text-orange-600 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:text-gray-200"
+                  class="inline-flex h-10 items-center justify-center rounded-xl border border-gray-200 px-4 text-sm font-semibold text-gray-700 transition disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:text-gray-200"
                   :disabled="checkingPayment"
                   @click="checkPayment"
                 >
@@ -179,7 +179,7 @@
           </div>
           <div class="flex items-center justify-between border-t border-gray-100 pt-3 dark:border-white/10">
             <span class="text-gray-500 dark:text-gray-400">{{ t('personalCenter.wallet.payAmountLabel') }}</span>
-            <span class="text-lg font-black text-[#ff5000] sm:text-xl">{{ formatMoney(recharge.payable_amount, recharge.currency) }}</span>
+            <span class="text-lg font-black sm:text-xl" style="color: var(--ui-accent);">{{ formatMoney(recharge.payable_amount, recharge.currency) }}</span>
           </div>
         </div>
 
@@ -187,14 +187,14 @@
           <button
             v-if="payLink"
             type="button"
-            class="mt-5 h-12 w-full rounded-xl bg-[#ff5000] text-sm font-black text-white transition hover:bg-orange-600"
+            class="mt-5 h-12 w-full rounded-xl text-sm font-black text-white transition" style="background-color: var(--ui-accent);"
             @click="handleOpenPayLink"
           >
             {{ t('payment.openPayLink') }}
           </button>
           <button
             type="button"
-            class="mt-3 h-11 w-full rounded-xl border border-gray-200 text-sm font-semibold text-gray-700 transition hover:border-orange-500 hover:text-orange-600 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:text-gray-200"
+            class="mt-3 h-11 w-full rounded-xl border border-gray-200 text-sm font-semibold text-gray-700 transition disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:text-gray-200"
             :disabled="checkingPayment"
             @click="checkPayment"
           >
@@ -208,7 +208,7 @@
 
         <router-link
           to="/me/orders"
-          class="mt-3 flex h-11 w-full items-center justify-center rounded-xl border border-gray-200 text-sm font-semibold text-gray-700 transition hover:border-orange-500 hover:text-orange-600 dark:border-white/10 dark:text-gray-200"
+          class="mt-3 flex h-11 w-full items-center justify-center rounded-xl border border-gray-200 text-sm font-semibold text-gray-700 transition dark:border-white/10 dark:text-gray-200"
         >
           {{ t('rechargeOrder.backList') }}
         </router-link>
@@ -273,7 +273,7 @@ const statusBadgeClass = (status?: string) => {
   const normalized = String(status || '').toLowerCase()
   if (normalized === 'success') return 'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-300'
   if (normalized === 'failed' || normalized === 'expired') return 'bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-300'
-  return 'bg-orange-50 text-[#ff5000] dark:bg-orange-500/10'
+  return 'bg-orange-50 text-[#ff5000] '
 }
 
 const formatMoney = (amount?: unknown, currency?: string) => formatMallMoney(amount, currency)

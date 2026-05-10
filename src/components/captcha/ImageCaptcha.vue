@@ -79,7 +79,7 @@ defineExpose({
       />
       <button
         type="button"
-        class="h-9 shrink-0 rounded-md border border-gray-200 px-3 text-xs font-semibold text-gray-500 hover:border-orange-300 hover:text-orange-600 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:text-gray-400 dark:hover:border-orange-500/40 dark:hover:text-orange-300"
+        class="h-9 shrink-0 rounded-md border border-gray-200 px-3 text-xs font-semibold text-gray-500 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:text-gray-400 dark:/40 dark:"
         :disabled="disabled || loading"
         @click="refresh()"
       >

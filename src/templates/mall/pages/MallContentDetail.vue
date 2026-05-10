@@ -9,7 +9,7 @@
       <img v-if="post.thumbnail" :src="getImageUrl(post.thumbnail)" :alt="getLocalizedText(post.title)" class="h-36 w-full object-cover sm:h-72" loading="lazy" />
       <div class="p-3 sm:p-8">
         <div class="mb-3 flex flex-wrap items-center gap-2 sm:mb-5 sm:gap-3">
-          <span class="rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold text-orange-600 dark:bg-orange-500/10">{{ post.type === 'notice' ? t('nav.notice') : t('nav.blog') }}</span>
+          <span class="rounded-full px-3 py-1 text-xs font-semibold text-orange-600" style="background-color: var(--ui-accent-soft);">{{ post.type === 'notice' ? t('nav.notice') : t('nav.blog') }}</span>
           <time class="text-xs text-gray-400 sm:text-sm">{{ formatDate(post.published_at) }}</time>
         </div>
         <h1 class="text-xl font-black leading-tight text-gray-950 dark:text-white sm:text-3xl">{{ getLocalizedText(post.title) }}</h1>

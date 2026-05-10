@@ -39,14 +39,14 @@
             <div class="min-w-0 flex-1">
               <h2 class="line-clamp-2 text-sm font-bold leading-5 text-gray-900 dark:text-gray-100">{{ title }}</h2>
               <div class="mt-1.5 flex flex-wrap items-center gap-1 text-[11px] sm:mt-2">
-                <span class="rounded-sm bg-orange-50 px-1.5 py-0.5 font-medium text-orange-600 dark:bg-orange-500/10 dark:text-orange-300">
+                <span class="rounded-sm px-1.5 py-0.5 font-medium text-orange-600 dark:text-orange-300" style="background-color: var(--ui-accent-soft);">
                   {{ fulfillmentLabel }}
                 </span>
                 <span class="rounded-sm px-1.5 py-0.5 font-medium" :class="stockClass">
                   {{ stockLabel }}
                 </span>
               </div>
-              <div class="mt-1.5 text-[22px] font-black leading-none text-[#ff5000] sm:mt-2 sm:text-[26px]">{{ priceText }}</div>
+              <div class="mt-1.5 text-[22px] font-black leading-none sm:mt-2 sm:text-[26px]" style="color: var(--ui-accent);">{{ priceText }}</div>
             </div>
             <button
               type="button"
@@ -82,7 +82,7 @@
                 <button
                   v-if="showSkuToggle"
                   type="button"
-                  class="inline-flex h-8 items-center justify-center rounded-full border border-orange-200 px-3 text-xs font-semibold text-orange-600 transition hover:bg-orange-50 dark:border-orange-500/20 dark:text-orange-300 dark:hover:bg-orange-500/10"
+                  class="inline-flex h-8 items-center justify-center rounded-full border border-orange-200 px-3 text-xs font-semibold text-orange-600 transition hover: dark:border-orange-500/20 dark:text-orange-300 dark:hover:bg-orange-500/10" style="background-color: var(--ui-accent-soft);"
                   @click="skuExpanded = !skuExpanded"
                 >
                   {{ skuExpanded ? t('productDetail.collapseSkuList') : t('productDetail.expandSkuList') }}
@@ -95,11 +95,10 @@
                     :key="sku.id"
                     type="button"
                     class="min-h-9 rounded-lg border px-2.5 py-1.5 text-left text-xs font-semibold transition sm:min-h-10"
-                    :class="[
-                      normalizeSkuId(sku.id) === selectedSkuId ? 'border-[#ff5000] bg-orange-50 text-[#ff5000] dark:bg-orange-500/10' : 'border-gray-200 bg-white text-gray-800 hover:border-orange-400 dark:border-white/10 dark:bg-neutral-950 dark:text-gray-100',
+                    :class="[ normalizeSkuId(sku.id) === selectedSkuId ? ' ' : 'border-gray-200 bg-white text-gray-800 dark:border-white/10 dark:bg-neutral-950 dark:text-gray-100',
                       isSkuPurchasable(currentProduct, sku) ? '' : 'cursor-not-allowed opacity-50',
                       isLongSkuText(sku) ? 'col-span-full' : '',
-                    ]"
+                    ]" style="background-color: var(--ui-accent-soft);" style="border-color: var(--ui-accent);" style="color: var(--ui-accent);"
                     :disabled="!isSkuPurchasable(currentProduct, sku)"
                     @click="selectSku(sku)"
                     >
@@ -194,7 +193,7 @@
                   :placeholder="t('guestOrders.passwordPlaceholder')"
                 />
               </div>
-              <div v-if="guestCaptchaEnabled" class="rounded-lg border border-orange-100 bg-orange-50/30 px-3 py-2 shadow-sm dark:border-orange-500/20 dark:bg-orange-500/10">
+              <div v-if="guestCaptchaEnabled" class="rounded-lg border border-orange-100 /30 px-3 py-2 shadow-sm dark:border-orange-500/20" style="background-color: var(--ui-accent-soft);">
                 <div class="flex flex-wrap items-center gap-3">
                   <div class="shrink-0 text-xs font-black text-orange-600 dark:text-orange-300">{{ t('auth.common.captchaLabel') }}</div>
                   <div class="min-w-0 flex-1">
@@ -247,7 +246,7 @@
                   v-if="userAuthStore.isAuthenticated"
                   type="button"
                   class="inline-flex min-h-10 items-center justify-center rounded-lg border px-3 py-2 text-sm font-semibold transition"
-                  :class="useBalance ? 'border-orange-600 bg-orange-50 text-orange-600 dark:bg-orange-500/10' : 'border-gray-200 bg-white text-gray-800 hover:border-orange-400 dark:border-white/10 dark:bg-neutral-950 dark:text-gray-100'"
+                  :class="useBalance ? 'border-orange-600 text-orange-600 ' : 'border-gray-200 bg-white text-gray-800 dark:border-white/10 dark:bg-neutral-950 dark:text-gray-100'" style="background-color: var(--ui-accent-soft);"
                   @click="selectBalancePayment"
                 >
                   {{ balancePaymentLabel }}
@@ -257,7 +256,7 @@
                   :key="channel.id"
                   type="button"
                   class="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border px-3 py-2 text-sm font-semibold transition"
-                  :class="Number(selectedChannelId) === Number(channel.id) ? 'border-orange-600 bg-orange-50 text-orange-600 dark:bg-orange-500/10' : 'border-gray-200 bg-white text-gray-800 hover:border-orange-400 dark:border-white/10 dark:bg-neutral-950 dark:text-gray-100'"
+                  :class="Number(selectedChannelId) === Number(channel.id) ? 'border-orange-600 text-orange-600 ' : 'border-gray-200 bg-white text-gray-800 dark:border-white/10 dark:bg-neutral-950 dark:text-gray-100'" style="background-color: var(--ui-accent-soft);"
                   @click="selectPaymentChannel(channel.id)"
                 >
                   <img v-if="paymentChannelIcon(channel)" :src="paymentChannelIcon(channel)" :alt="channelName(channel)" loading="lazy" class="h-5 w-5 shrink-0 rounded object-contain" />
@@ -275,7 +274,7 @@
             <div class="mall-quick-total mb-2 flex items-center justify-between gap-3 rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 dark:border-white/10 dark:bg-white/[0.04] sm:mb-3 sm:rounded-xl">
               <div class="min-w-0">
                 <div class="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400 dark:text-gray-500">{{ t('checkout.previewTotal') }}</div>
-                <div class="mt-1 text-lg font-black text-[#ff5000]">{{ previewMoneyText(previewTotal) }}</div>
+                <div class="mt-1 text-lg font-black" style="color: var(--ui-accent);">{{ previewMoneyText(previewTotal) }}</div>
               </div>
               <div v-if="activeSkuRows.length > 1" class="hidden min-w-0 text-right sm:block">
                 <div class="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400 dark:text-gray-500">{{ t('productDetail.selectedSkuLabel') }}</div>
@@ -286,7 +285,7 @@
             <button
               v-if="requiresLogin"
               type="button"
-              class="h-11 rounded-md bg-[#ff5000] text-sm font-black text-white hover:bg-orange-600"
+              class="h-11 rounded-md text-sm font-black text-white" style="background-color: var(--ui-accent);"
               @click="goLogin"
             >
               {{ t('quickBuy.loginToBuy') }}
@@ -303,7 +302,7 @@
             <button
               v-else-if="actionMode === 'buy'"
               type="button"
-              class="h-11 rounded-md bg-[#ff5000] text-sm font-black text-white hover:bg-orange-600 disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-500 dark:disabled:bg-white/10 dark:disabled:text-gray-400"
+              class="h-11 rounded-md text-sm font-black text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-500 dark:disabled:bg-white/10 dark:disabled:text-gray-400" style="background-color: var(--ui-accent);"
               :disabled="detailLoading || !canPurchase || submitting"
               @click="handleBuyNow"
             >
@@ -312,7 +311,7 @@
             <template v-else>
               <button
                 type="button"
-                class="h-11 rounded-md border border-[#ff5000] bg-orange-50 text-sm font-black text-[#ff5000] hover:bg-orange-100 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-orange-500/10"
+                class="h-11 rounded-md border text-sm font-black hover:bg-orange-100 disabled:cursor-not-allowed disabled:opacity-50" style="background-color: var(--ui-accent-soft);" style="border-color: var(--ui-accent);" style="color: var(--ui-accent);"
                 :disabled="detailLoading || !canPurchase || submitting"
                 @click="handleAddToCart"
               >
@@ -320,7 +319,7 @@
               </button>
               <button
                 type="button"
-                class="h-11 rounded-md bg-[#ff5000] text-sm font-black text-white hover:bg-orange-600 disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-500 dark:disabled:bg-white/10 dark:disabled:text-gray-400"
+                class="h-11 rounded-md text-sm font-black text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-500 dark:disabled:bg-white/10 dark:disabled:text-gray-400" style="background-color: var(--ui-accent);"
                 :disabled="detailLoading || !canPurchase || submitting"
                 @click="handleBuyNow"
               >

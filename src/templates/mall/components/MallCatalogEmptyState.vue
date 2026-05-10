@@ -1,7 +1,7 @@
 <template>
   <div class="relative overflow-hidden rounded-lg border border-gray-200 bg-white px-6 py-14 text-center shadow-sm dark:border-white/10 dark:bg-neutral-950">
     <div class="pointer-events-none absolute inset-x-0 top-0 h-1 bg-orange-600"></div>
-    <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-orange-50 text-orange-600 dark:bg-orange-500/10 dark:text-orange-300">
+    <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full text-orange-600 dark:text-orange-300" style="background-color: var(--ui-accent-soft);">
       <ArchiveBoxIcon class="h-7 w-7 stroke-[1.7]" aria-hidden="true" />
     </div>
     <p class="mt-5 text-xs font-bold uppercase tracking-[0.16em] text-orange-600 dark:text-orange-300">

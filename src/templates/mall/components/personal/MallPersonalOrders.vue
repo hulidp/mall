@@ -12,7 +12,7 @@
         <button
           type="button"
           class="h-7 flex-1 rounded-full text-sm font-bold transition sm:h-8"
-          :class="activeTab === 'product' ? 'bg-[#ff5000] text-white shadow-sm' : 'text-gray-600 hover:text-gray-950 dark:text-gray-300 dark:hover:text-white'"
+          :class="activeTab === 'product' ? ' text-white shadow-sm' : 'text-gray-600 hover:text-gray-950 dark:text-gray-300 dark:hover:text-white'" style="background-color: var(--ui-accent);"
           @click="switchTab('product')"
         >
           {{ t('orders.tabs.product') }}
@@ -20,7 +20,7 @@
         <button
           type="button"
           class="h-7 flex-1 rounded-full text-sm font-bold transition sm:h-8"
-          :class="activeTab === 'recharge' ? 'bg-[#ff5000] text-white shadow-sm' : 'text-gray-600 hover:text-gray-950 dark:text-gray-300 dark:hover:text-white'"
+          :class="activeTab === 'recharge' ? ' text-white shadow-sm' : 'text-gray-600 hover:text-gray-950 dark:text-gray-300 dark:hover:text-white'" style="background-color: var(--ui-accent);"
           @click="switchTab('recharge')"
         >
           {{ t('orders.tabs.recharge') }}
@@ -34,7 +34,7 @@
           <span class="mb-1 block text-xs font-bold text-gray-500">{{ keywordLabel }}</span>
           <input
             v-model.trim="filters.keyword"
-            class="h-9 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none transition focus:border-[#ff5000] dark:border-white/10 dark:bg-neutral-900 sm:h-10"
+            class="h-9 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none transition focus: dark:border-white/10 dark:bg-neutral-900 sm:h-10" style="border-color: var(--ui-accent);"
             :placeholder="keywordPlaceholder"
             @keyup.enter="applyFilters"
           />
@@ -43,7 +43,7 @@
           <span class="mb-1 block text-xs font-bold text-gray-500">{{ t('orders.filters.status') }}</span>
           <select
             v-model="filters.status"
-            class="h-9 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none transition focus:border-[#ff5000] dark:border-white/10 dark:bg-neutral-900 sm:h-10"
+            class="h-9 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none transition focus: dark:border-white/10 dark:bg-neutral-900 sm:h-10" style="border-color: var(--ui-accent);"
           >
             <option v-for="item in statusOptions" :key="item.value || 'all'" :value="item.value">
               {{ item.label }}
@@ -51,10 +51,10 @@
           </select>
         </label>
         <div class="grid grid-cols-2 gap-2 lg:flex">
-          <button type="button" class="h-9 rounded-full bg-[#ff5000] px-5 text-sm font-black text-white hover:bg-orange-600 sm:h-10" @click="applyFilters">
+          <button type="button" class="h-9 rounded-full px-5 text-sm font-black text-white sm:h-10" style="background-color: var(--ui-accent);" @click="applyFilters">
             {{ t('orders.filters.search') }}
           </button>
-          <button type="button" class="h-9 rounded-full border border-gray-200 px-4 text-sm font-bold hover:text-[#ff5000] dark:border-white/10 sm:h-10" @click="resetFilters">
+          <button type="button" class="h-9 rounded-full border border-gray-200 px-4 text-sm font-bold hover: dark:border-white/10 sm:h-10" style="color: var(--ui-accent);" @click="resetFilters">
             {{ t('orders.filters.reset') }}
           </button>
         </div>
@@ -79,7 +79,7 @@
             </span>
             <button
               type="button"
-              class="inline-flex h-8 items-center justify-center rounded-full border border-gray-200 px-3 text-xs font-semibold transition hover:border-orange-400 hover:text-orange-600 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10"
+              class="inline-flex h-8 items-center justify-center rounded-full border border-gray-200 px-3 text-xs font-semibold transition disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10"
               :disabled="loading || activePagination.page <= 1"
               @click="changePage(activePagination.page - 1)"
             >
@@ -87,7 +87,7 @@
             </button>
             <button
               type="button"
-              class="inline-flex h-8 items-center justify-center rounded-full border border-gray-200 px-3 text-xs font-semibold transition hover:border-orange-400 hover:text-orange-600 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10"
+              class="inline-flex h-8 items-center justify-center rounded-full border border-gray-200 px-3 text-xs font-semibold transition disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10"
               :disabled="loading || activePagination.page >= safeActiveTotalPages"
               @click="changePage(activePagination.page + 1)"
             >
@@ -102,7 +102,7 @@
       </div>
 
       <div v-else-if="activeRows.length === 0" class="flex min-h-0 flex-1 flex-col items-center justify-center px-6 py-8 text-center">
-        <div class="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-orange-50 text-[#ff5000] dark:bg-orange-500/10">
+        <div class="mb-3 flex h-12 w-12 items-center justify-center rounded-full" style="background-color: var(--ui-accent-soft); color: var(--ui-accent);">
           <ShoppingBagIcon class="h-6 w-6" aria-hidden="true" />
         </div>
         <h3 class="text-base font-black text-gray-950 dark:text-white">{{ activeTab === 'product' ? t('orders.empty') : t('orders.rechargeEmpty') }}</h3>
@@ -131,7 +131,7 @@
                 {{ row.statusLabel }}
               </span>
             </div>
-            <div class="text-base font-black text-[#ff5000] lg:text-right">{{ formatMoney(row.amount, row.currency) }}</div>
+            <div class="text-base font-black lg:text-right" style="color: var(--ui-accent);">{{ formatMoney(row.amount, row.currency) }}</div>
             <div class="text-xs font-bold text-gray-500 lg:text-right">{{ t('common.viewDetails') }}</div>
           </router-link>
         </div>
@@ -187,7 +187,7 @@ const safeActiveTotalPages = computed(() => Math.max(1, Number(activePagination.
 const badgeClass = (status?: string) => {
   const value = String(status || '').toLowerCase()
   if (['paid', 'delivered', 'completed', 'success'].includes(value)) return 'bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-300'
-  if (['pending_payment', 'pending', 'fulfilling', 'partially_delivered'].includes(value)) return 'bg-orange-50 text-[#ff5000] dark:bg-orange-500/10'
+  if (['pending_payment', 'pending', 'fulfilling', 'partially_delivered'].includes(value)) return 'bg-orange-50 text-[#ff5000] '
   if (['expired', 'failed', 'refunded', 'canceled'].includes(value)) return 'bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-300'
   return 'bg-gray-100 text-gray-600 dark:bg-white/10 dark:text-gray-300'
 }

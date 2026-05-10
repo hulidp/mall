@@ -6,7 +6,7 @@
           <h2 class="text-lg font-black text-gray-950 dark:text-white sm:text-xl">{{ t('personalCenter.profile.title') }}</h2>
           <p class="mt-0.5 break-words text-xs leading-5 text-gray-500 dark:text-gray-400 sm:mt-1 sm:text-sm sm:leading-6">{{ t('personalCenter.profile.subtitle') }}</p>
         </div>
-        <span class="rounded-full bg-orange-50 px-3 py-1 text-xs font-bold text-[#ff5000] dark:bg-orange-500/10">
+        <span class="rounded-full px-3 py-1 text-xs font-bold" style="background-color: var(--ui-accent-soft); color: var(--ui-accent);">
           {{ t('personalCenter.tabs.profile') }}
         </span>
       </div>
@@ -30,7 +30,7 @@
           <input
             v-model="profileForm.nickname"
             :placeholder="t('personalCenter.profile.nicknamePlaceholder')"
-            class="h-10 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none transition focus:border-[#ff5000] dark:border-white/10 dark:bg-neutral-900 sm:h-11 sm:rounded-xl"
+            class="h-10 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none transition focus: dark:border-white/10 dark:bg-neutral-900 sm:h-11 sm:rounded-xl" style="border-color: var(--ui-accent);"
           />
         </label>
 
@@ -38,7 +38,7 @@
           <span class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-200 sm:mb-2 sm:text-sm">{{ t('personalCenter.profile.localeLabel') }}</span>
           <select
             v-model="profileForm.locale"
-            class="h-10 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none transition focus:border-[#ff5000] dark:border-white/10 dark:bg-neutral-900 sm:h-11 sm:rounded-xl"
+            class="h-10 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none transition focus: dark:border-white/10 dark:bg-neutral-900 sm:h-11 sm:rounded-xl" style="border-color: var(--ui-accent);"
           >
             <option value="zh-CN">简体中文</option>
             <option value="zh-TW">繁體中文</option>
@@ -50,7 +50,7 @@
           <button
             type="submit"
             :disabled="userProfileStore.savingProfile"
-            class="inline-flex h-10 w-full items-center justify-center rounded-full bg-[#ff5000] px-6 text-sm font-black text-white hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60 sm:h-11 sm:w-auto"
+            class="inline-flex h-10 w-full items-center justify-center rounded-full px-6 text-sm font-black text-white disabled:cursor-not-allowed disabled:opacity-60 sm:h-11 sm:w-auto" style="background-color: var(--ui-accent);"
           >
             {{ userProfileStore.savingProfile ? t('personalCenter.profile.saving') : t('personalCenter.profile.save') }}
           </button>

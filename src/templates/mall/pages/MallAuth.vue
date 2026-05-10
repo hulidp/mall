@@ -28,13 +28,13 @@
         <button
           v-if="embedded"
           type="button"
-          class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-xl leading-none text-gray-500 hover:border-orange-500 hover:text-orange-600 dark:border-white/10 dark:text-gray-300"
+          class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-xl leading-none text-gray-500 dark:border-white/10 dark:text-gray-300"
           aria-label="关闭"
           @click="emit('close')"
         >
           ×
         </button>
-        <router-link v-else to="/" class="rounded-full border border-gray-200 px-4 py-2 text-sm font-semibold hover:border-orange-500 hover:text-orange-600 dark:border-white/10">
+        <router-link v-else to="/" class="rounded-full border border-gray-200 px-4 py-2 text-sm font-semibold dark:border-white/10">
           {{ t('auth.login.backHome') }}
         </router-link>
       </div>
@@ -71,7 +71,7 @@
             <input v-model="rememberMe" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-orange-600" />
             {{ t('auth.login.rememberMe') }}
           </label>
-          <button v-if="emailVerificationEnabled" type="button" class="font-semibold text-orange-600 hover:text-orange-700" @click="requestMode('forgot')">
+          <button v-if="emailVerificationEnabled" type="button" class="font-semibold text-orange-600" @click="requestMode('forgot')">
             {{ t('auth.login.forgot') }}
           </button>
         </div>
@@ -94,7 +94,7 @@
           <button
             v-if="showTelegramMiniAppEntry"
             type="button"
-            class="w-full rounded-md border border-gray-200 px-4 py-3 text-sm font-semibold hover:border-orange-500 hover:text-orange-600 dark:border-white/10"
+            class="w-full rounded-md border border-gray-200 px-4 py-3 text-sm font-semibold dark:border-white/10"
             @click="openTelegramMiniAppEntry"
           >
             {{ t('auth.login.telegramMiniAppEntryAction') }}
@@ -102,12 +102,12 @@
         </div>
 
         <div class="text-center text-sm">
-          <button type="button" class="font-semibold text-orange-600 hover:text-orange-700" @click="requestMode('register')">{{ t('auth.login.noAccount') }}</button>
+          <button type="button" class="font-semibold text-orange-600" @click="requestMode('register')">{{ t('auth.login.noAccount') }}</button>
         </div>
       </form>
 
       <form v-else-if="mode === 'login'" class="space-y-4" @submit.prevent="handleVerify2FA">
-        <div class="rounded-md border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-700 dark:border-orange-500/30 dark:bg-orange-500/10 dark:text-orange-200">
+        <div class="rounded-md border border-orange-200 px-4 py-3 text-sm text-orange-700 dark:border-orange-500/30 dark:text-orange-200" style="background-color: var(--ui-accent-soft);">
           {{ t('auth.login.totp.countdown', { seconds: challengeRemainingSeconds }) }}
         </div>
         <label v-if="totpMode === 'code'" class="block">
@@ -118,21 +118,21 @@
           <span class="text-sm font-semibold text-gray-700 dark:text-gray-200">{{ t('auth.login.totp.recoveryLabel') }}</span>
           <input v-model="recoveryCode" class="mt-2 w-full rounded-md border border-gray-200 bg-white px-4 py-3 text-sm outline-none focus:border-orange-500 dark:border-white/10 dark:bg-neutral-900" :placeholder="t('auth.login.totp.recoveryPlaceholder')" />
         </label>
-        <button type="button" class="text-sm font-semibold text-orange-600 hover:text-orange-700" @click="totpMode = totpMode === 'code' ? 'recovery' : 'code'">
+        <button type="button" class="text-sm font-semibold text-orange-600" @click="totpMode = totpMode === 'code' ? 'recovery' : 'code'">
           {{ totpMode === 'code' ? t('auth.login.totp.useRecovery') : t('auth.login.totp.useCode') }}
         </button>
         <div v-if="error" class="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-500/30 dark:bg-red-500/10 dark:text-red-200">{{ error }}</div>
         <button type="submit" :disabled="userAuthStore.loading" class="w-full rounded-md bg-orange-600 px-4 py-3 text-sm font-bold text-white hover:bg-orange-700 disabled:cursor-not-allowed disabled:opacity-60">
           {{ userAuthStore.loading ? t('auth.login.totp.verifying') : t('auth.login.totp.submit') }}
         </button>
-        <button type="button" class="w-full rounded-md border border-gray-200 px-4 py-3 text-sm font-semibold hover:border-orange-500 hover:text-orange-600 dark:border-white/10" @click="cancel2FA">
+        <button type="button" class="w-full rounded-md border border-gray-200 px-4 py-3 text-sm font-semibold dark:border-white/10" @click="cancel2FA">
           {{ t('auth.login.totp.cancel') }}
         </button>
       </form>
 
       <div v-else-if="mode === 'register' && !registrationEnabled" class="rounded-md border border-gray-200 px-4 py-8 text-center dark:border-white/10">
         <p class="text-sm text-gray-500 dark:text-gray-400">{{ t('auth.register.registrationDisabled') }}</p>
-        <button type="button" class="mt-4 inline-block text-sm font-semibold text-orange-600 hover:text-orange-700" @click="requestMode('login')">{{ t('auth.register.hasAccount') }}</button>
+        <button type="button" class="mt-4 inline-block text-sm font-semibold text-orange-600" @click="requestMode('login')">{{ t('auth.register.hasAccount') }}</button>
       </div>
 
       <form v-else-if="mode === 'register'" class="space-y-4" @submit.prevent="handleRegister">
@@ -165,7 +165,7 @@
             <span class="text-sm font-semibold text-gray-700 dark:text-gray-200">{{ t('auth.register.codeLabel') }}</span>
             <div class="mt-2 flex gap-2">
               <input v-model="code" required class="min-w-0 flex-1 rounded-md border border-gray-200 bg-white px-4 py-3 text-sm outline-none focus:border-orange-500 dark:border-white/10 dark:bg-neutral-900" :placeholder="t('auth.register.codePlaceholder')" />
-              <button type="button" :disabled="sending || countdown > 0" class="shrink-0 rounded-md border border-gray-200 px-4 py-3 text-sm font-semibold hover:border-orange-500 hover:text-orange-600 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10" @click="handleSendCode">
+              <button type="button" :disabled="sending || countdown > 0" class="shrink-0 rounded-md border border-gray-200 px-4 py-3 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10" @click="handleSendCode">
                 {{ countdown > 0 ? t('auth.common.countdown', { seconds: countdown }) : t('auth.common.sendCode') }}
               </button>
             </div>
@@ -185,13 +185,13 @@
           {{ userAuthStore.loading ? t('auth.register.creating') : t('auth.register.create') }}
         </button>
         <div class="text-center text-sm">
-          <button type="button" class="font-semibold text-orange-600 hover:text-orange-700" @click="requestMode('login')">{{ t('auth.register.hasAccount') }}</button>
+          <button type="button" class="font-semibold text-orange-600" @click="requestMode('login')">{{ t('auth.register.hasAccount') }}</button>
         </div>
       </form>
 
       <div v-else-if="!emailVerificationEnabled" class="rounded-md border border-gray-200 px-4 py-8 text-center dark:border-white/10">
         <p class="text-sm text-gray-500 dark:text-gray-400">{{ t('auth.forgot.disabled') }}</p>
-        <button type="button" class="mt-4 inline-block text-sm font-semibold text-orange-600 hover:text-orange-700" @click="requestMode('login')">{{ t('auth.forgot.backLogin') }}</button>
+        <button type="button" class="mt-4 inline-block text-sm font-semibold text-orange-600" @click="requestMode('login')">{{ t('auth.forgot.backLogin') }}</button>
       </div>
 
       <form v-else class="space-y-4" @submit.prevent="handleReset">
@@ -219,7 +219,7 @@
           <span class="text-sm font-semibold text-gray-700 dark:text-gray-200">{{ t('auth.forgot.codeLabel') }}</span>
           <div class="mt-2 flex gap-2">
             <input v-model="code" required class="min-w-0 flex-1 rounded-md border border-gray-200 bg-white px-4 py-3 text-sm outline-none focus:border-orange-500 dark:border-white/10 dark:bg-neutral-900" :placeholder="t('auth.forgot.codePlaceholder')" />
-            <button type="button" :disabled="sending || countdown > 0" class="shrink-0 rounded-md border border-gray-200 px-4 py-3 text-sm font-semibold hover:border-orange-500 hover:text-orange-600 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10" @click="handleSendCode">
+            <button type="button" :disabled="sending || countdown > 0" class="shrink-0 rounded-md border border-gray-200 px-4 py-3 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10" @click="handleSendCode">
               {{ countdown > 0 ? t('auth.common.countdown', { seconds: countdown }) : t('auth.common.sendCode') }}
             </button>
           </div>
@@ -233,7 +233,7 @@
           {{ userAuthStore.loading ? t('auth.forgot.submitting') : t('auth.forgot.submit') }}
         </button>
         <div class="text-center text-sm">
-          <button type="button" class="font-semibold text-orange-600 hover:text-orange-700" @click="requestMode('login')">{{ t('auth.forgot.backLogin') }}</button>
+          <button type="button" class="font-semibold text-orange-600" @click="requestMode('login')">{{ t('auth.forgot.backLogin') }}</button>
         </div>
       </form>
     </section>

@@ -5,7 +5,7 @@
         <h2 class="text-lg font-black text-gray-950 dark:text-white sm:text-xl">{{ t('personalCenter.giftCard.title') }}</h2>
         <p class="mt-1 break-words text-sm leading-6 text-gray-500 dark:text-gray-400">{{ t('personalCenter.giftCard.subtitle') }}</p>
       </div>
-      <span class="rounded-full bg-orange-50 px-3 py-1 text-xs font-bold text-[#ff5000] dark:bg-orange-500/10">
+      <span class="rounded-full px-3 py-1 text-xs font-bold" style="background-color: var(--ui-accent-soft); color: var(--ui-accent);">
         {{ t('personalCenter.tabs.giftCard') }}
       </span>
     </div>
@@ -36,7 +36,7 @@
           v-model.trim="redeemForm.code"
           maxlength="80"
           autocomplete="off"
-          class="h-11 w-full rounded-lg border border-gray-200 bg-white px-3 font-mono text-xs uppercase tracking-[0.04em] outline-none transition focus:border-[#ff5000] dark:border-white/10 dark:bg-neutral-900 sm:text-sm sm:tracking-[0.08em]"
+          class="h-11 w-full rounded-lg border border-gray-200 bg-white px-3 font-mono text-xs uppercase tracking-[0.04em] outline-none transition focus: dark:border-white/10 dark:bg-neutral-900 sm:text-sm sm:tracking-[0.08em]" style="border-color: var(--ui-accent);"
           :placeholder="t('personalCenter.giftCard.codePlaceholder')"
         />
       </label>
@@ -62,14 +62,14 @@
         <button
           type="submit"
           :disabled="submitting"
-          class="inline-flex h-11 w-full items-center justify-center rounded-full bg-[#ff5000] px-6 text-sm font-black text-white hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+          class="inline-flex h-11 w-full items-center justify-center rounded-full px-6 text-sm font-black text-white disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto" style="background-color: var(--ui-accent);"
         >
           {{ submitting ? t('personalCenter.giftCard.redeeming') : t('personalCenter.giftCard.redeemButton') }}
         </button>
         <button
           type="button"
           :disabled="submitting"
-          class="inline-flex h-11 w-full items-center justify-center rounded-full border border-gray-200 px-5 text-sm font-bold hover:text-[#ff5000] disabled:opacity-60 dark:border-white/10 sm:w-auto"
+          class="inline-flex h-11 w-full items-center justify-center rounded-full border border-gray-200 px-5 text-sm font-bold hover: disabled:opacity-60 dark:border-white/10 sm:w-auto" style="color: var(--ui-accent);"
           @click="resetForm"
         >
           {{ t('personalCenter.giftCard.resetButton') }}

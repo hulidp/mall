@@ -16,7 +16,7 @@
           <input v-model="email" type="email" class="h-10 rounded-md border border-gray-200 bg-white px-3 text-sm outline-none transition focus:border-orange-500 dark:border-white/10 dark:bg-neutral-900 sm:h-12 sm:px-4" :placeholder="t('guestOrders.emailPlaceholder')" />
           <input v-model="orderPassword" type="password" class="h-10 rounded-md border border-gray-200 bg-white px-3 text-sm outline-none transition focus:border-orange-500 dark:border-white/10 dark:bg-neutral-900 sm:h-12 sm:px-4" :placeholder="t('guestOrders.passwordPlaceholder')" />
           <input v-model="orderNo" class="h-10 rounded-md border border-gray-200 bg-white px-3 text-sm outline-none transition focus:border-orange-500 dark:border-white/10 dark:bg-neutral-900 sm:h-12 sm:px-4" :placeholder="t('guestOrders.orderNoPlaceholder')" />
-          <button class="h-10 rounded-md bg-[#ff5000] px-5 text-sm font-black text-white transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-50 sm:h-12" :disabled="loading" type="submit">
+          <button class="h-10 rounded-md px-5 text-sm font-black text-white transition disabled:cursor-not-allowed disabled:opacity-50 sm:h-12" style="background-color: var(--ui-accent);" :disabled="loading" type="submit">
             {{ loading ? t('guestOrders.searching') : t('guestOrders.search') }}
           </button>
         </form>
@@ -33,12 +33,12 @@
           <h2 class="text-base font-black text-gray-950 dark:text-white">{{ t('orders.title') }}</h2>
           <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">{{ t('guestOrders.tip') }}</p>
         </div>
-        <span v-if="orders.length" class="rounded-full bg-orange-50 px-3 py-1 text-xs font-bold text-orange-600 dark:bg-orange-500/10">
+        <span v-if="orders.length" class="rounded-full px-3 py-1 text-xs font-bold text-orange-600" style="background-color: var(--ui-accent-soft);">
           {{ orders.length }}
         </span>
       </div>
       <div v-if="orders.length === 0" class="flex min-h-[180px] flex-col items-center justify-center px-6 py-8 text-center sm:min-h-[300px] sm:py-12">
-        <div class="mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-orange-50 text-orange-600 dark:bg-orange-500/10 dark:text-orange-300 sm:mb-3 sm:h-12 sm:w-12">
+        <div class="mb-2 flex h-10 w-10 items-center justify-center rounded-full text-orange-600 dark:text-orange-300 sm:mb-3 sm:h-12 sm:w-12" style="background-color: var(--ui-accent-soft);">
           <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 13V7a2 2 0 00-2-2h-3.5M4 13V7a2 2 0 012-2h3.5m0 0L12 3l2.5 2M9.5 5h5M4 13l8 4 8-4M4 13v4a2 2 0 002 2h12a2 2 0 002-2v-4" />
           </svg>
@@ -63,10 +63,10 @@
             <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">{{ formatDate(order.created_at) }}</div>
           </div>
           <div class="flex items-center gap-2 lg:justify-center">
-            <span class="rounded-full bg-orange-50 px-3 py-1 text-xs font-bold text-orange-600 dark:bg-orange-500/10">{{ statusLabel(order.status) }}</span>
+            <span class="rounded-full px-3 py-1 text-xs font-bold text-orange-600" style="background-color: var(--ui-accent-soft);">{{ statusLabel(order.status) }}</span>
           </div>
           <div class="flex items-center justify-between gap-3 lg:justify-end">
-            <span class="text-base font-black text-[#ff5000] sm:text-lg">{{ formatMoney(order.total_amount, order.currency) }}</span>
+            <span class="text-base font-black sm:text-lg" style="color: var(--ui-accent);">{{ formatMoney(order.total_amount, order.currency) }}</span>
           </div>
           <div class="flex items-center justify-between gap-3 lg:justify-end">
             <span class="text-xs font-semibold text-gray-400">{{ t('guestOrders.viewDetails') }}</span>

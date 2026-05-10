@@ -6,7 +6,7 @@
       <p class="mt-3 text-sm leading-6 text-gray-500 dark:text-gray-400">{{ t('notFoundPage.description', { site: siteName }) }}</p>
       <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
         <router-link to="/" class="rounded-md bg-orange-600 px-5 py-3 text-sm font-bold text-white hover:bg-orange-700">{{ t('notFoundPage.backHome') }}</router-link>
-        <router-link to="/products" class="rounded-md border border-gray-200 px-5 py-3 text-sm font-bold hover:border-orange-500 hover:text-orange-600 dark:border-white/10">{{ t('nav.products') }}</router-link>
+        <router-link to="/products" class="rounded-md border border-gray-200 px-5 py-3 text-sm font-bold dark:border-white/10">{{ t('nav.products') }}</router-link>
       </div>
     </section>
   </div>

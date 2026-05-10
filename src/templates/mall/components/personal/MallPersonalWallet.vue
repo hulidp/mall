@@ -8,7 +8,7 @@
             <p class="mt-0.5 break-words text-xs leading-5 text-gray-500 dark:text-gray-400">{{ t('personalCenter.wallet.subtitle') }}</p>
           </div>
         </div>
-        <div class="mt-2 rounded-xl bg-gradient-to-r from-[#ff5000] to-rose-600 p-2.5 text-white sm:mt-4 sm:rounded-2xl sm:p-4">
+        <div class="mt-2 rounded-xl p-2.5 text-white sm:mt-4 sm:rounded-2xl sm:p-4" style="background-color: var(--ui-accent);">
           <div class="text-xs font-bold opacity-80">{{ t('personalCenter.wallet.balanceLabel') }}</div>
           <div class="mt-0.5 break-all text-xl font-black sm:mt-1 sm:text-3xl">{{ balanceDisplay }}</div>
         </div>
@@ -27,7 +27,7 @@
               v-model.trim="rechargeForm.amount"
               type="text"
               inputmode="decimal"
-              class="h-9 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none transition focus:border-[#ff5000] dark:border-white/10 dark:bg-neutral-900 sm:h-10"
+              class="h-9 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none transition focus: dark:border-white/10 dark:bg-neutral-900 sm:h-10" style="border-color: var(--ui-accent);"
               :placeholder="t('personalCenter.wallet.amountPlaceholder')"
             />
           </label>
@@ -36,7 +36,7 @@
             <input
               v-model.trim="rechargeForm.remark"
               type="text"
-              class="h-9 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none transition focus:border-[#ff5000] dark:border-white/10 dark:bg-neutral-900 sm:h-10"
+              class="h-9 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none transition focus: dark:border-white/10 dark:bg-neutral-900 sm:h-10" style="border-color: var(--ui-accent);"
               :placeholder="t('personalCenter.wallet.remarkPlaceholder')"
             />
           </label>
@@ -53,7 +53,7 @@
               :key="channel.id"
               type="button"
               class="flex min-h-10 min-w-0 items-center justify-center gap-2 rounded-xl border px-3 py-1.5 text-center text-sm transition sm:min-h-11 sm:justify-start sm:py-2 sm:text-left"
-              :class="rechargeForm.channelId === channel.id ? 'border-[#ff5000] bg-orange-50 text-[#ff5000] dark:bg-orange-500/10' : 'border-gray-200 hover:border-orange-200 dark:border-white/10'"
+              :class="rechargeForm.channelId === channel.id ? ' ' : 'border-gray-200 dark:border-white/10'" style="background-color: var(--ui-accent-soft);" style="border-color: var(--ui-accent);" style="color: var(--ui-accent);"
               @click="rechargeForm.channelId = channel.id"
             >
               <img v-if="paymentChannelIcon(channel)" :src="paymentChannelIcon(channel)" class="h-5 w-5 rounded object-cover" alt="" />
@@ -68,7 +68,7 @@
         <button
           type="submit"
           :disabled="recharging"
-          class="mt-3 inline-flex h-10 w-full items-center justify-center rounded-full bg-[#ff5000] px-6 text-sm font-black text-white hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+          class="mt-3 inline-flex h-10 w-full items-center justify-center rounded-full px-6 text-sm font-black text-white disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto" style="background-color: var(--ui-accent);"
         >
           {{ recharging ? t('payment.submitting') : t('personalCenter.wallet.rechargeSubmit') }}
         </button>
@@ -91,7 +91,7 @@
             </span>
             <button
               type="button"
-              class="inline-flex h-8 items-center justify-center rounded-full border border-gray-200 px-3 text-xs font-semibold transition hover:border-orange-400 hover:text-orange-600 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10"
+              class="inline-flex h-8 items-center justify-center rounded-full border border-gray-200 px-3 text-xs font-semibold transition disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10"
               :disabled="loading || pagination.page <= 1"
               @click="changePage(pagination.page - 1)"
             >
@@ -99,7 +99,7 @@
             </button>
             <button
               type="button"
-              class="inline-flex h-8 items-center justify-center rounded-full border border-gray-200 px-3 text-xs font-semibold transition hover:border-orange-400 hover:text-orange-600 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10"
+              class="inline-flex h-8 items-center justify-center rounded-full border border-gray-200 px-3 text-xs font-semibold transition disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10"
               :disabled="loading || pagination.page >= safeTotalPages"
               @click="changePage(pagination.page + 1)"
             >
@@ -120,7 +120,7 @@
             <div class="break-words font-bold text-gray-950 dark:text-white">{{ item.remark || item.type || '-' }}</div>
             <div class="mt-0.5 text-xs text-gray-500">{{ formatMallDate(item.created_at) }}</div>
           </div>
-          <div class="break-all font-black" :class="String(item.direction || '').toLowerCase() === 'in' ? 'text-emerald-600' : 'text-[#ff5000]'">
+          <div class="break-all font-black" :class="String(item.direction || '').toLowerCase() === 'in' ? 'text-emerald-600' : ' '" style="color: var(--ui-accent);">
             {{ formatMoney(item.amount, currency) }}
           </div>
           <div class="break-words text-xs leading-5 text-gray-500 sm:text-right">

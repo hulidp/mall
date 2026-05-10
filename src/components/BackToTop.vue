@@ -10,7 +10,7 @@
     <button
       v-if="visible"
       @click="scrollToTop"
-      class="back-to-top fixed right-4 z-40 flex h-11 w-11 items-center justify-center rounded-full border border-gray-200/80 bg-white/95 text-gray-700 shadow-[0_8px_24px_rgba(15,23,42,0.14)] backdrop-blur transition-all hover:-translate-y-0.5 hover:border-orange-200 hover:bg-orange-50 hover:text-orange-600 hover:shadow-[0_12px_28px_rgba(15,23,42,0.18)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/50 md:right-6 lg:z-50 dark:border-white/10 dark:bg-neutral-950/90 dark:text-gray-200 dark:hover:border-orange-500/40 dark:hover:bg-orange-500/10 dark:hover:text-orange-300"
+      class="back-to-top fixed right-4 z-40 flex h-11 w-11 items-center justify-center rounded-full border border-gray-200/80 bg-white/95 text-gray-700 shadow-[0_8px_24px_rgba(15,23,42,0.14)] backdrop-blur transition-all hover:-translate-y-0.5 hover: hover:shadow-[0_12px_28px_rgba(15,23,42,0.18)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/50 md:right-6 lg:z-50 dark:border-white/10 dark:bg-neutral-950/90 dark:text-gray-200 dark:/40 dark:hover:bg-orange-500/10 dark:" style="background-color: var(--ui-accent-soft);"
       :aria-label="t('common.backToTop')"
     >
       <ChevronUpIcon class="h-5 w-5 stroke-[2.2]" aria-hidden="true" />

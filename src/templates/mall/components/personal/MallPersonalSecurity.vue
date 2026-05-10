@@ -48,7 +48,7 @@
             <button
               v-if="showTelegramMiniAppEntry"
               type="button"
-              class="h-9 w-full rounded-full border border-gray-200 px-4 text-sm font-bold hover:text-[#ff5000] dark:border-white/10 sm:w-auto"
+              class="h-9 w-full rounded-full border border-gray-200 px-4 text-sm font-bold hover: dark:border-white/10 sm:w-auto" style="color: var(--ui-accent);"
               @click="openTelegramMiniAppEntry"
             >
               {{ t('personalCenter.security.telegramMiniAppEntryAction') }}
@@ -57,7 +57,7 @@
               v-if="showMiniAppBindAction"
               type="button"
               :disabled="userProfileStore.bindingTelegram"
-              class="h-9 w-full rounded-full bg-[#ff5000] px-4 text-sm font-black text-white disabled:opacity-60 sm:w-auto"
+              class="h-9 w-full rounded-full px-4 text-sm font-black text-white disabled:opacity-60 sm:w-auto" style="background-color: var(--ui-accent);"
               @click="handleTelegramMiniAppBind"
             >
               {{ userProfileStore.bindingTelegram ? t('personalCenter.security.telegramMiniAppBinding') : t('personalCenter.security.telegramMiniAppBindAction') }}
@@ -89,23 +89,23 @@
               </label>
               <label class="block">
                 <span class="mb-1 block text-xs font-bold text-gray-500">{{ t('personalCenter.security.newEmailLabel') }}</span>
-                <input v-model.trim="securityForm.newEmail" class="h-9 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus:border-[#ff5000] dark:border-white/10 dark:bg-neutral-900 sm:h-10" :placeholder="t('personalCenter.security.newEmailPlaceholder')" />
+                <input v-model.trim="securityForm.newEmail" class="h-9 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus: dark:border-white/10 dark:bg-neutral-900 sm:h-10" style="border-color: var(--ui-accent);" :placeholder="t('personalCenter.security.newEmailPlaceholder')" />
               </label>
               <div v-if="requiresOldEmailCode" class="grid gap-2 sm:grid-cols-[minmax(0,1fr)_auto]">
-                <input v-model.trim="securityForm.oldCode" class="h-9 rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus:border-[#ff5000] dark:border-white/10 dark:bg-neutral-900 sm:h-10" :placeholder="t('personalCenter.security.oldCodeLabel')" />
+                <input v-model.trim="securityForm.oldCode" class="h-9 rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus: dark:border-white/10 dark:bg-neutral-900 sm:h-10" style="border-color: var(--ui-accent);" :placeholder="t('personalCenter.security.oldCodeLabel')" />
                 <button type="button" :disabled="userProfileStore.sendingCode || oldCodeCooldown > 0" class="h-9 rounded-full border border-gray-200 px-4 text-xs font-bold disabled:opacity-50 dark:border-white/10 sm:h-10" @click="handleSendOldCode">
                   {{ oldCodeCooldown > 0 ? t('personalCenter.security.countdown', { seconds: oldCodeCooldown }) : t('personalCenter.security.sendOldCode') }}
                 </button>
               </div>
               <div class="grid gap-2 sm:grid-cols-[minmax(0,1fr)_auto]">
-                <input v-model.trim="securityForm.newCode" class="h-9 rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus:border-[#ff5000] dark:border-white/10 dark:bg-neutral-900 sm:h-10" :placeholder="t('personalCenter.security.newCodeLabel')" />
+                <input v-model.trim="securityForm.newCode" class="h-9 rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus: dark:border-white/10 dark:bg-neutral-900 sm:h-10" style="border-color: var(--ui-accent);" :placeholder="t('personalCenter.security.newCodeLabel')" />
                 <button type="button" :disabled="userProfileStore.sendingCode || newCodeCooldown > 0" class="h-9 rounded-full border border-gray-200 px-4 text-xs font-bold disabled:opacity-50 dark:border-white/10 sm:h-10" @click="handleSendNewCode">
                   {{ newCodeCooldown > 0 ? t('personalCenter.security.countdown', { seconds: newCodeCooldown }) : t('personalCenter.security.sendNewCode') }}
                 </button>
               </div>
             </div>
             <div class="mt-auto pt-3">
-              <button type="button" :disabled="userProfileStore.changingEmail" class="h-10 w-full rounded-full bg-[#ff5000] px-5 text-sm font-black text-white disabled:opacity-60" @click="handleChangeEmail">
+              <button type="button" :disabled="userProfileStore.changingEmail" class="h-10 w-full rounded-full px-5 text-sm font-black text-white disabled:opacity-60" style="background-color: var(--ui-accent);" @click="handleChangeEmail">
                 {{ userProfileStore.changingEmail ? t('personalCenter.security.submitting') : (requiresOldEmailCode ? t('personalCenter.security.submit') : t('personalCenter.security.bindSubmit')) }}
               </button>
             </div>
@@ -119,12 +119,12 @@
           </div>
           <div class="mt-2 flex flex-1 flex-col sm:mt-3">
             <div class="space-y-2">
-              <input v-if="requiresOldPassword" v-model="passwordForm.oldPassword" type="password" class="h-9 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus:border-[#ff5000] dark:border-white/10 dark:bg-neutral-900 sm:h-10" :placeholder="t('personalCenter.security.currentPasswordLabel')" />
-              <input v-model="passwordForm.newPassword" type="password" class="h-9 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus:border-[#ff5000] dark:border-white/10 dark:bg-neutral-900 sm:h-10" :placeholder="t('personalCenter.security.newPasswordLabel')" />
-              <input v-model="passwordForm.confirmPassword" type="password" class="h-9 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus:border-[#ff5000] dark:border-white/10 dark:bg-neutral-900 sm:h-10" :placeholder="t('personalCenter.security.confirmPasswordLabel')" />
+              <input v-if="requiresOldPassword" v-model="passwordForm.oldPassword" type="password" class="h-9 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus: dark:border-white/10 dark:bg-neutral-900 sm:h-10" style="border-color: var(--ui-accent);" :placeholder="t('personalCenter.security.currentPasswordLabel')" />
+              <input v-model="passwordForm.newPassword" type="password" class="h-9 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus: dark:border-white/10 dark:bg-neutral-900 sm:h-10" style="border-color: var(--ui-accent);" :placeholder="t('personalCenter.security.newPasswordLabel')" />
+              <input v-model="passwordForm.confirmPassword" type="password" class="h-9 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus: dark:border-white/10 dark:bg-neutral-900 sm:h-10" style="border-color: var(--ui-accent);" :placeholder="t('personalCenter.security.confirmPasswordLabel')" />
             </div>
             <div class="mt-auto pt-3">
-              <button type="button" :disabled="userProfileStore.changingPassword" class="h-10 w-full rounded-full bg-[#ff5000] px-5 text-sm font-black text-white disabled:opacity-60" @click="handleChangePassword">
+              <button type="button" :disabled="userProfileStore.changingPassword" class="h-10 w-full rounded-full px-5 text-sm font-black text-white disabled:opacity-60" style="background-color: var(--ui-accent);" @click="handleChangePassword">
                 {{ userProfileStore.changingPassword ? t('personalCenter.security.changePasswordSubmitting') : (requiresOldPassword ? t('personalCenter.security.changePassword') : t('personalCenter.security.setPassword')) }}
               </button>
             </div>
@@ -149,7 +149,7 @@
             </span>
             <button
               type="button"
-              class="inline-flex h-8 items-center justify-center rounded-full border border-gray-200 px-3 text-xs font-semibold transition hover:border-orange-400 hover:text-orange-600 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10"
+              class="inline-flex h-8 items-center justify-center rounded-full border border-gray-200 px-3 text-xs font-semibold transition disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10"
               :disabled="userProfileStore.loadingLoginLogs || loginLogsPagination.page <= 1"
               @click="changeLoginLogPage(loginLogsPagination.page - 1)"
             >
@@ -157,7 +157,7 @@
             </button>
             <button
               type="button"
-              class="inline-flex h-8 items-center justify-center rounded-full border border-gray-200 px-3 text-xs font-semibold transition hover:border-orange-400 hover:text-orange-600 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10"
+              class="inline-flex h-8 items-center justify-center rounded-full border border-gray-200 px-3 text-xs font-semibold transition disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10"
               :disabled="userProfileStore.loadingLoginLogs || loginLogsPagination.page >= safeLoginLogTotalPages"
               @click="changeLoginLogPage(loginLogsPagination.page + 1)"
             >

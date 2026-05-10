@@ -2,11 +2,11 @@
   <Transition name="mall-card-picker" appear>
     <div
       v-if="readyToShow"
-      class="border-y border-orange-100 bg-orange-50/35 px-0 py-3 dark:border-orange-400/20 dark:bg-orange-400/10 sm:rounded-2xl sm:border sm:p-3 sm:shadow-sm"
+      class="border-y border-orange-100 /35 px-0 py-3 dark:border-orange-400/20 dark:bg-orange-400/10 sm:rounded-2xl sm:border sm:p-3 sm:shadow-sm" style="background-color: var(--ui-accent-soft);"
     >
       <div class="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto_auto] sm:items-center">
         <div class="flex min-w-0 items-center gap-2">
-          <span class="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-orange-500 shadow-sm ring-1 ring-orange-100 dark:bg-white/10 dark:ring-orange-400/20">
+          <span class="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-orange-500 shadow-sm ring-1 dark:bg-white/10 dark:ring-orange-400/20">
             <ListBulletIcon class="h-3.5 w-3.5" />
           </span>
           <div class="min-w-0">
@@ -18,7 +18,7 @@
         <div class="flex items-center justify-center gap-2 sm:justify-end">
           <button
             type="button"
-            class="h-8 min-w-[64px] rounded-lg border border-orange-100 bg-white px-2.5 text-xs font-bold text-orange-600 transition hover:border-orange-300 hover:bg-orange-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:bg-white/10 dark:text-orange-200 dark:hover:border-orange-300/40 dark:hover:bg-orange-400/10"
+            class="h-8 min-w-[64px] rounded-lg border border-orange-100 bg-white px-2.5 text-xs font-bold text-orange-600 transition hover: disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:bg-white/10 dark:text-orange-200 dark:/40 dark:hover:bg-orange-400/10" style="background-color: var(--ui-accent-soft);"
             :disabled="disabled || loading || page <= 1"
             @click="changePage(page - 1)"
           >
@@ -29,7 +29,7 @@
           </div>
           <button
             type="button"
-            class="h-8 min-w-[64px] rounded-lg border border-orange-100 bg-white px-2.5 text-xs font-bold text-orange-600 transition hover:border-orange-300 hover:bg-orange-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:bg-white/10 dark:text-orange-200 dark:hover:border-orange-300/40 dark:hover:bg-orange-400/10"
+            class="h-8 min-w-[64px] rounded-lg border border-orange-100 bg-white px-2.5 text-xs font-bold text-orange-600 transition hover: disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:bg-white/10 dark:text-orange-200 dark:/40 dark:hover:bg-orange-400/10" style="background-color: var(--ui-accent-soft);"
             :disabled="disabled || loading || page >= totalPages"
             @click="changePage(page + 1)"
           >
@@ -40,7 +40,7 @@
         <button
           v-if="modelValueText"
           type="button"
-          class="h-8 shrink-0 rounded-full border border-orange-100 bg-white px-3 text-xs font-bold text-orange-600 hover:border-orange-300 dark:border-white/10 dark:bg-white/10 dark:text-orange-200"
+          class="h-8 shrink-0 rounded-full border border-orange-100 bg-white px-3 text-xs font-bold text-orange-600 dark:border-white/10 dark:bg-white/10 dark:text-orange-200"
           :disabled="disabled"
           @click="clearSelection"
         >
@@ -81,21 +81,21 @@
             :key="card.id"
             type="button"
             class="flex min-h-[42px] w-full items-center gap-2 rounded-lg border bg-white px-2.5 py-2 text-left transition dark:bg-neutral-900/80"
-            :class="isSelected(card) ? 'border-orange-400 ring-2 ring-orange-100 dark:border-orange-300 dark:ring-orange-300/20' : 'border-gray-200 hover:border-orange-200 dark:border-white/10 dark:hover:border-orange-300/40'"
+            :class="isSelected(card) ? 'border-orange-400 ring-2 dark:border-orange-300 dark:ring-orange-300/20' : 'border-gray-200 dark:border-white/10 dark:/40'"
             :disabled="disabled"
             :title="card.label"
             @click="selectCard(card)"
           >
             <span
               class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border"
-              :class="isSelected(card) ? 'border-orange-500 bg-orange-500' : 'border-gray-300 dark:border-white/20'"
+              :class="isSelected(card) ? 'border-orange-500 0' : 'border-gray-300 dark:border-white/20'" style="background-color: var(--ui-accent-soft);"
             >
               <span v-if="isSelected(card)" class="h-2 w-2 rounded-full bg-white"></span>
             </span>
             <span class="min-w-0 flex-1 break-all text-xs font-bold leading-4 text-gray-800 dark:text-gray-100">{{ card.label }}</span>
             <span
               v-if="hasDelta(card)"
-              class="shrink-0 rounded-full bg-orange-50 px-2 py-1 text-xs font-black text-orange-600 dark:bg-orange-400/10 dark:text-orange-200"
+              class="shrink-0 rounded-full px-2 py-1 text-xs font-black text-orange-600 dark:bg-orange-400/10 dark:text-orange-200" style="background-color: var(--ui-accent-soft);"
             >
               +{{ formatDelta(card.price_delta) }}
             </span>

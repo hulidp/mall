@@ -21,7 +21,7 @@
         <button
           type="button"
           :disabled="opening"
-          class="mt-3 inline-flex h-10 w-full items-center justify-center rounded-full bg-[#ff5000] px-6 text-sm font-black text-white hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+          class="mt-3 inline-flex h-10 w-full items-center justify-center rounded-full px-6 text-sm font-black text-white disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto" style="background-color: var(--ui-accent);"
           @click="openAffiliate"
         >
           {{ opening ? t('personalCenter.affiliate.opening') : t('personalCenter.affiliate.openButton') }}
@@ -34,7 +34,7 @@
             <div class="text-xs font-bold text-gray-500">{{ t('personalCenter.affiliate.affiliateCode') }}</div>
             <div class="mt-1 grid gap-2 sm:flex sm:flex-wrap sm:items-center">
               <code class="min-w-0 break-all rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-black dark:border-white/10 dark:bg-neutral-900">{{ dashboard.affiliate_code || '-' }}</code>
-              <button type="button" class="h-9 w-full rounded-full border border-gray-200 px-3 text-xs font-bold hover:text-[#ff5000] dark:border-white/10 sm:h-auto sm:w-auto sm:py-1.5" @click="copyPromotionUrl">
+              <button type="button" class="h-9 w-full rounded-full border border-gray-200 px-3 text-xs font-bold hover: dark:border-white/10 sm:h-auto sm:w-auto sm:py-1.5" style="color: var(--ui-accent);" @click="copyPromotionUrl">
                 {{ t('personalCenter.affiliate.copyPromotionUrl') }}
               </button>
             </div>
@@ -52,14 +52,14 @@
     <section v-if="dashboard?.opened" class="shrink-0 border-y border-gray-100 bg-white p-4 shadow-none ring-0 dark:border-white/10 dark:bg-neutral-950 sm:rounded-2xl sm:border-0 sm:p-5 sm:shadow-sm sm:ring-1 sm:ring-gray-100 sm:dark:ring-white/10">
       <h3 class="text-base font-black text-gray-950 dark:text-white">{{ t('personalCenter.affiliate.withdrawTitle') }}</h3>
       <form class="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-4" @submit.prevent="handleApplyWithdraw">
-        <input v-model.trim="withdrawForm.amount" class="h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus:border-[#ff5000] dark:border-white/10 dark:bg-neutral-900" :placeholder="t('personalCenter.affiliate.withdrawAmountPlaceholder')" />
-        <select v-if="channelOptions.length > 0" v-model="withdrawForm.channel" class="h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus:border-[#ff5000] dark:border-white/10 dark:bg-neutral-900">
+        <input v-model.trim="withdrawForm.amount" class="h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus: dark:border-white/10 dark:bg-neutral-900" style="border-color: var(--ui-accent);" :placeholder="t('personalCenter.affiliate.withdrawAmountPlaceholder')" />
+        <select v-if="channelOptions.length > 0" v-model="withdrawForm.channel" class="h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus: dark:border-white/10 dark:bg-neutral-900" style="border-color: var(--ui-accent);">
           <option value="">{{ t('personalCenter.affiliate.withdrawChannelPlaceholder') }}</option>
           <option v-for="channel in channelOptions" :key="channel" :value="channel">{{ channel }}</option>
         </select>
-        <input v-else v-model.trim="withdrawForm.channel" class="h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus:border-[#ff5000] dark:border-white/10 dark:bg-neutral-900" :placeholder="t('personalCenter.affiliate.withdrawChannelPlaceholder')" />
-        <input v-model.trim="withdrawForm.account" class="h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus:border-[#ff5000] dark:border-white/10 dark:bg-neutral-900" :placeholder="t('personalCenter.affiliate.withdrawAccountPlaceholder')" />
-        <button type="submit" :disabled="submittingWithdraw" class="h-10 rounded-full bg-[#ff5000] px-5 text-sm font-black text-white hover:bg-orange-600 disabled:opacity-60 sm:col-span-2 xl:col-span-1">
+        <input v-else v-model.trim="withdrawForm.channel" class="h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus: dark:border-white/10 dark:bg-neutral-900" style="border-color: var(--ui-accent);" :placeholder="t('personalCenter.affiliate.withdrawChannelPlaceholder')" />
+        <input v-model.trim="withdrawForm.account" class="h-10 rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus: dark:border-white/10 dark:bg-neutral-900" style="border-color: var(--ui-accent);" :placeholder="t('personalCenter.affiliate.withdrawAccountPlaceholder')" />
+        <button type="submit" :disabled="submittingWithdraw" class="h-10 rounded-full px-5 text-sm font-black text-white disabled:opacity-60 sm:col-span-2 xl:col-span-1" style="background-color: var(--ui-accent);">
           {{ submittingWithdraw ? t('personalCenter.affiliate.withdrawing') : t('personalCenter.affiliate.withdrawSubmit') }}
         </button>
       </form>
@@ -297,13 +297,13 @@ const RecordList = defineComponent({
             h('span', { class: 'text-center text-xs font-semibold text-gray-500 dark:text-gray-400 sm:text-left' }, t('orders.pageInfo', { page: props.pagination?.page || 1, total: safeTotalPages.value })),
             h('button', {
               type: 'button',
-              class: 'inline-flex h-8 items-center justify-center rounded-full border border-gray-200 px-3 text-xs font-semibold transition hover:border-orange-400 hover:text-orange-600 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10',
+              class: 'inline-flex h-8 items-center justify-center rounded-full border border-gray-200 px-3 text-xs font-semibold transition disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10',
               disabled: props.loading || (props.pagination?.page || 1) <= 1,
               onClick: () => changePage((props.pagination?.page || 1) - 1),
             }, t('pagination.previous')),
             h('button', {
               type: 'button',
-              class: 'inline-flex h-8 items-center justify-center rounded-full border border-gray-200 px-3 text-xs font-semibold transition hover:border-orange-400 hover:text-orange-600 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10',
+              class: 'inline-flex h-8 items-center justify-center rounded-full border border-gray-200 px-3 text-xs font-semibold transition disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10',
               disabled: props.loading || (props.pagination?.page || 1) >= safeTotalPages.value,
               onClick: () => changePage((props.pagination?.page || 1) + 1),
             }, t('pagination.next')),

@@ -12,7 +12,7 @@
           <Bars3Icon class="h-5 w-5" />
           <span
             v-if="activeCategory"
-            class="absolute right-2 top-2 h-2 w-2 rounded-full border border-neutral-900 bg-orange-500"
+            class="absolute right-2 top-2 h-2 w-2 rounded-full border border-neutral-900 0" style="background-color: var(--ui-accent-soft);"
             aria-hidden="true"
           ></span>
         </button>
@@ -63,7 +63,7 @@
                   </div>
                   <button
                     type="button"
-                    class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-200 text-gray-500 transition hover:text-orange-600 dark:border-white/10 dark:text-gray-300 dark:hover:text-orange-300"
+                    class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-200 text-gray-500 transition dark:border-white/10 dark:text-gray-300 dark:"
                     :aria-label="t('common.close')"
                     @click="closeMobileDrawer"
                   >
@@ -111,7 +111,7 @@
       <button
         v-if="hasOverflow"
         type="button"
-        class="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-gray-500 shadow-sm ring-1 ring-gray-200 transition hover:text-orange-600 hover:ring-orange-200 sm:flex dark:bg-neutral-950 dark:text-gray-300 dark:ring-white/10 dark:hover:text-orange-400"
+        class="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-gray-500 shadow-sm ring-1 ring-gray-200 transition hover:ring-orange-200 sm:flex dark:bg-neutral-950 dark:text-gray-300 dark:ring-white/10 dark:"
         :aria-label="t('common.previousBanner')"
         @click="scrollTabs(-1)"
       >
@@ -142,7 +142,7 @@
       <button
         v-if="hasOverflow"
         type="button"
-        class="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-gray-500 shadow-sm ring-1 ring-gray-200 transition hover:text-orange-600 hover:ring-orange-200 sm:flex dark:bg-neutral-950 dark:text-gray-300 dark:ring-white/10 dark:hover:text-orange-400"
+        class="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-gray-500 shadow-sm ring-1 ring-gray-200 transition hover:ring-orange-200 sm:flex dark:bg-neutral-950 dark:text-gray-300 dark:ring-white/10 dark:"
         :aria-label="t('common.nextBanner')"
         @click="scrollTabs(1)"
       >
@@ -182,9 +182,9 @@ const mobileDrawerOpen = ref(false)
 const mobileButtonTop = ref(0)
 const baseClass = 'inline-flex h-9 items-center gap-2 rounded-full px-4 text-sm font-semibold whitespace-nowrap transition-all duration-200 ease-out will-change-transform'
 const activeClass = 'bg-orange-600 text-white shadow-[0_8px_18px_rgba(255,80,0,0.22)] ring-1 ring-orange-500/20'
-const inactiveClass = 'bg-white text-gray-700 ring-1 ring-gray-200 hover:-translate-y-0.5 hover:text-orange-600 hover:ring-orange-200 dark:bg-neutral-950 dark:text-gray-200 dark:ring-white/10 dark:hover:text-orange-400 dark:hover:ring-orange-500/30'
+const inactiveClass = 'bg-white text-gray-700 ring-1 ring-gray-200 hover:-translate-y-0.5 hover:ring-orange-200 dark:bg-neutral-950 dark:text-gray-200 dark:ring-white/10 dark: dark:hover:ring-orange-500/30'
 const mobileDrawerActiveClass = 'flex w-full items-center justify-between rounded-2xl bg-orange-600 px-3 py-3 text-left text-sm font-semibold text-white shadow-sm'
-const mobileDrawerInactiveClass = 'flex w-full items-center justify-between rounded-2xl border border-gray-200 bg-white px-3 py-3 text-left text-sm font-medium text-gray-700 transition hover:border-orange-200 hover:text-orange-600 dark:border-white/10 dark:bg-neutral-900 dark:text-gray-200 dark:hover:border-orange-500/30 dark:hover:text-orange-300'
+const mobileDrawerInactiveClass = 'flex w-full items-center justify-between rounded-2xl border border-gray-200 bg-white px-3 py-3 text-left text-sm font-medium text-gray-700 transition dark:border-white/10 dark:bg-neutral-900 dark:text-gray-200 dark:/30 dark:'
 let resizeObserver: ResizeObserver | null = null
 let dragPointerId: number | null = null
 let dragStartY = 0

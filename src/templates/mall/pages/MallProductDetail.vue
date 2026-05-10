@@ -208,8 +208,7 @@
                     type="button"
                     class="min-h-11 rounded-lg border px-2.5 py-2 text-left text-sm transition-colors"
                     :style="normalizeSkuId(sku.id) === selectedSkuId ? 'border-color: var(--ui-accent); background-color: var(--ui-accent-soft); color: var(--ui-accent);' : 'border-color: var(--ui-border); background-color: var(--ui-bg-elevated); color: var(--ui-text-primary);'"
-                    :class="[
-                      isSkuPurchasable(product, sku) ? '' : 'cursor-not-allowed opacity-50',
+                    :class="[ isSkuPurchasable(product, sku) ? '' : 'cursor-not-allowed opacity-50',
                       isLongSkuText(sku) ? 'col-span-full' : '',
                     ]"
                     :disabled="!isSkuPurchasable(product, sku)"
@@ -359,7 +358,7 @@
                     v-if="userAuthStore.isAuthenticated"
                     type="button"
                     class="inline-flex min-h-10 min-w-0 items-center justify-center rounded-lg border px-2.5 py-2 text-center text-sm font-semibold transition sm:justify-start sm:px-3"
-                    :class="useBalance ? 'border-orange-600 bg-orange-50 text-orange-600 dark:bg-orange-500/10' : 'border-gray-200 bg-white text-gray-800 hover:border-orange-400 dark:border-white/10 dark:bg-neutral-950 dark:text-gray-100'"
+                    :class="useBalance ? 'border-orange-600 text-orange-600 ' : 'border-gray-200 bg-white text-gray-800 dark:border-white/10 dark:bg-neutral-950 dark:text-gray-100'" style="background-color: var(--ui-accent-soft);"
                     @click="selectBalancePayment"
                   >
                     {{ balancePaymentLabel }}
@@ -369,7 +368,7 @@
                     :key="channel.id"
                     type="button"
                     class="inline-flex min-h-10 min-w-0 items-center justify-center gap-2 rounded-lg border px-2.5 py-2 text-center text-sm font-semibold transition sm:justify-start sm:px-3"
-                    :class="Number(selectedChannelId) === Number(channel.id) ? 'border-orange-600 bg-orange-50 text-orange-600 dark:bg-orange-500/10' : 'border-gray-200 bg-white text-gray-800 hover:border-orange-400 dark:border-white/10 dark:bg-neutral-950 dark:text-gray-100'"
+                    :class="Number(selectedChannelId) === Number(channel.id) ? 'border-orange-600 text-orange-600 ' : 'border-gray-200 bg-white text-gray-800 dark:border-white/10 dark:bg-neutral-950 dark:text-gray-100'" style="background-color: var(--ui-accent-soft);"
                     @click="selectPaymentChannel(channel.id)"
                   >
                     <img v-if="paymentChannelIcon(channel)" :src="paymentChannelIcon(channel)" :alt="channelName(channel)" loading="lazy" class="h-5 w-5 shrink-0 rounded object-contain" />
@@ -388,7 +387,7 @@
             <div class="mb-3 flex items-center justify-between gap-3 rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 dark:border-white/10 dark:bg-white/[0.04] lg:hidden">
               <div class="min-w-0">
                 <div class="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400 dark:text-gray-500">{{ t('checkout.previewTotal') }}</div>
-                <div class="mt-1 text-lg font-black text-[#ff5000]">{{ previewMoneyText(previewTotal) }}</div>
+                <div class="mt-1 text-lg font-black" style="color: var(--ui-accent);">{{ previewMoneyText(previewTotal) }}</div>
               </div>
               <div class="min-w-0 text-right">
                 <div class="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-400 dark:text-gray-500">{{ t('productDetail.selectedSkuLabel') }}</div>

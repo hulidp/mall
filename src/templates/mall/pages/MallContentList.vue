@@ -21,7 +21,7 @@
         v-for="post in posts"
         :key="post.id"
         type="button"
-        class="group flex w-full gap-3 px-4 py-3 text-left transition hover:bg-orange-50/50 dark:hover:bg-white/5 md:block md:overflow-hidden md:rounded-lg md:bg-white md:p-0 md:shadow-sm md:ring-1 md:ring-gray-100 md:hover:bg-white md:hover:ring-orange-200 md:dark:bg-neutral-950 md:dark:ring-white/10 md:dark:hover:bg-neutral-950 md:dark:hover:ring-orange-500/40"
+        class="group flex w-full gap-3 px-4 py-3 text-left transition hover: /50 dark:hover:bg-white/5 md:block md:overflow-hidden md:rounded-lg md:bg-white md:p-0 md:shadow-sm md:ring-1 md:ring-gray-100 md:hover:bg-white md:hover:ring-orange-200 md:dark:bg-neutral-950 md:dark:ring-white/10 md:dark:hover:bg-neutral-950 md:dark:hover:ring-orange-500/40" style="background-color: var(--ui-accent-soft);"
         @click="openPost(post)"
       >
         <div v-if="post.thumbnail" class="h-20 w-24 shrink-0 overflow-hidden rounded-lg bg-gray-100 dark:bg-white/10 md:h-auto md:w-auto md:rounded-none md:aspect-[16/9]">
@@ -29,10 +29,10 @@
         </div>
         <div class="min-w-0 flex-1 md:p-5">
           <div class="mb-3 flex items-center justify-between gap-3">
-            <span class="rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold text-orange-600 dark:bg-orange-500/10">{{ post.type === 'notice' ? t('nav.notice') : t('nav.blog') }}</span>
+            <span class="rounded-full px-3 py-1 text-xs font-semibold text-orange-600" style="background-color: var(--ui-accent-soft);">{{ post.type === 'notice' ? t('nav.notice') : t('nav.blog') }}</span>
             <time class="text-xs text-gray-400">{{ formatDate(post.published_at) }}</time>
           </div>
-          <h2 class="line-clamp-2 text-base font-black text-gray-950 group-hover:text-orange-600 dark:text-white md:text-lg">{{ getLocalizedText(post.title) }}</h2>
+          <h2 class="line-clamp-2 text-base font-black text-gray-950 group- dark:text-white md:text-lg">{{ getLocalizedText(post.title) }}</h2>
           <p class="mt-2 line-clamp-2 text-sm leading-6 text-gray-500 dark:text-gray-400 md:mt-3 md:line-clamp-3">{{ getLocalizedText(post.summary) }}</p>
         </div>
       </button>

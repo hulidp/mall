@@ -2,7 +2,7 @@
   <div class="mx-auto max-w-[980px] px-0 py-2 sm:px-6 sm:py-8 lg:px-8">
     <article class="overflow-hidden border-y border-gray-100 bg-white shadow-none ring-0 dark:border-white/10 dark:bg-neutral-950 sm:rounded-lg sm:border-0 sm:shadow-sm sm:ring-1 sm:ring-gray-100 sm:dark:ring-white/10">
       <header class="border-b border-gray-100 p-3 dark:border-white/10 sm:p-8">
-        <span class="inline-flex rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold text-orange-600 dark:bg-orange-500/10">
+        <span class="inline-flex rounded-full px-3 py-1 text-xs font-semibold text-orange-600" style="background-color: var(--ui-accent-soft);">
           {{ siteName }}
         </span>
         <h1 class="mt-2 text-xl font-black leading-tight text-gray-950 dark:text-white sm:mt-4 sm:text-3xl">{{ title }}</h1>
